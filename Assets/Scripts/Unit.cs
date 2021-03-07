@@ -6,7 +6,13 @@
 
 public class Unit : Entity
 {
-    public enum Type : int { White = 0, Green, Red };
+
+    public enum Type : int
+    {
+        White = 0,
+        Green,
+        Red,
+    };
     public Cell OnCell { get; set; } = null;
     public Type UnitType { get; set; } = Type.White;
     public float Skill { get; set; }

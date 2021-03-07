@@ -2,7 +2,9 @@
 
 public abstract class Entity : MonoBehaviour
 {
+    public float AttackTimerMax { get; set; } = 2.0f;
 
+    public float AttackTimer { get; private set; } = 0.0f;
     public float Life { get; set; }
     public float Damage { get; set; }
 
@@ -15,7 +17,13 @@ public abstract class Entity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TryAttack();
+        float deltaTime = GameManager.Instance.deltaTime();
+        AttackTimer += deltaTime;
+        if (AttackTimer >= AttackTimerMax)
+        {
+            TryAttack();
+            AttackTimer = 0;
+        }
     }
 
     protected abstract void TryAttack();

@@ -30,8 +30,11 @@ public class Cell : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float deltaTime = Time.deltaTime;
-        CheckOverload(deltaTime);
+        float deltaTime = GameManager.Instance.deltaTime();
+        if (deltaTime > 0)
+        {
+            CheckOverload(deltaTime);
+        }
     }
 
     /*operations for units on cell*/

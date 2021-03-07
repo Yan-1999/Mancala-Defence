@@ -19,9 +19,12 @@ public class GameManager : MonoBehaviour
     //singleton
     static public GameManager Instance { get; private set; } = null;
 
+    public float TimeRate { get; set; } = 1.0f;
+
     private Map Map { get; set; } = null;
     private List<Unit> Units { get; set; } = new List<Unit>();
     private List<Enemy> Enemies { get; set; } = new List<Enemy>();
+    private PlayerAssets assets { get; set; } = new PlayerAssets();
 
     private void Awake()
     {
@@ -46,6 +49,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public float deltaTime()
+    {
+        return Time.deltaTime * TimeRate;
     }
 
     /*unit placement*/
@@ -142,5 +150,6 @@ public class GameManager : MonoBehaviour
     public void EnemyDeath(Enemy enemy)
     {
         Enemies.Remove(enemy);
+        assets.GainCoinOnEmemyKill();
     }
 }
