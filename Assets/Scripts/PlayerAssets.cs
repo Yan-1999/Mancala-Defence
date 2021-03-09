@@ -3,12 +3,15 @@ using System.Collections.Generic;
 
 public class PlayerAssets
 {
-    public const int spwanCost = 2;
-    public const int upgradeCost = 3;
-    public const int mancalaCost = 3;
-    public const int extendHandLimitCost = 100;
-    public const int upgradeAttrCost = 30;
-    public const int enemyKillGain = 10;
+    public readonly int[] Costs = new int[]
+    {
+        2, // UnitSpawn
+        3, // UnitUpgrade
+        3, // Mancala
+        100, // ExtendHandLimit
+        30 // UpgradeAttribute
+    };
+    public const int enemyKillGain = 20;
 
     public LinkedList<Unit.Type> Cards { get; private set; } =
         new LinkedList<Unit.Type>();
@@ -46,16 +49,16 @@ public class PlayerAssets
     }
 
     /// <summary>
-    /// Check if player can spwan ANY unit.
+    /// Check if player have enough card.
     /// </summary>
-    /// <returns>possible types</returns>
-    public List<Unit.Type> CheckSpawn()
+    /// <returns>return the type which player have enough card</returns>
+    public List<Unit.Type> CheckHand(PlayerOption option)
     {
         Array arrayEnum = Enum.GetValues(typeof(Unit.Type));
         List<Unit.Type> types = new List<Unit.Type>(arrayEnum.Length);
         foreach (Unit.Type type in arrayEnum)
         {
-            if (CardNum[(int)type] > spwanCost)
+            if (CardNum[(int)type] > Costs[(int)option])
             {
                 types.Add(type);
             }
@@ -63,45 +66,9 @@ public class PlayerAssets
         return types;
     }
 
-    /// <summary>
-    /// Check if player can upgarde ANY unit.
-    /// </summary>
-    /// <returns>if player can upgarde a unit (no matter what type)</returns>
-    public List<Unit.Type> CheckUpgrade()
+    public bool CostCard(Unit.Type type, PlayerOption option)
     {
-        Array arrayEnum = Enum.GetValues(typeof(Unit.Type));
-        List<Unit.Type> types = new List<Unit.Type>(arrayEnum.Length);
-        foreach (Unit.Type type in arrayEnum)
-        {
-            if (CardNum[(int)type] > upgradeCost)
-            {
-                types.Add(type);
-            }
-        }
-        return types;
-    }
-
-    /// <summary>
-    /// Check if player have enough card to
-    /// perform Mancala.
-    /// </summary>
-    /// <returns>if player have enough card to perform Mancala</returns>
-    public List<Unit.Type> CheckMancala()
-    {
-        Array arrayEnum = Enum.GetValues(typeof(Unit.Type));
-        List<Unit.Type> types = new List<Unit.Type>(arrayEnum.Length);
-        foreach (Unit.Type type in arrayEnum)
-        {
-            if (CardNum[(int)type] > mancalaCost)
-            {
-                types.Add(type);
-            }
-        }
-        return types;
-    }
-
-    public bool CostCard(Unit.Type type, int num)
-    {
+        int num = Costs[(int)option];
         if (CardNum[(int)type] < num)
         {
             return false;
@@ -110,14 +77,14 @@ public class PlayerAssets
         int counter = 0;
         CardNum[(int)type] -= num;
         LinkedListNode<Unit.Type> card = Cards.First;
-        LinkedListNode<Unit.Type> rmCard = null;
+        LinkedListNode<Unit.Type> rmCard;
         while (counter != num && card != null)
         {
             if (card.Value == type)
             {
                 rmCard = card;
                 card = card.Next;
-                Cards.Remove(card);
+                Cards.Remove(rmCard);
                 counter++;
             }
             else
@@ -135,35 +102,23 @@ public class PlayerAssets
         coin += enemyKillGain;
     }
 
-    public bool CheckExtendHandLimit()
+    public bool CheckCoin(PlayerOption option)
     {
-        return coin < extendHandLimitCost;
+        return coin < Costs[(int)option];
     }
 
-    public bool CheckAttrUpgrade()
+    /// <summary>
+    /// For UpgredAttr, do ONLY the coin consume step.
+    /// </summary>
+    /// <param name="option">option</param>
+    /// <returns>if the option succeeded</returns>
+    public bool CostCoin(PlayerOption option)
     {
-        return coin < upgradeAttrCost;
-    }
-
-    public bool ExtendHandLimit()
-    {
-        if (CheckExtendHandLimit())
+        if (CheckCoin(option))
         {
             return false;
         }
-        coin -= extendHandLimitCost;
-        HandLimit++;
+        coin -= Costs[(int)option];
         return true;
     }
-
-    public bool CostAttrUpgrade()
-    {
-        if (CheckAttrUpgrade())
-        {
-            return false;
-        }
-        coin -= upgradeAttrCost;
-        return true;
-    }
-
 }

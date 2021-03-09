@@ -7,7 +7,7 @@
 
     protected override void TryAttack()
     {
-        // TODO
+        // UNDONE: More details in enemy attack.
         GameManager.Instance.EnemyAttack(this);
     }
 }

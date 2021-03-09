@@ -30,11 +30,19 @@ public class Cell : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float deltaTime = GameManager.Instance.deltaTime();
+        float deltaTime = Time.deltaTime;
         if (deltaTime > 0)
         {
             CheckOverload(deltaTime);
         }
+    }
+
+    public int UnitCount() { return Units.Count; }
+
+    public bool IsVaildForUnitSpawn()
+    {
+        return GetType().Equals(typeof(BaseCell))
+             || (IsVulnerable && Acivated);
     }
 
     /*operations for units on cell*/

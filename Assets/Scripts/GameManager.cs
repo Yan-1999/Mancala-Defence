@@ -20,11 +20,12 @@ public class GameManager : MonoBehaviour
     static public GameManager Instance { get; private set; } = null;
 
     public float TimeRate { get; set; } = 1.0f;
+    public Map Map { get; private set; } = null;
 
-    private Map Map { get; set; } = null;
     private List<Unit> Units { get; set; } = new List<Unit>();
     private List<Enemy> Enemies { get; set; } = new List<Enemy>();
-    private PlayerAssets assets { get; set; } = new PlayerAssets();
+    private PlayerAssets Assets { get; set; } = new PlayerAssets();
+    private bool FreeMancala = false;
 
     private void Awake()
     {
@@ -51,9 +52,16 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public float deltaTime()
+    private void SetGamePause(bool pause)
     {
-        return Time.deltaTime * TimeRate;
+        if (pause)
+        {
+            Time.timeScale = 0.0f;
+        }
+        else
+        {
+            Time.timeScale = TimeRate;
+        }
     }
 
     /*unit placement*/
@@ -71,18 +79,16 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Spwan a unit on cell.
+    /// Spawn a unit on cell.
     /// This will check whether the cell is base
     /// or inactivate vul..
     /// </summary>
     /// <param name="unit">unit to spawn</param>
     /// <param name="cell">cell to place on</param>
-    /// <returns>whether the spwan is successful</returns>
+    /// <returns>whether the spawn is successful</returns>
     public bool UnitSpawn(Unit unit, Cell cell)
     {
-        if (cell.GetType().Equals(typeof(BaseCell))
-            || (cell.IsVulnerable && cell.Acivated)
-            )
+        if (cell.IsVaildForUnitSpawn())
         {
             return false;
         }
@@ -98,12 +104,18 @@ public class GameManager : MonoBehaviour
     /// <param name="cell"></param>
     public void Mancala(Cell cell)
     {
+        // UNDONE: Special rule oppositing for Mancala.
         int cellIndex = Array.IndexOf(Map.Cells, cell);
         Unit[] units = cell.UnitArrayCopy();
         cell.ClearUnits();
         foreach (Unit unit in units)
         {
             cellIndex = (cellIndex + 1) % Map.Cells.Length;
+            if (unit == units[units.Length - 1] &&
+                Map.Cells[cellIndex].UnitCount() == 0)
+            {
+                FreeMancala = true;
+            }
             UnitMove(unit, Map.Cells[cellIndex]);
         }
     }
@@ -150,6 +162,89 @@ public class GameManager : MonoBehaviour
     public void EnemyDeath(Enemy enemy)
     {
         Enemies.Remove(enemy);
-        assets.GainCoinOnEmemyKill();
+        Assets.GainCoinOnEmemyKill();
+    }
+
+    public void PlayerCardOption(PlayerOption option)
+    {
+        List<Unit.Type> types = Assets.CheckHand(option);
+        if (types.Count == 0)
+        {
+            return;
+        }
+        // let player choose if there are multiple choices
+        if (types.Count > 1)
+        {
+            SetGamePause(true);
+            PlayerInterface.Instance.ChooseType(option, types);
+        }
+        else
+        {
+            PlayerCardTypeCallback(option, types[0]);
+        }
+    }
+
+    public void PlayerCardTypeCallback(
+        PlayerOption option,
+        Unit.Type type)
+    {
+        SetGamePause(false);
+        Assets.CostCard(type, option);
+        switch (option)
+        {
+            case PlayerOption.UnitUpgrade:
+                UnitFactory.Instance.UpgradeUnitFactory(type);
+                break;
+            case PlayerOption.UnitSpawn:
+            case PlayerOption.Mancala:
+                SetGamePause(true);
+                PlayerInterface.Instance.ChooseCell(option, type);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void PlayerChooseCellCallback(
+        PlayerOption option,
+        Unit.Type type,
+        Cell cell)
+    {
+        SetGamePause(false);
+        switch (option)
+        {
+            case PlayerOption.UnitSpawn:
+                Unit unit = UnitFactory.Instance.GenerateUnit(type);
+                UnitSpawn(unit, cell);
+                break;
+            case PlayerOption.Mancala:
+                Mancala(cell);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void PlayerCoinOption(
+        PlayerOption option)
+    {
+        Assets.CostCoin(option);
+        switch (option)
+        {
+            case PlayerOption.ExtendHandLimit:
+                Assets.HandLimit++;
+                break;
+            case PlayerOption.UpgradeAttribute:
+                SetGamePause(true);
+                PlayerInterface.Instance.ChooseUnit();
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void PlayerChooseUnitCallback(Unit unit, Unit.AttrEnum attrEnum)
+    {
+        unit.Upgrade(attrEnum);
     }
 }

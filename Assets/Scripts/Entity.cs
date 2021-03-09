@@ -17,7 +17,7 @@ public abstract class Entity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float deltaTime = GameManager.Instance.deltaTime();
+        float deltaTime = Time.deltaTime;
         AttackTimer += deltaTime;
         if (AttackTimer >= AttackTimerMax)
         {
