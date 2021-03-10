@@ -3,6 +3,7 @@
 /// Project: Mancala Defence
 /// File: Unit.cs
 /// </summary>
+using UnityEngine;
 
 
 public class Unit : Entity
@@ -18,6 +19,8 @@ public class Unit : Entity
     public Cell OnCell { get; set; } = null;
     public Type UnitType { get; set; } = Type.White;
     public float Skill { get; set; }
+
+    public GameObject preFab;
 
     public void SetUnitAttrs(UnitAttr unitAttr)
     {

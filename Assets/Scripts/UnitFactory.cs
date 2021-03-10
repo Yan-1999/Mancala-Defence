@@ -52,6 +52,10 @@ public class UnitFactory : MonoBehaviour
     public Unit GenerateUnit(Unit.Type type)
     {
         // TODO: Unit Generation code here.
-        return null;
+        Unit singleUnit=new Unit();
+        singleUnit.UnitType = type;
+        singleUnit.OnCell = null;
+        singleUnit.SetUnitAttrs(Attrs[(int)type]);
+        return singleUnit;
     }
 }

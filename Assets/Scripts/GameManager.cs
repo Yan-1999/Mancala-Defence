@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour
         cell.AddUnit(unit);
         unit.OnCell = cell;
         Units.Add(unit);
+        GameObject.Instantiate(unit.preFab, cell.transform.position, Quaternion.identity);
         return true;
     }
 
