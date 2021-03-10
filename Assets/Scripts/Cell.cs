@@ -10,6 +10,8 @@ using UnityEngine;
 public class Cell : MonoBehaviour
 {
 
+    public bool IsVulnerable  = false;
+
     private const float overloadTimerMax = 10.0f;
     private const float overloadUnitNum = 3.0f;
     private const float overloadRate = 1.0f;
@@ -18,7 +20,6 @@ public class Cell : MonoBehaviour
     private float OverloadTimer { get; set; } = 0;
     public bool IsExhausted { get; private set; } = false;
     private List<Unit> Units { get; set; } = new List<Unit>();
-    public bool IsVulnerable { get; set; } = false;
     public bool Acivated { get; private set; } = false;
 
     // Start is called before the first frame update
