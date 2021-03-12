@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
         cell.AddUnit(unit);
         unit.OnCell = cell;
         Units.Add(unit);
-        GameObject.Instantiate(unit.preFab, cell.transform.position, Quaternion.identity);
+        GameObject.Instantiate(unit.preFab, cell.transform.position, Quaternion.identity);//waiting for check
         return true;
     }
 
@@ -197,6 +197,9 @@ public class GameManager : MonoBehaviour
                 UnitFactory.Instance.UpgradeUnitFactory(type);
                 break;
             case PlayerOption.UnitSpawn:
+                SetGamePause(true);
+                PlayerInterface.Instance.ChooseCell(option, type);
+                break;
             case PlayerOption.Mancala:
                 SetGamePause(true);
                 PlayerInterface.Instance.ChooseCell(option, type);

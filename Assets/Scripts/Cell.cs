@@ -11,6 +11,8 @@ public class Cell : MonoBehaviour
 {
 
     public bool IsVulnerable  = false;
+    public Material[] materials;
+    private Renderer rend;
 
     private const float overloadTimerMax = 10.0f;
     private const float overloadUnitNum = 3.0f;
@@ -25,7 +27,9 @@ public class Cell : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        rend = GetComponent<Renderer>();
+        rend.enabled = true;
+        rend.sharedMaterial = materials[0];
     }
 
     // Update is called once per frame
@@ -149,5 +153,15 @@ public class Cell : MonoBehaviour
     private void OnExhaustion()
     {
         IsExhausted = true;
+    }
+
+    public void HighLight()
+    {
+        rend.sharedMaterial = materials[1];
+    }
+
+    public void HighLightEnd()
+    {
+        rend.sharedMaterial = materials[0];
     }
 }
