@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5246639301867925616}
   - component: {fileID: 5790063605448056135}
   - component: {fileID: 8762743461272944754}
-  - component: {fileID: -8124733848537262006}
   m_Layer: 0
   m_Name: GreenUnit
   m_TagString: Untagged
@@ -107,17 +106,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ed69589e79a2c14085f3bc526d27737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  preFab: {fileID: 7019163672779726624}
---- !u!114 &-8124733848537262006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7019163672779726624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ed69589e79a2c14085f3bc526d27737, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  preFab: {fileID: 0}
+  UnitType: 1

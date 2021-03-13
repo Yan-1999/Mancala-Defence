@@ -17,10 +17,10 @@ public class Unit : Entity
     };
     public enum AttrEnum { Life, Damage, Skill }
     public Cell OnCell { get; set; } = null;
-    public Type UnitType { get; set; } = Type.White;
     public float Skill { get; set; }
 
-    public GameObject preFab;
+    public Type UnitType = Type.White;
+
 
     public void SetUnitAttrs(UnitAttr unitAttr)
     {

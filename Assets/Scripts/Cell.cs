@@ -46,7 +46,7 @@ public class Cell : MonoBehaviour
 
     public bool IsVaildForUnitSpawn()
     {
-        return GetType().Equals(typeof(BaseCell))
+        return !IsVulnerable|| GetType().Equals(typeof(BaseCell))
              || (IsVulnerable && Acivated);
     }
 
