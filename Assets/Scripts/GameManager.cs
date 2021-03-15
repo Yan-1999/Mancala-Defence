@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
     private PlayerAssets Assets { get; set; } = new PlayerAssets();
     private bool FreeMancala = false;
 
+    public Vector3[] presetPosition;
+    
+
     private void Awake()
     {
         Instance = this;
@@ -84,8 +87,8 @@ public class GameManager : MonoBehaviour
         if (!cell.IsVaildForUnitSpawn())
         {
             return false;
-        }
-        Unit newUnit = Instantiate(unit, cell.transform.position, Quaternion.identity);//waiting for check
+        }//can be deleted
+        Unit newUnit = Instantiate(unit, cell.transform.position + presetPosition[cell.UnitCount() % 9], Quaternion.identity);
         newUnit.gameObject.SetActive(true);
         newUnit.transform.SetParent(cell.transform);
         newUnit.name = "unit";
@@ -194,11 +197,11 @@ public class GameManager : MonoBehaviour
                 break;
             case PlayerOption.UnitSpawn:
                 SetGamePause(true);
-                PlayerInterface.Instance.ChooseCell(option, type);
+                PlayerInterface.Instance.HighLightCells(option, type);
                 break;
             case PlayerOption.Mancala:
                 SetGamePause(true);
-                PlayerInterface.Instance.ChooseCell(option, type);
+                PlayerInterface.Instance.HighLightCells(option, type);
                 break;
             default:
                 break;

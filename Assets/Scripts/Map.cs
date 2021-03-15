@@ -10,7 +10,7 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
-    public Cell[] Cells { get; set; }
+    public Cell[] Cells;
 
     void Awake()
     {
