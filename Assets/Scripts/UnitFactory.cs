@@ -14,6 +14,7 @@ public struct UnitAttr
 public class UnitFactory : MonoBehaviour
 {
     static public UnitFactory Instance = null;
+    public Unit[] origin;
 
     public UnitAttr[] Attrs { get; private set; } =
     {
@@ -30,6 +31,11 @@ public class UnitFactory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        for (int i = 0; i < 3; i++)
+        {
+            origin[i].SetUnitAttrs(Attrs[i]);
+            origin[i].gameObject.SetActive(false);
+        }
 
     }
 
@@ -51,11 +57,8 @@ public class UnitFactory : MonoBehaviour
 
     public Unit GenerateUnit(Unit.Type type)
     {
-        // TODO: Unit Generation code here.
-        Unit singleUnit=new Unit();
-        singleUnit.UnitType = type;
-        singleUnit.OnCell = null;
-        singleUnit.SetUnitAttrs(Attrs[(int)type]);
-        return singleUnit;
+        // UNDONE: Unit Generation code here.(debug)
+       
+        return origin[(int)type];
     }
 }

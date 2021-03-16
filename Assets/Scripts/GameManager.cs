@@ -20,12 +20,15 @@ public class GameManager : MonoBehaviour
     static public GameManager Instance { get; private set; } = null;
 
     public float TimeRate { get; set; } = 1.0f;
-    public Map Map { get; private set; } = null;
+    public Map Map ;
 
     private List<Unit> Units { get; set; } = new List<Unit>();
     private List<Enemy> Enemies { get; set; } = new List<Enemy>();
     private PlayerAssets Assets { get; set; } = new PlayerAssets();
     private bool FreeMancala = false;
+
+    public Vector3[] presetPosition;
+    
 
     private void Awake()
     {
@@ -36,14 +39,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         GameObject[] gameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
-        foreach (GameObject gameObject in gameObjects)
-        {
-            Map = gameObject.GetComponent<Map>();
-            if (Map != null)
-            {
-                break;
-            }
-        }
     }
 
     // Update is called once per frame
@@ -88,14 +83,18 @@ public class GameManager : MonoBehaviour
     /// <returns>whether the spawn is successful</returns>
     public bool UnitSpawn(Unit unit, Cell cell)
     {
-        if (cell.IsVaildForUnitSpawn())
+        //UNDONE:change position for each unit on the same cell
+        if (!cell.IsVaildForUnitSpawn())
         {
             return false;
-        }
-        cell.AddUnit(unit);
-        unit.OnCell = cell;
-        Units.Add(unit);
-        GameObject.Instantiate(unit.preFab, cell.transform.position, Quaternion.identity);
+        }//can be deleted
+        Unit newUnit = Instantiate(unit, cell.transform.position + presetPosition[cell.UnitCount() % 9], Quaternion.identity);
+        newUnit.gameObject.SetActive(true);
+        newUnit.transform.SetParent(cell.transform);
+        newUnit.name = "unit";
+        cell.AddUnit(newUnit);
+        newUnit.OnCell = cell;
+        Units.Add(newUnit);
         return true;
     }
 
@@ -197,9 +196,12 @@ public class GameManager : MonoBehaviour
                 UnitFactory.Instance.UpgradeUnitFactory(type);
                 break;
             case PlayerOption.UnitSpawn:
+                SetGamePause(true);
+                PlayerInterface.Instance.HighLightCells(option, type);
+                break;
             case PlayerOption.Mancala:
                 SetGamePause(true);
-                PlayerInterface.Instance.ChooseCell(option, type);
+                PlayerInterface.Instance.HighLightCells(option, type);
                 break;
             default:
                 break;

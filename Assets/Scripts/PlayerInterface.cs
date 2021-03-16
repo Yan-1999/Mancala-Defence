@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public enum PlayerOption
 {
@@ -15,6 +16,11 @@ public class PlayerInterface : MonoBehaviour
 {
 
     public static PlayerInterface Instance { get; private set; } = null;
+    private PlayerOption nowOption = PlayerOption.UnitSpawn;
+    private List<Cell> highLightedCells = new List<Cell>();
+    private bool isHighLighting = false;
+    private Cell cellChosen = null;
+    private Unit.Type nowType = Unit.Type.White;
 
     private void Awake()
     {
@@ -30,7 +36,32 @@ public class PlayerInterface : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(isHighLighting)
+        {
+            if (Input.GetMouseButtonDown(0) && EventSystem.current.IsPointerOverGameObject() == false)
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit, 1000, LayerMask.GetMask("Map")))
+                {
+                    cellChosen = hit.collider.GetComponent<Cell>();//right or wrong?
+                    if (highLightedCells.Contains(cellChosen))
+                    {
+                        GameManager.Instance.PlayerChooseCellCallback(nowOption, nowType, cellChosen);
+                        Debug.Log("you successfully chose the cell");
+                        HighLightCellsEnd();
+                    }
+                    else
+                    {
+                        //TODO:warning wrong action and continue
+                    }
+                }
+            }
+            else if(Input.GetMouseButtonDown(1))
+            {
+                HighLightCellsEnd();
+            }
+        }
     }
 
     /// <summary>
@@ -53,20 +84,20 @@ public class PlayerInterface : MonoBehaviour
     /// </summary>
     /// <param name="option">player option</param>
     /// <param name="types">chosen types</param>
-    public void ChooseCell(PlayerOption option, Unit.Type type)
+    public void HighLightCells(PlayerOption option, Unit.Type type)
     {
         // TODO: UI for choose cells.
         // Implementation steps:
         //     1. Highlight all vaild (and invaild) cells.
         //        NOTICE that this func. can be used
         //        for unit spawn and Mancala. These have
-        //        different vaildation checks.
+        //        different vaildation checks.(finished)
         //     2. Wait for player click (slow down or stop if needed).
         //        After player click a cell,
         //        check which cell is clicked by player.
         //        If player canceled at this step, return.
         //        (and clear highlights).
-        //     3. If the cell is vaild,
+        //     3. If the cell is vaild(highlighted),
         //        call PlayerChooseCellCallback(PlayerOption, Unit.Type, Cell).
         //        Else pop warning message, and back to step 2.
         // Helper functions:
@@ -77,8 +108,53 @@ public class PlayerInterface : MonoBehaviour
         //     - Cell.UnitCount(): int
         //       Return the unit count on the cell. Can be used
         //       in Mancala vaild check.
-        //     - GameManager.TimeRate: int
+        //     - GameManager.TimeRate: float(not int,corrected)
         //       Game time elapse rate. You can modify it.
+        nowOption = option;
+        isHighLighting = true;
+        nowType = type;
+        if(option==PlayerOption.UnitSpawn)
+        {
+            foreach(Cell cell in GameManager.Instance.Map.Cells)
+            {
+                if (cell.IsVaildForUnitSpawn())//able to spawn
+                {
+                    highLightedCells.Add(cell);
+                }
+            }
+        }
+        else if(option==PlayerOption.Mancala)
+        {
+            foreach (Cell cell in GameManager.Instance.Map.Cells)
+            {
+                if (cell.UnitCount() > 0)//have units on target cell
+                {
+                    highLightedCells.Add(cell);
+                }
+            }
+        }
+        else
+        {
+            return;
+        }
+        foreach(Cell cell in highLightedCells)
+        {
+            cell.HighLight();
+        }
+        Debug.Log("before choose cells,cells are highlighted");
+    }
+
+    private void HighLightCellsEnd()
+    {
+        foreach (Cell cell in highLightedCells)
+        {
+            cell.HighLightEnd();
+        }
+        highLightedCells.Clear();
+        nowType = Unit.Type.White;
+        isHighLighting = false;
+        cellChosen = null;
+        Debug.Log("after choosing cell or cancelled,highlight end");
     }
 
     /// <summary>
