@@ -69,8 +69,11 @@ public class GameManager : MonoBehaviour
     {
         Cell from = unit.OnCell;
         from.RemoveUnit(unit);
+        unit.transform.SetParent(to.transform);
+        unit.transform.position = to.transform.position + presetPosition[to.UnitCount() % 9];
         to.AddUnit(unit);
         unit.OnCell = to;
+        Debug.Log("unit moved");
     }
 
     /// <summary>
