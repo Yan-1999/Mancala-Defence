@@ -1106,7 +1106,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9089791074451802279, guid: b726b3c226bdd844eb7777a0536f49c8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b726b3c226bdd844eb7777a0536f49c8, type: 3}
 --- !u!1 &495738573
 GameObject:
@@ -1148,6 +1149,9 @@ MonoBehaviour:
   - {x: 0.33333334, y: 0, z: 0.33333334}
   - {x: -0.33333334, y: 0, z: -0.33333334}
   - {x: 0.33333334, y: 0, z: -0.33333334}
+  PlayerHp: 3
+  endUI: {fileID: 0}
+  endMessage: {fileID: 0}
 --- !u!4 &495738575
 Transform:
   m_ObjectHideFlags: 0
@@ -1919,7 +1923,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9089791074451802279, guid: b726b3c226bdd844eb7777a0536f49c8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b726b3c226bdd844eb7777a0536f49c8, type: 3}
 --- !u!1001 &1111225442
 PrefabInstance:
@@ -2092,7 +2097,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9089791074451802279, guid: b726b3c226bdd844eb7777a0536f49c8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b726b3c226bdd844eb7777a0536f49c8, type: 3}
 --- !u!1001 &1284403465
 PrefabInstance:
@@ -3079,7 +3085,7 @@ GameObject:
   - component: {fileID: 1930447800}
   - component: {fileID: 1930447803}
   m_Layer: 0
-  m_Name: EnemyFactory
+  m_Name: EnemySpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3174,15 +3180,14 @@ MonoBehaviour:
   waves:
   - enemyPrefab: {fileID: 4466176432917713996, guid: c1bbb765eafc66c4aa6ba5a56685d525,
       type: 3}
-    count: 3
+    count: 5
     rate: 1
   - enemyPrefab: {fileID: 4466176432917713996, guid: 1bfbf3281127fc244852af468a05041c,
       type: 3}
-    count: 5
-    rate: 0.5
+    count: 10
+    rate: 0.8
   START: {fileID: 1930447799}
-  waveRate: 3
-  wavePte: 3
+  waveRate: 1
 --- !u!1001 &1965023755
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -176,4 +176,10 @@ public class PlayerInterface : MonoBehaviour
     {
         // TODO: pop a window to show
     }
+
+    //Game Over
+    public void Failed()
+    {
+
+    }
 }

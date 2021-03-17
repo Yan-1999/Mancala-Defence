@@ -12,7 +12,9 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -28,6 +30,10 @@ public class GameManager : MonoBehaviour
     private bool FreeMancala = false;
 
     public Vector3[] presetPosition;
+
+    public float PlayerHp = 10;
+    public GameObject endUI;
+    public Text endMessage;
     
 
     private void Awake()
@@ -249,5 +255,27 @@ public class GameManager : MonoBehaviour
     public void PlayerChooseUnitCallback(Unit unit, Unit.AttrEnum attrEnum)
     {
         unit.Upgrade(attrEnum);
+    }
+
+    public void EnemyPass()
+    {
+        PlayerHp--;
+        if (PlayerHp == 0)
+            Failed();
+    }
+
+    public void Win()
+    {
+        //endUI.SetActive(true);
+        //endMessage.text = "胜 利";
+    }
+
+    public void Failed()
+    {
+        //enemySpawner.Stop();
+        GameObject.Find("EnemySpawner").SendMessage("Stop");
+        GameObject.Find("PlayerInterface").SendMessage("Failed");
+        //endUI.SetActive(true);
+        //endMessage.text = "失 败";
     }
 }
