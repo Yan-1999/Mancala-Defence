@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public enum PlayerOption
 {
@@ -18,10 +19,15 @@ public class PlayerInterface : MonoBehaviour
     public static PlayerInterface Instance { get; private set; } = null;
     private PlayerOption nowOption = PlayerOption.UnitSpawn;
     private List<Cell> highLightedCells = new List<Cell>();
-    private bool isHighLighting = false;
+    public bool isHighLighting { get; private set; } = false;
+    public bool isUpgrading { get; private set; } = false;
     private Cell cellChosen = null;
+    private Unit unitChosen = null;
     private Unit.Type nowType = Unit.Type.White;
-
+    public GameObject upgradeCanvas;
+    public Button upgradeDamage;
+    public Button upgradeSkill;
+    public Button upgradeLife;
     private void Awake()
     {
         Instance = this;
@@ -30,7 +36,20 @@ public class PlayerInterface : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        upgradeCanvas.SetActive(false);
+        
+        upgradeDamage.onClick.AddListener(delegate()
+        {
+            TryUpgrade(Unit.AttrEnum.Damage);
+        });
+        upgradeSkill.onClick.AddListener(delegate ()
+        {
+            TryUpgrade(Unit.AttrEnum.Skill);
+        });
+        upgradeLife.onClick.AddListener(delegate ()
+        {
+            TryUpgrade(Unit.AttrEnum.Life);
+        });
     }
 
     // Update is called once per frame
@@ -44,7 +63,7 @@ public class PlayerInterface : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit, 1000, LayerMask.GetMask("Map")))
                 {
-                    cellChosen = hit.collider.GetComponent<Cell>();//right or wrong?
+                    cellChosen = hit.collider.GetComponent<Cell>();
                     if (highLightedCells.Contains(cellChosen))
                     {
                         GameManager.Instance.PlayerChooseCellCallback(nowOption, nowType, cellChosen);
@@ -60,6 +79,15 @@ public class PlayerInterface : MonoBehaviour
             else if(Input.GetMouseButtonDown(1))
             {
                 HighLightCellsEnd();
+            }
+        }
+        else if(isUpgrading)
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                upgradeCanvas.SetActive(false);
+                isUpgrading = false;
+                Debug.Log("you cancelled upgrade");
             }
         }
     }
@@ -78,7 +106,25 @@ public class PlayerInterface : MonoBehaviour
         // when player click the confirm button.
     }
 
-
+    private void TryUpgrade(Unit.AttrEnum attrEnum)
+    {
+        if (unitChosen != null)
+        {
+            if (GameManager.Instance.EnoughCoin(PlayerOption.UpgradeAttribute))
+            {
+                isUpgrading = false;
+                GameManager.Instance.PlayerChooseUnitCallback(unitChosen, attrEnum);
+                unitChosen = null;
+                upgradeCanvas.SetActive(false);
+                Debug.Log("upgrade");
+                Debug.Log(attrEnum);
+            }
+            else
+            {
+                //TODO:warning coins not enough
+            }
+        }
+    }
     /// <summary>
     /// Show all possible cell for player to choose.
     /// </summary>
@@ -165,6 +211,20 @@ public class PlayerInterface : MonoBehaviour
         // TODO: UI for choose unit.
         // Call PlayerChooseUnitCallback(Unit, Unit.AttrEnum)
         // when player click a unit.
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 1000, LayerMask.GetMask("Units")))
+        {
+            unitChosen = hit.collider.GetComponent<Unit>();
+            if (unitChosen!=null)
+            {
+                isUpgrading = true;
+                upgradeCanvas.gameObject.SetActive(true);
+                upgradeCanvas.transform.SetPositionAndRotation(unitChosen.OnCell.transform.position + new Vector3(0, 0, 0.75f),
+                    Quaternion.Euler(new Vector3(90, 0, 0)));
+                Debug.Log("you successfully chose the unit");
+            }
+        }
     }
 
     /*Notice windows*/

@@ -57,8 +57,6 @@ public class UnitFactory : MonoBehaviour
 
     public Unit GenerateUnit(Unit.Type type)
     {
-        // UNDONE: Unit Generation code here.(debug)
-       
         return origin[(int)type];
     }
 }

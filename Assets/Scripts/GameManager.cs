@@ -158,6 +158,7 @@ public class GameManager : MonoBehaviour
     /// <param name="cell"></param>
     public void UnitDeath(Unit unit)
     {
+        //TODO:add some operation to change other units' position
         Units.Remove(unit);
         unit.OnCell.RemoveUnit(unit);
     }
@@ -231,6 +232,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public bool EnoughCoin(PlayerOption option)
+    {
+        return true;
+        //TODO:change to return Assets.coin >= Assets.Costs[(int)option]; when finished
+    }
+
     public void PlayerCoinOption(
         PlayerOption option)
     {
@@ -240,9 +247,8 @@ public class GameManager : MonoBehaviour
             case PlayerOption.ExtendHandLimit:
                 Assets.HandLimit++;
                 break;
+                //UNDONE::rewrite
             case PlayerOption.UpgradeAttribute:
-                SetGamePause(true);
-                PlayerInterface.Instance.ChooseUnit();
                 break;
             default:
                 break;
