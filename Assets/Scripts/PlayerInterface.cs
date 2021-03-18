@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public enum PlayerOption
 {
-    UnitSpawn,
+    UnitSpawn = 0,
     UnitUpgrade,
     Mancala,
     ExtendHandLimit,

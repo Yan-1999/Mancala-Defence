@@ -12,6 +12,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -22,11 +23,11 @@ public class GameManager : MonoBehaviour
     static public GameManager Instance { get; private set; } = null;
 
     public float TimeRate { get; set; } = 1.0f;
-    public Map Map ;
+    public Map Map;
 
     private List<Unit> Units { get; set; } = new List<Unit>();
     private List<Enemy> Enemies { get; set; } = new List<Enemy>();
-    private PlayerAssets Assets { get; set; } = new PlayerAssets();
+    public PlayerAssets Assets = new PlayerAssets();
     private bool FreeMancala = false;
 
     public Vector3[] presetPosition;
@@ -34,7 +35,7 @@ public class GameManager : MonoBehaviour
     public float PlayerHp = 10;
     public GameObject endUI;
     public Text endMessage;
-    
+
 
     private void Awake()
     {
@@ -173,7 +174,12 @@ public class GameManager : MonoBehaviour
 
     public void PlayerCardOption(PlayerOption option)
     {
+        Assert.IsTrue(option < PlayerOption.ExtendHandLimit);
         List<Unit.Type> types = Assets.CheckHand(option);
+        if (FreeMancala && option == PlayerOption.Mancala)
+        {
+            PlayerInterface.Instance.HighLightCells(option, Unit.Type.White);
+        }
         if (types.Count == 0)
         {
             return;
@@ -186,6 +192,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            Assets.CostCard(types[0], option);
             PlayerCardTypeCallback(option, types[0]);
         }
     }
@@ -194,6 +201,7 @@ public class GameManager : MonoBehaviour
         PlayerOption option,
         Unit.Type type)
     {
+        Assert.IsTrue(option < PlayerOption.ExtendHandLimit);
         SetGamePause(false);
         Assets.CostCard(type, option);
         switch (option)
@@ -219,6 +227,8 @@ public class GameManager : MonoBehaviour
         Unit.Type type,
         Cell cell)
     {
+        Assert.IsTrue(option == PlayerOption.UnitSpawn ||
+            option == PlayerOption.Mancala);
         SetGamePause(false);
         switch (option)
         {
@@ -237,6 +247,7 @@ public class GameManager : MonoBehaviour
     public void PlayerCoinOption(
         PlayerOption option)
     {
+        Assert.IsTrue(option > PlayerOption.Mancala);
         Assets.CostCoin(option);
         switch (option)
         {
