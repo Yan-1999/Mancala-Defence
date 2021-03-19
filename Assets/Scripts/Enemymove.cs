@@ -26,5 +26,21 @@ public class Enemymove : MonoBehaviour
         {
             index++;
         }
+        if (index >= positions.Length)
+        {
+            ReachDestination();
+        }
+
+
+    }
+
+    void ReachDestination()
+    {
+        GameObject.Destroy(this.gameObject);
+    }
+
+    void OnDestroy()
+    {
+        EnemySpawner.CountEnemyAlive--;
     }
 }

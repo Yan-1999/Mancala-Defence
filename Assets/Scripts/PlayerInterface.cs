@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public enum PlayerOption
 {
-    UnitSpawn,
+    UnitSpawn = 0,
     UnitUpgrade,
     Mancala,
     ExtendHandLimit,
@@ -244,5 +244,11 @@ public class PlayerInterface : MonoBehaviour
     public void ShowNoEnoughResource(bool isCard)
     {
         // TODO: pop a window to show
+    }
+
+    //Game Over
+    public void Failed()
+    {
+
     }
 }

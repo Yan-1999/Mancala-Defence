@@ -12,8 +12,10 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Assertions;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -29,11 +31,15 @@ public class GameManager : MonoBehaviour
 
     private List<Unit> Units { get; set; } = new List<Unit>();
     private List<Enemy> Enemies { get; set; } = new List<Enemy>();
-    private PlayerAssets Assets { get; set; } = new PlayerAssets();
+    public PlayerAssets Assets = new PlayerAssets();
     private bool FreeMancala = false;
 
     public Vector3[] presetPosition;
-    
+
+    public float PlayerHp = 10;
+    public GameObject endUI;
+    public Text endMessage;
+
 
     private void Awake()
     {
@@ -190,7 +196,12 @@ public class GameManager : MonoBehaviour
 
     public void PlayerCardOption(PlayerOption option)
     {
+        Assert.IsTrue(option < PlayerOption.ExtendHandLimit);
         List<Unit.Type> types = Assets.CheckHand(option);
+        if (FreeMancala && option == PlayerOption.Mancala)
+        {
+            PlayerInterface.Instance.HighLightCells(option, Unit.Type.White);
+        }
         if (types.Count == 0)
         {
             return;
@@ -203,6 +214,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            Assets.CostCard(types[0], option);
             PlayerCardTypeCallback(option, types[0]);
         }
     }
@@ -211,6 +223,7 @@ public class GameManager : MonoBehaviour
         PlayerOption option,
         Unit.Type type)
     {
+        Assert.IsTrue(option < PlayerOption.ExtendHandLimit);
         SetGamePause(false);
         Assets.CostCard(type, option);
         switch (option)
@@ -236,6 +249,8 @@ public class GameManager : MonoBehaviour
         Unit.Type type,
         Cell cell)
     {
+        Assert.IsTrue(option == PlayerOption.UnitSpawn ||
+            option == PlayerOption.Mancala);
         SetGamePause(false);
         switch (option)
         {
@@ -260,6 +275,7 @@ public class GameManager : MonoBehaviour
     public void PlayerCoinOption(
         PlayerOption option)
     {
+        Assert.IsTrue(option > PlayerOption.Mancala);
         Assets.CostCoin(option);
         switch (option)
         {
@@ -277,5 +293,27 @@ public class GameManager : MonoBehaviour
     public void PlayerChooseUnitCallback(Unit unit, Unit.AttrEnum attrEnum)
     {
         unit.Upgrade(attrEnum);
+    }
+
+    public void EnemyPass()
+    {
+        PlayerHp--;
+        if (PlayerHp == 0)
+            Failed();
+    }
+
+    public void Win()
+    {
+        //endUI.SetActive(true);
+        //endMessage.text = "胜 利";
+    }
+
+    public void Failed()
+    {
+        //enemySpawner.Stop();
+        GameObject.Find("EnemySpawner").SendMessage("Stop");
+        GameObject.Find("PlayerInterface").SendMessage("Failed");
+        //endUI.SetActive(true);
+        //endMessage.text = "失 败";
     }
 }
