@@ -19,10 +19,10 @@ public class PlayerInterface : MonoBehaviour
     public static PlayerInterface Instance { get; private set; } = null;
     private PlayerOption nowOption = PlayerOption.UnitSpawn;
     private List<Cell> highLightedCells = new List<Cell>();
-    public bool isHighLighting { get; private set; } = false;
-    public bool isUpgrading { get; private set; } = false;
+    public bool IsHighLighting { get; private set; } = false;
+    public bool IsUpgrading { get; private set; } = false;
     private Cell cellChosen = null;
-    private Unit unitChosen = null;
+    public Unit UnitChosen { get; private set; } = null;
     private Unit.Type nowType = Unit.Type.White;
     public GameObject upgradeCanvas;
     public Button upgradeDamage;
@@ -55,8 +55,12 @@ public class PlayerInterface : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isHighLighting)
+        if(IsHighLighting)
         {
+            if(IsUpgrading)
+            {
+                CancelUpgrade();
+            }
             if (Input.GetMouseButtonDown(0) && EventSystem.current.IsPointerOverGameObject() == false)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -81,13 +85,11 @@ public class PlayerInterface : MonoBehaviour
                 HighLightCellsEnd();
             }
         }
-        else if(isUpgrading)
+        else if(IsUpgrading)
         {
             if (Input.GetMouseButtonDown(1))
             {
-                upgradeCanvas.SetActive(false);
-                isUpgrading = false;
-                Debug.Log("you cancelled upgrade");
+                CancelUpgrade();
             }
         }
     }
@@ -108,13 +110,13 @@ public class PlayerInterface : MonoBehaviour
 
     private void TryUpgrade(Unit.AttrEnum attrEnum)
     {
-        if (unitChosen != null)
+        if (UnitChosen != null)
         {
             if (GameManager.Instance.EnoughCoin(PlayerOption.UpgradeAttribute))
             {
-                isUpgrading = false;
-                GameManager.Instance.PlayerChooseUnitCallback(unitChosen, attrEnum);
-                unitChosen = null;
+                IsUpgrading = false;
+                GameManager.Instance.PlayerChooseUnitCallback(UnitChosen, attrEnum);
+                UnitChosen = null;
                 upgradeCanvas.SetActive(false);
                 Debug.Log("upgrade");
                 Debug.Log(attrEnum);
@@ -124,6 +126,13 @@ public class PlayerInterface : MonoBehaviour
                 //TODO:warning coins not enough
             }
         }
+    }
+
+    public void CancelUpgrade()
+    {
+        upgradeCanvas.SetActive(false);
+        IsUpgrading = false;
+        Debug.Log("you cancelled upgrade");
     }
     /// <summary>
     /// Show all possible cell for player to choose.
@@ -157,7 +166,7 @@ public class PlayerInterface : MonoBehaviour
         //     - GameManager.TimeRate: float(not int,corrected)
         //       Game time elapse rate. You can modify it.
         nowOption = option;
-        isHighLighting = true;
+        IsHighLighting = true;
         nowType = type;
         if(option==PlayerOption.UnitSpawn)
         {
@@ -198,7 +207,7 @@ public class PlayerInterface : MonoBehaviour
         }
         highLightedCells.Clear();
         nowType = Unit.Type.White;
-        isHighLighting = false;
+        IsHighLighting = false;
         cellChosen = null;
         Debug.Log("after choosing cell or cancelled,highlight end");
     }
@@ -215,13 +224,13 @@ public class PlayerInterface : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 1000, LayerMask.GetMask("Units")))
         {
-            unitChosen = hit.collider.GetComponent<Unit>();
-            if (unitChosen!=null)
+            UnitChosen = hit.collider.GetComponent<Unit>();
+            if (UnitChosen!=null)
             {
-                isUpgrading = true;
+                //UNDONE:highlight?
+                IsUpgrading = true;
                 upgradeCanvas.gameObject.SetActive(true);
-                upgradeCanvas.transform.SetPositionAndRotation(unitChosen.OnCell.transform.position + new Vector3(0, 0, 0.75f),
-                    Quaternion.Euler(new Vector3(90, 0, 0)));
+                upgradeCanvas.transform.position = UnitChosen.OnCell.transform.position + new Vector3(0, 0, 0.75f);
                 Debug.Log("you successfully chose the unit");
             }
         }

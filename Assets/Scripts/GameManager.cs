@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,6 +22,10 @@ public class GameManager : MonoBehaviour
 
     public float TimeRate { get; set; } = 1.0f;
     public Map Map ;
+    public GameObject playerCanvas;
+    public Button pauseButton;
+    public Text coinText;
+    public Text lifeText;
 
     private List<Unit> Units { get; set; } = new List<Unit>();
     private List<Enemy> Enemies { get; set; } = new List<Enemy>();
@@ -44,6 +49,16 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //codes below should be preserved
+        coinText.text = Assets.coin.ToString();
+        //UNDONE:lifetext
+        if(!PlayerInterface.Instance.IsHighLighting)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                PlayerInterface.Instance.ChooseUnit();
+            }
+        }
 
     }
 
@@ -159,6 +174,10 @@ public class GameManager : MonoBehaviour
     public void UnitDeath(Unit unit)
     {
         //TODO:add some operation to change other units' position
+        if(unit==PlayerInterface.Instance.UnitChosen)
+        {
+            PlayerInterface.Instance.CancelUpgrade();
+        }
         Units.Remove(unit);
         unit.OnCell.RemoveUnit(unit);
     }
