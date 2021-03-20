@@ -1089,6 +1089,7 @@ GameObject:
   m_Component:
   - component: {fileID: 495738575}
   - component: {fileID: 495738574}
+  - component: {fileID: 495738576}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1149,6 +1150,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &495738576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495738573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb3e948cf70322e4bb197e570b57523d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &538406078
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1704,7 +1717,7 @@ MonoBehaviour:
   upgradeDamage: {fileID: 548663587}
   upgradeSkill: {fileID: 671277233}
   upgradeLife: {fileID: 854056395}
-  noEngoughResourse: {fileID: 2021422861}
+  HintMessage: {fileID: 2021422861}
 --- !u!4 &683740271
 Transform:
   m_ObjectHideFlags: 0
@@ -4358,7 +4371,7 @@ GameObject:
   - component: {fileID: 2021422862}
   - component: {fileID: 2021422861}
   m_Layer: 5
-  m_Name: NoEnoughResource
+  m_Name: HintMessage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
