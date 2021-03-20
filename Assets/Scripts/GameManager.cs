@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public Map Map ;
     public GameObject playerCanvas;
     public Button pauseButton;
+    private bool isPause = false;
     public Text coinText;
     public Text lifeText;
 
@@ -50,6 +51,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         GameObject[] gameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
+        pauseButton.onClick.AddListener(delegate ()
+        {
+            SetGamePause(!isPause);
+        });
     }
 
     // Update is called once per frame
@@ -57,7 +62,7 @@ public class GameManager : MonoBehaviour
     {
         //codes below should be preserved
         coinText.text = Assets.coin.ToString();
-        //UNDONE:lifetext
+        lifeText.text = PlayerHp.ToString();
         if(!PlayerInterface.Instance.IsHighLighting)
         {
             if (Input.GetMouseButtonDown(0))
@@ -65,7 +70,6 @@ public class GameManager : MonoBehaviour
                 PlayerInterface.Instance.ChooseUnit();
             }
         }
-
     }
 
     private void SetGamePause(bool pause)
@@ -73,10 +77,12 @@ public class GameManager : MonoBehaviour
         if (pause)
         {
             Time.timeScale = 0.0f;
+            isPause = true;
         }
         else
         {
             Time.timeScale = TimeRate;
+            isPause = false;
         }
     }
 
@@ -266,11 +272,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public bool EnoughCoin(PlayerOption option)
-    {
-        return true;
-        //TODO:change to return Assets.coin >= Assets.Costs[(int)option]; when finished
-    }
 
     public void PlayerCoinOption(
         PlayerOption option)

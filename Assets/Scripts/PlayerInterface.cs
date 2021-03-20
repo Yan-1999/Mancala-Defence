@@ -28,6 +28,7 @@ public class PlayerInterface : MonoBehaviour
     public Button upgradeDamage;
     public Button upgradeSkill;
     public Button upgradeLife;
+    public Text HintMessage;
     private void Awake()
     {
         Instance = this;
@@ -76,7 +77,7 @@ public class PlayerInterface : MonoBehaviour
                     }
                     else
                     {
-                        //TODO:warning wrong action and continue
+                        SetHintMessage("Invalid cell is chosen");
                     }
                 }
             }
@@ -112,7 +113,7 @@ public class PlayerInterface : MonoBehaviour
     {
         if (UnitChosen != null)
         {
-            if (GameManager.Instance.EnoughCoin(PlayerOption.UpgradeAttribute))
+            if (GameManager.Instance.Assets.CostCoin(PlayerOption.UpgradeAttribute))
             {
                 IsUpgrading = false;
                 GameManager.Instance.PlayerChooseUnitCallback(UnitChosen, attrEnum);
@@ -123,7 +124,8 @@ public class PlayerInterface : MonoBehaviour
             }
             else
             {
-                //TODO:warning coins not enough
+                CancelUpgrade();
+                ShowNoEnoughResource(false);
             }
         }
     }
@@ -197,6 +199,10 @@ public class PlayerInterface : MonoBehaviour
             cell.HighLight();
         }
         Debug.Log("before choose cells,cells are highlighted");
+        if (highLightedCells.Count == 0)
+        {
+            HighLightCellsEnd();
+        }
     }
 
     private void HighLightCellsEnd()
@@ -243,7 +249,26 @@ public class PlayerInterface : MonoBehaviour
     /// <param name="isCard"></param>
     public void ShowNoEnoughResource(bool isCard)
     {
-        // TODO: pop a window to show
+        if(isCard)
+        {
+            SetHintMessage("No enough cards!");
+        }
+        else
+        {
+            SetHintMessage("No enough coins!");
+        }
+    }
+
+    private void SetHintMessage(string text)
+    {
+        HintMessage.text = text;
+        HintMessage.gameObject.SetActive(true);
+        Invoke("TextActivefalse", 2f);
+    }
+
+    private void TextActivefalse()
+    {
+        HintMessage.gameObject.SetActive(false);
     }
 
     //Game Over

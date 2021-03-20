@@ -22,5 +22,22 @@ public class Test : MonoBehaviour
             }
             GameManager.Instance.PlayerCardOption(PlayerOption.UnitSpawn);
         }
+        //codes below are just for test
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //PlayerChooseCellCallback(PlayerOption.UnitSpawn, Unit.Type.Green, Map.Cells[0]);
+            Debug.Log("you used card");
+            GameManager.Instance.PlayerCardTypeCallback(PlayerOption.UnitSpawn, Unit.Type.Red);
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            Debug.Log("you perform mancala");
+            GameManager.Instance.PlayerCardTypeCallback(PlayerOption.Mancala, Unit.Type.Red);
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            Debug.Log("add coin");
+            GameManager.Instance.Assets.coin += 10;
+        }
     }
 }
