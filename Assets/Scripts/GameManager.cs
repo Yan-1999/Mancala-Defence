@@ -258,6 +258,10 @@ public class GameManager : MonoBehaviour
         Assert.IsTrue(option == PlayerOption.UnitSpawn ||
             option == PlayerOption.Mancala);
         SetGamePause(false);
+        if(cell==null)
+        {
+            return;
+        }
         switch (option)
         {
             case PlayerOption.UnitSpawn:

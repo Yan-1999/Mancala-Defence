@@ -78,6 +78,8 @@ public class PlayerInterface : MonoBehaviour
                     else
                     {
                         SetHintMessage("Invalid cell is chosen");
+                        HighLightCellsEnd();
+                        GameManager.Instance.PlayerChooseCellCallback(nowOption, nowType, cellChosen);
                     }
                 }
             }
@@ -201,6 +203,7 @@ public class PlayerInterface : MonoBehaviour
         Debug.Log("before choose cells,cells are highlighted");
         if (highLightedCells.Count == 0)
         {
+            GameManager.Instance.PlayerChooseCellCallback(nowOption, nowType, cellChosen);
             HighLightCellsEnd();
         }
     }
