@@ -311,8 +311,9 @@ public class GameManager : MonoBehaviour
     public void Failed()
     {
         //enemySpawner.Stop();
-        GameObject.Find("EnemySpawner").SendMessage("Stop");
+        
         GameObject.Find("PlayerInterface").SendMessage("Failed");
+        GameObject.Find("EnemySpawner").SendMessage("Stop");
         //endUI.SetActive(true);
         //endMessage.text = "失 败";
     }
