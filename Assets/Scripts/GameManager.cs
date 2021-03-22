@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     static public GameManager Instance { get; private set; } = null;
 
     public float TimeRate { get; set; } = 1.0f;
-    public Map Map ;
+    public Map Map;
     public GameObject playerCanvas;
     public Button pauseButton;
     private bool isPause = false;
@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
     public float PlayerHp = 10;
     public GameObject endUI;
     public Text endMessage;
+
+    private System.Random random = new System.Random();
 
 
     private void Awake()
@@ -186,7 +188,7 @@ public class GameManager : MonoBehaviour
     public void UnitDeath(Unit unit)
     {
         //TODO:add some operation to change other units' position
-        if(unit==PlayerInterface.Instance.UnitChosen)
+        if (unit == PlayerInterface.Instance.UnitChosen)
         {
             PlayerInterface.Instance.CancelUpgrade();
         }
@@ -200,6 +202,7 @@ public class GameManager : MonoBehaviour
         Assets.GainCoinOnEmemyKill();
     }
 
+    /*option*/
     public void PlayerCardOption(PlayerOption option)
     {
         Assert.IsTrue(option < PlayerOption.ExtendHandLimit);
@@ -287,7 +290,7 @@ public class GameManager : MonoBehaviour
             case PlayerOption.ExtendHandLimit:
                 Assets.HandLimit++;
                 break;
-                //UNDONE::rewrite
+            //UNDONE::rewrite
             case PlayerOption.UpgradeAttribute:
                 break;
             default:
@@ -299,6 +302,15 @@ public class GameManager : MonoBehaviour
     {
         unit.Upgrade(attrEnum);
     }
+
+    /*game process*/
+    public void DrawCard()
+    {
+        Assets.DrawCard(
+            (Unit.Type)random.Next(0, Enum.GetValues(typeof(Unit.Type)).Length)
+            );
+    }
+
 
     public void EnemyPass()
     {
@@ -316,8 +328,9 @@ public class GameManager : MonoBehaviour
     public void Failed()
     {
         //enemySpawner.Stop();
-        GameObject.Find("EnemySpawner").SendMessage("Stop");
+
         GameObject.Find("PlayerInterface").SendMessage("Failed");
+        GameObject.Find("EnemySpawner").SendMessage("Stop");
         //endUI.SetActive(true);
         //endMessage.text = "失 败";
     }
