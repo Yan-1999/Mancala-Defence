@@ -115,12 +115,14 @@ public class GameManager : MonoBehaviour
     /// <returns>whether the spawn is successful</returns>
     public bool UnitSpawn(Unit unit, Cell cell)
     {
-        //UNDONE:change position for each unit on the same cell
         if (!cell.IsVaildForUnitSpawn())
         {
             return false;
         }//can be deleted
         Unit newUnit = Instantiate(unit, cell.transform.position + presetPosition[cell.UnitCount() % 9], Quaternion.identity);
+        newUnit.Life = unit.Life;
+        newUnit.Damage = unit.Damage;
+        newUnit.Skill = unit.Skill;
         newUnit.gameObject.SetActive(true);
         newUnit.transform.SetParent(cell.transform);
         newUnit.name = "unit";

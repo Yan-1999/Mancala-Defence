@@ -29,6 +29,7 @@ public class PlayerInterface : MonoBehaviour
     public Button upgradeSkill;
     public Button upgradeLife;
     public Text HintMessage;
+    public Text unitMessageText;
     private void Awake()
     {
         Instance = this;
@@ -238,6 +239,8 @@ public class PlayerInterface : MonoBehaviour
             {
                 //UNDONE:highlight?
                 IsUpgrading = true;
+                unitMessageText.text = "Skill:" + UnitChosen.Skill.ToString() + 
+                    "Damage:" + UnitChosen.Damage.ToString() + "Life:" + UnitChosen.Life.ToString();
                 upgradeCanvas.gameObject.SetActive(true);
                 upgradeCanvas.transform.position = UnitChosen.OnCell.transform.position + new Vector3(0, 0, 0.75f);
                 Debug.Log("you successfully chose the unit");
