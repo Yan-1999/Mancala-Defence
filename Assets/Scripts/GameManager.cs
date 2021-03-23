@@ -225,7 +225,6 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Assets.CostCard(types[0], option);
             PlayerCardTypeCallback(option, types[0]);
         }
     }
@@ -236,10 +235,10 @@ public class GameManager : MonoBehaviour
     {
         Assert.IsTrue(option < PlayerOption.ExtendHandLimit);
         SetGamePause(false);
-        Assets.CostCard(type, option);
         switch (option)
         {
             case PlayerOption.UnitUpgrade:
+                Assets.CostCard(type, option);
                 UnitFactory.Instance.UpgradeUnitFactory(type);
                 break;
             case PlayerOption.UnitSpawn:
@@ -262,6 +261,7 @@ public class GameManager : MonoBehaviour
     {
         Assert.IsTrue(option == PlayerOption.UnitSpawn ||
             option == PlayerOption.Mancala);
+        Assets.CostCard(type, option);
         SetGamePause(false);
         if(cell==null)
         {
@@ -308,6 +308,7 @@ public class GameManager : MonoBehaviour
     /*game process*/
     public void DrawCard()
     {
+        Debug.Log("you draw a card");
         Assets.DrawCard(
             (Unit.Type)random.Next(0, Enum.GetValues(typeof(Unit.Type)).Length)
             );

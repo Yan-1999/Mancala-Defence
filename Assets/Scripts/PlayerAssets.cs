@@ -15,6 +15,8 @@ public class PlayerAssets
 
     public LinkedList<Unit.Type> Cards { get; private set; } =
         new LinkedList<Unit.Type>();
+    public LinkedList<Card> CardsImage { get; private set; } =
+        new LinkedList<Card>();
     private int[] CardNum { get; set; } = { 0, 0, 0 };
     public int coin { get; set; } = 0;
     public int HandLimit { get; set; } = 5;
@@ -25,6 +27,8 @@ public class PlayerAssets
     {
         CardNum[(int)Cards.First.Value]--;
         Cards.RemoveFirst();
+        CardsImage.First.Value.UseCard();
+        CardsImage.RemoveFirst();
     }
 
     /// <summary>
@@ -39,6 +43,7 @@ public class PlayerAssets
     public bool DrawCard(Unit.Type type)
     {
         Cards.AddLast(type);
+        CardsImage.AddLast(CardFactory.Instance.DrawCard(type));
         CardNum[(int)type]++;
         if (CardNum.Length > HandLimit)
         {
@@ -78,18 +83,25 @@ public class PlayerAssets
         CardNum[(int)type] -= num;
         LinkedListNode<Unit.Type> card = Cards.First;
         LinkedListNode<Unit.Type> rmCard;
-        while (counter != num && card != null)
+        LinkedListNode<Card> cardImage = CardsImage.First;
+        LinkedListNode<Card> rmCardImage;
+        while (counter != num && card != null && cardImage != null)
         {
             if (card.Value == type)
             {
                 rmCard = card;
+                rmCardImage = cardImage;
                 card = card.Next;
+                cardImage = cardImage.Next;
                 Cards.Remove(rmCard);
+                rmCardImage.Value.UseCard();
+                CardsImage.Remove(rmCardImage);
                 counter++;
             }
             else
             {
                 card = card.Next;
+                cardImage = cardImage.Next;
             }
         }
         return true;
@@ -121,4 +133,5 @@ public class PlayerAssets
         coin -= Costs[(int)option];
         return true;
     }
+
 }

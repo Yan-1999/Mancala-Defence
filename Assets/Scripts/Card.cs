@@ -1,7 +1,13 @@
 ﻿using UnityEngine;
-using UnityEditor;
+
 
 public class Card : MonoBehaviour
 {
-    
+    public Unit.Type type;
+
+
+    public void UseCard()
+    {
+        Destroy(gameObject);
+    }
 }
