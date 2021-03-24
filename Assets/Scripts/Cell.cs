@@ -164,4 +164,13 @@ public class Cell : MonoBehaviour
     {
         rend.sharedMaterial = materials[0];
     }
+
+    public void ChangeUnitsPosition()
+    {
+        int count = Units.Count;
+        for(int i=0;i<count;i++)
+        {
+            Units[i].transform.position = this.transform.position + GameManager.Instance.presetPosition[i % 9];
+        }
+    }
 }

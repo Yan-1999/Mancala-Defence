@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class PlayerAssets
 {
@@ -27,8 +28,9 @@ public class PlayerAssets
     {
         CardNum[(int)Cards.First.Value]--;
         Cards.RemoveFirst();
-        CardsImage.First.Value.UseCard();
+        Card rmCard = CardsImage.First.Value;
         CardsImage.RemoveFirst();
+        rmCard.UseCard();
     }
 
     /// <summary>
@@ -45,8 +47,9 @@ public class PlayerAssets
         Cards.AddLast(type);
         CardsImage.AddLast(CardFactory.Instance.DrawCard(type));
         CardNum[(int)type]++;
-        if (CardNum.Length > HandLimit)
+        if (Cards.Count > HandLimit)
         {
+            Debug.Log("auto discard");
             AutoDiscard();
             return true;
         }
@@ -63,7 +66,7 @@ public class PlayerAssets
         List<Unit.Type> types = new List<Unit.Type>(arrayEnum.Length);
         foreach (Unit.Type type in arrayEnum)
         {
-            if (CardNum[(int)type] > Costs[(int)option])
+            if (CardNum[(int)type] >= Costs[(int)option])
             {
                 types.Add(type);
             }
@@ -94,8 +97,8 @@ public class PlayerAssets
                 card = card.Next;
                 cardImage = cardImage.Next;
                 Cards.Remove(rmCard);
-                rmCardImage.Value.UseCard();
                 CardsImage.Remove(rmCardImage);
+                rmCardImage.Value.UseCard();
                 counter++;
             }
             else

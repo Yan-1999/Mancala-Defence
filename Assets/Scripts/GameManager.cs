@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     private bool isPause = false;
     public Text coinText;
     public Text lifeText;
+    public Button spawnButton;
+    public Button mancalaButton;
 
     private List<Unit> Units { get; set; } = new List<Unit>();
     private List<Enemy> Enemies { get; set; } = new List<Enemy>();
@@ -57,6 +59,14 @@ public class GameManager : MonoBehaviour
         {
             SetGamePause(!isPause);
         });
+        spawnButton.onClick.AddListener(delegate ()
+        {
+            PlayerCardOption(PlayerOption.UnitSpawn);
+        });
+        mancalaButton.onClick.AddListener(delegate ()
+        {
+            PlayerCardOption(PlayerOption.Mancala);
+        });
     }
 
     // Update is called once per frame
@@ -72,6 +82,7 @@ public class GameManager : MonoBehaviour
                 PlayerInterface.Instance.ChooseUnit();
             }
         }
+        //UNDONE:add check for buttons
     }
 
     private void SetGamePause(bool pause)
@@ -196,6 +207,7 @@ public class GameManager : MonoBehaviour
         }
         Units.Remove(unit);
         unit.OnCell.RemoveUnit(unit);
+        unit.OnCell.ChangeUnitsPosition();
     }
 
     public void EnemyDeath(Enemy enemy)
@@ -211,10 +223,13 @@ public class GameManager : MonoBehaviour
         List<Unit.Type> types = Assets.CheckHand(option);
         if (FreeMancala && option == PlayerOption.Mancala)
         {
+            SetGamePause(true);
             PlayerInterface.Instance.HighLightCells(option, Unit.Type.White);
+            return;
         }
         if (types.Count == 0)
         {
+            Debug.Log("no enough card");
             return;
         }
         // let player choose if there are multiple choices
@@ -261,11 +276,20 @@ public class GameManager : MonoBehaviour
     {
         Assert.IsTrue(option == PlayerOption.UnitSpawn ||
             option == PlayerOption.Mancala);
-        Assets.CostCard(type, option);
         SetGamePause(false);
-        if(cell==null)
+        Debug.Log("game continue");
+        if (cell == null)
         {
             return;
+        }
+        if (FreeMancala && option == PlayerOption.Mancala)
+        {
+            Debug.Log("you perform free mancala");
+            FreeMancala = false;
+        }
+        else
+        {
+            Assets.CostCard(type, option);
         }
         switch (option)
         {

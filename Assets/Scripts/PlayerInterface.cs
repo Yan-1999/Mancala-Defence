@@ -87,6 +87,7 @@ public class PlayerInterface : MonoBehaviour
             else if(Input.GetMouseButtonDown(1))
             {
                 HighLightCellsEnd();
+                GameManager.Instance.PlayerChooseCellCallback(nowOption, nowType, cellChosen);
             }
         }
         else if(IsUpgrading)
@@ -146,7 +147,6 @@ public class PlayerInterface : MonoBehaviour
     /// <param name="types">chosen types</param>
     public void HighLightCells(PlayerOption option, Unit.Type type)
     {
-        // TODO: UI for choose cells.
         // Implementation steps:
         //     1. Highlight all vaild (and invaild) cells.
         //        NOTICE that this func. can be used
@@ -242,7 +242,7 @@ public class PlayerInterface : MonoBehaviour
                 unitMessageText.text = "Skill:" + UnitChosen.Skill.ToString() + 
                     "Damage:" + UnitChosen.Damage.ToString() + "Life:" + UnitChosen.Life.ToString();
                 upgradeCanvas.gameObject.SetActive(true);
-                upgradeCanvas.transform.position = UnitChosen.OnCell.transform.position + new Vector3(0, 0, 0.75f);
+                upgradeCanvas.transform.position = UnitChosen.OnCell.transform.position + new Vector3(0, 0, 1.25f);
                 Debug.Log("you successfully chose the unit");
             }
         }
