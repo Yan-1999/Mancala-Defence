@@ -17,7 +17,7 @@ public class PlayerInterface : MonoBehaviour
 {
 
     public static PlayerInterface Instance { get; private set; } = null;
-    private PlayerOption nowOption = PlayerOption.UnitSpawn;
+    private PlayerOption highLightOption = PlayerOption.UnitSpawn;//try to differ form another
     private List<Cell> highLightedCells = new List<Cell>();
     public bool IsHighLighting { get; private set; } = false;
     public bool IsUpgrading { get; private set; } = false;
@@ -30,6 +30,11 @@ public class PlayerInterface : MonoBehaviour
     public Button upgradeLife;
     public Text HintMessage;
     public Text unitMessageText;
+    public Button[] chooseType;
+    public bool IsChoosingType { get; private set; } = false;
+    private PlayerOption chooseTypeOption = PlayerOption.UnitSpawn;
+
+
     private void Awake()
     {
         Instance = this;
@@ -39,6 +44,9 @@ public class PlayerInterface : MonoBehaviour
     void Start()
     {
         upgradeCanvas.SetActive(false);
+        chooseType[0].gameObject.SetActive(false);
+        chooseType[1].gameObject.SetActive(false);
+        chooseType[2].gameObject.SetActive(false);
         
         upgradeDamage.onClick.AddListener(delegate()
         {
@@ -52,12 +60,36 @@ public class PlayerInterface : MonoBehaviour
         {
             TryUpgrade(Unit.AttrEnum.Life);
         });
+        chooseType[0].onClick.AddListener(delegate ()
+        {
+            EndChooseType();
+            GameManager.Instance.PlayerCardTypeCallback(chooseTypeOption, Unit.Type.White);
+        });
+        chooseType[1].onClick.AddListener(delegate ()
+        {
+            EndChooseType();
+            GameManager.Instance.PlayerCardTypeCallback(chooseTypeOption, Unit.Type.Green);
+        });
+        chooseType[2].onClick.AddListener(delegate ()
+        {
+            EndChooseType();
+            GameManager.Instance.PlayerCardTypeCallback(chooseTypeOption, Unit.Type.Red);
+        });
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(IsHighLighting)
+        if(IsChoosingType)
+        {
+            if(Input.GetMouseButtonDown(1))
+            {
+                GameManager.Instance.PlayerCancelOptionCallBack();
+                EndChooseType();
+            }
+        }
+        else if(IsHighLighting)
         {
             if(IsUpgrading)
             {
@@ -72,7 +104,7 @@ public class PlayerInterface : MonoBehaviour
                     cellChosen = hit.collider.GetComponent<Cell>();
                     if (highLightedCells.Contains(cellChosen))
                     {
-                        GameManager.Instance.PlayerChooseCellCallback(nowOption, nowType, cellChosen);
+                        GameManager.Instance.PlayerChooseCellCallback(highLightOption, nowType, cellChosen);
                         Debug.Log("you successfully chose the cell");
                         HighLightCellsEnd();
                     }
@@ -80,14 +112,14 @@ public class PlayerInterface : MonoBehaviour
                     {
                         SetHintMessage("Invalid cell is chosen");
                         HighLightCellsEnd();
-                        GameManager.Instance.PlayerChooseCellCallback(nowOption, nowType, cellChosen);
+                        GameManager.Instance.PlayerCancelOptionCallBack();
                     }
                 }
             }
             else if(Input.GetMouseButtonDown(1))
             {
                 HighLightCellsEnd();
-                GameManager.Instance.PlayerChooseCellCallback(nowOption, nowType, cellChosen);
+                GameManager.Instance.PlayerCancelOptionCallBack();
             }
         }
         else if(IsUpgrading)
@@ -111,6 +143,24 @@ public class PlayerInterface : MonoBehaviour
         // TODO: UI for player to choose type.
         // Call PlayerCardTypeCallback(PlayerOption, Unit.Type)
         // when player click the confirm button.
+        foreach(Unit.Type type in types)
+        {
+            chooseType[(int)type].gameObject.SetActive(true);
+            chooseType[(int)type].GetComponentInChildren<Text>().text = "S:" + UnitFactory.Instance.Attrs[(int)type].Skill.ToString()
+                + " D:" + UnitFactory.Instance.Attrs[(int)type].Damage.ToString() + " L:" + UnitFactory.Instance.Attrs[(int)type].Life.ToString();
+        }
+        IsChoosingType = true;
+        chooseTypeOption = option;
+    }
+
+    public void EndChooseType()
+    {
+        foreach(Button color in chooseType)
+        {
+            color.gameObject.SetActive(false);
+        }
+        IsChoosingType = false;
+        Debug.Log("choose type end");
     }
 
     private void TryUpgrade(Unit.AttrEnum attrEnum)
@@ -170,7 +220,7 @@ public class PlayerInterface : MonoBehaviour
         //       in Mancala vaild check.
         //     - GameManager.TimeRate: float(not int,corrected)
         //       Game time elapse rate. You can modify it.
-        nowOption = option;
+        highLightOption = option;
         IsHighLighting = true;
         nowType = type;
         if(option==PlayerOption.UnitSpawn)
@@ -204,7 +254,7 @@ public class PlayerInterface : MonoBehaviour
         Debug.Log("before choose cells,cells are highlighted");
         if (highLightedCells.Count == 0)
         {
-            GameManager.Instance.PlayerChooseCellCallback(nowOption, nowType, cellChosen);
+            GameManager.Instance.PlayerCancelOptionCallBack();
             HighLightCellsEnd();
         }
     }

@@ -111,6 +111,7 @@ public class Cell : MonoBehaviour
         {
             if (Units.Count == 0)
             {
+                rend.sharedMaterial = materials[0];
                 IsExhausted = false;
                 OverloadTimer = 0;
             }
@@ -141,6 +142,7 @@ public class Cell : MonoBehaviour
         OverloadTimer += deltaTime * Units.Count * overloadRate;
         if (OverloadTimer > overloadTimerMax)
         {
+            rend.sharedMaterial = materials[2];
             OnExhaustion();
             OverloadTimer = 0;
         }

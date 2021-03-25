@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class PlayerAssets
 {
@@ -49,7 +48,6 @@ public class PlayerAssets
         CardNum[(int)type]++;
         if (Cards.Count > HandLimit)
         {
-            Debug.Log("auto discard");
             AutoDiscard();
             return true;
         }

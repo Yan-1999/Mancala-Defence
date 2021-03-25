@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     public Text lifeText;
     public Button spawnButton;
     public Button mancalaButton;
+    public Button unitUpgradeButton;
 
     private List<Unit> Units { get; set; } = new List<Unit>();
     private List<Enemy> Enemies { get; set; } = new List<Enemy>();
@@ -61,11 +62,27 @@ public class GameManager : MonoBehaviour
         });
         spawnButton.onClick.AddListener(delegate ()
         {
+            if (PlayerInterface.Instance.IsHighLighting || PlayerInterface.Instance.IsChoosingType)
+            {
+                return;
+            }
             PlayerCardOption(PlayerOption.UnitSpawn);
         });
         mancalaButton.onClick.AddListener(delegate ()
         {
+            if (PlayerInterface.Instance.IsHighLighting || PlayerInterface.Instance.IsChoosingType)
+            {
+                return;
+            }
             PlayerCardOption(PlayerOption.Mancala);
+        });
+        unitUpgradeButton.onClick.AddListener(delegate ()
+        {
+            if (PlayerInterface.Instance.IsHighLighting || PlayerInterface.Instance.IsChoosingType)
+            {
+                return;
+            }
+            PlayerCardOption(PlayerOption.UnitUpgrade);
         });
     }
 
@@ -131,9 +148,10 @@ public class GameManager : MonoBehaviour
             return false;
         }//can be deleted
         Unit newUnit = Instantiate(unit, cell.transform.position + presetPosition[cell.UnitCount() % 9], Quaternion.identity);
-        newUnit.Life = unit.Life;
-        newUnit.Damage = unit.Damage;
-        newUnit.Skill = unit.Skill;
+        newUnit.UnitType = unit.UnitType;
+        newUnit.Life = UnitFactory.Instance.Attrs[(int)newUnit.UnitType].Life;
+        newUnit.Damage = UnitFactory.Instance.Attrs[(int)newUnit.UnitType].Damage;
+        newUnit.Skill = UnitFactory.Instance.Attrs[(int)newUnit.UnitType].Skill;
         newUnit.gameObject.SetActive(true);
         newUnit.transform.SetParent(cell.transform);
         newUnit.name = "unit";
@@ -159,6 +177,7 @@ public class GameManager : MonoBehaviour
             if (unit == units[units.Length - 1] &&
                 Map.Cells[cellIndex].UnitCount() == 0)
             {
+                mancalaButton.image.color = Color.cyan;
                 FreeMancala = true;
             }
             UnitMove(unit, Map.Cells[cellIndex]);
@@ -233,7 +252,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         // let player choose if there are multiple choices
-        if (types.Count > 1)
+        if (types.Count > 1 || option == PlayerOption.UnitUpgrade)
         {
             SetGamePause(true);
             PlayerInterface.Instance.ChooseType(option, types);
@@ -278,13 +297,10 @@ public class GameManager : MonoBehaviour
             option == PlayerOption.Mancala);
         SetGamePause(false);
         Debug.Log("game continue");
-        if (cell == null)
-        {
-            return;
-        }
         if (FreeMancala && option == PlayerOption.Mancala)
         {
             Debug.Log("you perform free mancala");
+            mancalaButton.image.color = Color.white;
             FreeMancala = false;
         }
         else
@@ -360,5 +376,10 @@ public class GameManager : MonoBehaviour
         GameObject.Find("EnemySpawner").SendMessage("Stop");
         //endUI.SetActive(true);
         //endMessage.text = "失 败";
+    }
+
+    public void PlayerCancelOptionCallBack()
+    {
+        SetGamePause(false);
     }
 }

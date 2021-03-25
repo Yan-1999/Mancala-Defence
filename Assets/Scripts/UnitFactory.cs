@@ -34,6 +34,7 @@ public class UnitFactory : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             origin[i].SetUnitAttrs(Attrs[i]);
+            origin[i].UnitType = (Unit.Type)i;
             origin[i].gameObject.SetActive(false);
         }
 
