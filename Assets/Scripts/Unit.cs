@@ -49,13 +49,13 @@ public class Unit : Entity
 
     protected override void TryAttack()
     {
-        GameManager.Instance.UnitAttack(this);
+        /*GameManager.Instance.UnitAttack(this);*/
     }
 
     protected override void OnDeath()
     {
-        GameManager.Instance.UnitDeath(this);
+        /*GameManager.Instance.UnitDeath(this);
         OnCell = null;
-        Destroy(gameObject);
+        Destroy(gameObject);*/
     }
 }

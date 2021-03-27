@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 4466176432917713998}
   - component: {fileID: 4466176432917713999}
   - component: {fileID: 2403091222425126436}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: C.Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,6 +106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10f8182455d5f9e4da7376fe535d0249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 10
+  Speed: 1
+  explosionEffect: {fileID: 7475493240788589121, guid: a8ce18baca82d8d49a1b89c4d9000cb1,
+    type: 3}
   Damage: 10
   Hp: 100
