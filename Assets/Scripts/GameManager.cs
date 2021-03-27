@@ -84,6 +84,9 @@ public class GameManager : MonoBehaviour
             }
             PlayerCardOption(PlayerOption.UnitUpgrade);
         });
+        spawnButton.image.color = Color.gray;
+        mancalaButton.image.color = Color.gray;
+        unitUpgradeButton.image.color = Color.gray;
     }
 
     // Update is called once per frame
@@ -99,6 +102,37 @@ public class GameManager : MonoBehaviour
                 PlayerInterface.Instance.ChooseUnit();
             }
         }
+        int count = Assets.GetMaxCount();
+        if (count >= Assets.Costs[(int)PlayerOption.UnitSpawn])
+        {
+            spawnButton.image.color = Color.white;
+        }
+        else
+        {
+            spawnButton.image.color = Color.gray;
+        }
+        if (FreeMancala)
+        {
+            mancalaButton.image.color = Color.cyan;
+
+        }
+        else if(count >= Assets.Costs[(int)PlayerOption.Mancala])
+        {
+            mancalaButton.image.color = Color.white;
+        }
+        else
+        {
+            mancalaButton.image.color = Color.gray;
+        }
+        if (count >= Assets.Costs[(int)PlayerOption.UnitUpgrade])
+        {
+            unitUpgradeButton.image.color = Color.white;
+        }
+        else
+        {
+            unitUpgradeButton.image.color = Color.gray;
+        }
+
         //UNDONE:add check for buttons
     }
 
@@ -177,7 +211,6 @@ public class GameManager : MonoBehaviour
             if (unit == units[units.Length - 1] &&
                 Map.Cells[cellIndex].UnitCount() == 0)
             {
-                mancalaButton.image.color = Color.cyan;
                 FreeMancala = true;
             }
             UnitMove(unit, Map.Cells[cellIndex]);

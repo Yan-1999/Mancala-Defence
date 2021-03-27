@@ -135,4 +135,16 @@ public class PlayerAssets
         return true;
     }
 
+    public int GetMaxCount()
+    {
+        int max = 0;
+        foreach(int elem in CardNum)
+        {
+            if(elem>max)
+            {
+                max = elem;
+            }
+        }
+        return max;
+    }
 }
