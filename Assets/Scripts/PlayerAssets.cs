@@ -112,6 +112,7 @@ public class PlayerAssets
 
     public void GainCoinOnEmemyKill()
     {
+        GameManager.Instance.coinText.text = GameManager.Instance.Assets.coin.ToString();
         coin += enemyKillGain;
     }
 
@@ -132,6 +133,7 @@ public class PlayerAssets
             return false;
         }
         coin -= Costs[(int)option];
+        GameManager.Instance.coinText.text = GameManager.Instance.Assets.coin.ToString();
         return true;
     }
 

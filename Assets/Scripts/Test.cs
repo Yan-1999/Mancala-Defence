@@ -38,6 +38,12 @@ public class Test : MonoBehaviour
         {
             Debug.Log("add coin");
             GameManager.Instance.Assets.coin += 10;
+            GameManager.Instance.coinText.text = GameManager.Instance.Assets.coin.ToString();
+        }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            Debug.Log("enemy in");
+            GameManager.Instance.EnemyPass();
         }
     }
 }

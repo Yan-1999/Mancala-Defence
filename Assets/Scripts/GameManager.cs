@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
 
     public float TimeRate { get; set; } = 1.0f;
     public Map Map;
-    public GameObject playerCanvas;
     public Button pauseButton;
     private bool isPause = false;
     public Text coinText;
@@ -32,6 +31,7 @@ public class GameManager : MonoBehaviour
     public Button spawnButton;
     public Button mancalaButton;
     public Button unitUpgradeButton;
+    public Slider LifeBar;
 
     private List<Unit> Units { get; set; } = new List<Unit>();
     private List<Enemy> Enemies { get; set; } = new List<Enemy>();
@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
 
     public Vector3[] presetPosition;
 
+    public float PlayerHpLimit = 10;
     public float PlayerHp = 10;
     public GameObject endUI;
     public Text endMessage;
@@ -56,8 +57,15 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         GameObject[] gameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
+        LifeBar.value = 1;
+        coinText.text = Assets.coin.ToString();
+        lifeText.text = PlayerHp.ToString() + '/' + PlayerHpLimit.ToString();
         pauseButton.onClick.AddListener(delegate ()
         {
+            if (PlayerInterface.Instance.IsHighLighting || PlayerInterface.Instance.IsChoosingType)
+            {
+                return;
+            }
             SetGamePause(!isPause);
         });
         spawnButton.onClick.AddListener(delegate ()
@@ -93,8 +101,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //codes below should be preserved
-        coinText.text = Assets.coin.ToString();
-        lifeText.text = PlayerHp.ToString();
         if(!PlayerInterface.Instance.IsHighLighting)
         {
             if (Input.GetMouseButtonDown(0))
@@ -182,10 +188,12 @@ public class GameManager : MonoBehaviour
             return false;
         }//can be deleted
         Unit newUnit = Instantiate(unit, cell.transform.position + presetPosition[cell.UnitCount() % 9], Quaternion.identity);
+        newUnit.LifeBar = newUnit.gameObject.GetComponentInChildren<Slider>();
         newUnit.UnitType = unit.UnitType;
         newUnit.Life = UnitFactory.Instance.Attrs[(int)newUnit.UnitType].Life;
         newUnit.Damage = UnitFactory.Instance.Attrs[(int)newUnit.UnitType].Damage;
         newUnit.Skill = UnitFactory.Instance.Attrs[(int)newUnit.UnitType].Skill;
+        newUnit.LifeLimit = newUnit.Life;
         newUnit.gameObject.SetActive(true);
         newUnit.transform.SetParent(cell.transform);
         newUnit.name = "unit";
@@ -194,6 +202,7 @@ public class GameManager : MonoBehaviour
         Units.Add(newUnit);
         return true;
     }
+
 
     /// <summary>
     /// Mancala operation
@@ -241,6 +250,7 @@ public class GameManager : MonoBehaviour
         foreach (Unit unit in units)
         {
             unit.ReceiveDamage(enemy.Damage);
+            unit.LifeBar.value = unit.Life / unit.LifeLimit;
         }
     }
 
@@ -391,6 +401,8 @@ public class GameManager : MonoBehaviour
     public void EnemyPass()
     {
         PlayerHp--;
+        lifeText.text = PlayerHp.ToString() + '/' + PlayerHpLimit.ToString();
+        LifeBar.value = PlayerHp / PlayerHpLimit;
         if (PlayerHp == 0)
             Failed();
     }

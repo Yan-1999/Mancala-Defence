@@ -289,8 +289,9 @@ public class PlayerInterface : MonoBehaviour
             {
                 //UNDONE:highlight?
                 IsUpgrading = true;
-                unitMessageText.text = "Skill:" + UnitChosen.Skill.ToString() + 
-                    "Damage:" + UnitChosen.Damage.ToString() + "Life:" + UnitChosen.Life.ToString();
+                unitMessageText.text = "Skill:" + UnitChosen.Skill.ToString() +
+                    "Damage:" + UnitChosen.Damage.ToString() + "Life:" + UnitChosen.Life.ToString()
+                    + '/' + UnitChosen.LifeLimit.ToString();
                 upgradeCanvas.gameObject.SetActive(true);
                 upgradeCanvas.transform.position = UnitChosen.OnCell.transform.position + new Vector3(0, 0, 1.25f);
                 Debug.Log("you successfully chose the unit");
