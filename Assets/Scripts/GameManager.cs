@@ -234,7 +234,6 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-
         List<Enemy> enemies = GameAI.FindEnemiesToAttack(unit);
         float multiplyer = (unit.OnCell.IsVulnerable) ?
             Cell.vulAttackMultiplyer : 1.0f;

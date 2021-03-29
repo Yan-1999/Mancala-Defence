@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Cell
   - Unit
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - 
   - Map
   - Units
-  - 
+  - Enemy
   - 
   - 
   - 
