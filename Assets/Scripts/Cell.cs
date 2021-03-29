@@ -164,7 +164,14 @@ public class Cell : MonoBehaviour
 
     public void HighLightEnd()
     {
-        rend.sharedMaterial = materials[0];
+        if (IsExhausted)
+        {
+            rend.sharedMaterial = materials[2];
+        }
+        else
+        {
+            rend.sharedMaterial = materials[0];
+        }
     }
 
     public void ChangeUnitsPosition()

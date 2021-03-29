@@ -83,7 +83,11 @@ public class PlayerInterface : MonoBehaviour
     {
         if(IsChoosingType)
         {
-            if(Input.GetMouseButtonDown(1))
+            if (IsUpgrading)
+            {
+                CancelUpgrade();
+            }
+            if (Input.GetMouseButtonDown(1))
             {
                 GameManager.Instance.PlayerCancelOptionCallBack();
                 EndChooseType();
@@ -105,7 +109,6 @@ public class PlayerInterface : MonoBehaviour
                     if (highLightedCells.Contains(cellChosen))
                     {
                         GameManager.Instance.PlayerChooseCellCallback(highLightOption, nowType, cellChosen);
-                        Debug.Log("you successfully chose the cell");
                         HighLightCellsEnd();
                     }
                     else
@@ -251,7 +254,6 @@ public class PlayerInterface : MonoBehaviour
         {
             cell.HighLight();
         }
-        Debug.Log("before choose cells,cells are highlighted");
         if (highLightedCells.Count == 0)
         {
             GameManager.Instance.PlayerCancelOptionCallBack();
@@ -269,7 +271,6 @@ public class PlayerInterface : MonoBehaviour
         nowType = Unit.Type.White;
         IsHighLighting = false;
         cellChosen = null;
-        Debug.Log("after choosing cell or cancelled,highlight end");
     }
 
     /// <summary>
@@ -294,7 +295,6 @@ public class PlayerInterface : MonoBehaviour
                     + '/' + UnitChosen.LifeLimit.ToString();
                 upgradeCanvas.gameObject.SetActive(true);
                 upgradeCanvas.transform.position = UnitChosen.OnCell.transform.position + new Vector3(0, 0, 1.25f);
-                Debug.Log("you successfully chose the unit");
             }
         }
     }
@@ -318,6 +318,7 @@ public class PlayerInterface : MonoBehaviour
 
     private void SetHintMessage(string text)
     {
+        CancelInvoke("TextActivefalse");
         HintMessage.text = text;
         HintMessage.gameObject.SetActive(true);
         Invoke("TextActivefalse", 2f);

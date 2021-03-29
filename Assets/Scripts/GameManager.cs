@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public Button mancalaButton;
     public Button unitUpgradeButton;
     public Slider LifeBar;
+    public Button extendHandLimitButton;
 
     private List<Unit> Units { get; set; } = new List<Unit>();
     private List<Enemy> Enemies { get; set; } = new List<Enemy>();
@@ -92,6 +93,21 @@ public class GameManager : MonoBehaviour
             }
             PlayerCardOption(PlayerOption.UnitUpgrade);
         });
+        extendHandLimitButton.onClick.AddListener(delegate ()
+        {
+            if (PlayerInterface.Instance.IsHighLighting || PlayerInterface.Instance.IsChoosingType)
+            {
+                return;
+            }
+            if(Assets.CostCoin(PlayerOption.ExtendHandLimit))
+            {
+                Assets.HandLimit++;
+            }
+            else
+            {
+                PlayerInterface.Instance.ShowNoEnoughResource(false);
+            }
+        });
         spawnButton.image.color = Color.gray;
         mancalaButton.image.color = Color.gray;
         unitUpgradeButton.image.color = Color.gray;
@@ -101,7 +117,15 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //codes below should be preserved
-        if(!PlayerInterface.Instance.IsHighLighting)
+        if (Assets.coin >= Assets.Costs[(int)PlayerOption.ExtendHandLimit])
+        {
+            extendHandLimitButton.image.color = Color.white;
+        }
+        else
+        {
+            extendHandLimitButton.image.color = Color.gray;
+        }
+        if (!PlayerInterface.Instance.IsHighLighting && !PlayerInterface.Instance.IsChoosingType)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -122,7 +146,7 @@ public class GameManager : MonoBehaviour
             mancalaButton.image.color = Color.cyan;
 
         }
-        else if(count >= Assets.Costs[(int)PlayerOption.Mancala])
+        else if (count >= Assets.Costs[(int)PlayerOption.Mancala] && Units.Count > 0)
         {
             mancalaButton.image.color = Color.white;
         }
@@ -138,8 +162,6 @@ public class GameManager : MonoBehaviour
         {
             unitUpgradeButton.image.color = Color.gray;
         }
-
-        //UNDONE:add check for buttons
     }
 
     private void SetGamePause(bool pause)
@@ -170,7 +192,6 @@ public class GameManager : MonoBehaviour
         unit.transform.position = to.transform.position + presetPosition[to.UnitCount() % 9];
         to.AddUnit(unit);
         unit.OnCell = to;
-        Debug.Log("unit moved");
     }
 
     /// <summary>
@@ -250,6 +271,7 @@ public class GameManager : MonoBehaviour
         {
             unit.ReceiveDamage(enemy.Damage);
             unit.LifeBar.value = unit.Life / unit.LifeLimit;
+            Debug.Log("LifeBar change");
         }
     }
 
@@ -290,7 +312,7 @@ public class GameManager : MonoBehaviour
         }
         if (types.Count == 0)
         {
-            Debug.Log("no enough card");
+            PlayerInterface.Instance.ShowNoEnoughResource(true);
             return;
         }
         // let player choose if there are multiple choices
@@ -338,10 +360,8 @@ public class GameManager : MonoBehaviour
         Assert.IsTrue(option == PlayerOption.UnitSpawn ||
             option == PlayerOption.Mancala);
         SetGamePause(false);
-        Debug.Log("game continue");
         if (FreeMancala && option == PlayerOption.Mancala)
         {
-            Debug.Log("you perform free mancala");
             mancalaButton.image.color = Color.white;
             FreeMancala = false;
         }
@@ -390,7 +410,6 @@ public class GameManager : MonoBehaviour
     /*game process*/
     public void DrawCard()
     {
-        Debug.Log("you draw a card");
         Assets.DrawCard(
             (Unit.Type)random.Next(0, Enum.GetValues(typeof(Unit.Type)).Length)
             );
