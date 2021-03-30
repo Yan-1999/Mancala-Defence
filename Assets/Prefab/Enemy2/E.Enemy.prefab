@@ -110,4 +110,4 @@ MonoBehaviour:
   explosionEffect: {fileID: 7475493240788589121, guid: 6880aa32907b01b4ebe939cf34f81b68,
     type: 3}
   Damage: 10
-  Hp: 250
+  Life: 15

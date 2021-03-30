@@ -250,6 +250,7 @@ public class GameManager : MonoBehaviour
     /*attack*/
     public void UnitAttack(Unit unit)
     {
+        /*Debug.Log("122222112");
         // check if the cell is exhausted
         if (unit.OnCell.IsExhausted)
         {
@@ -261,7 +262,7 @@ public class GameManager : MonoBehaviour
         foreach (Enemy enemy in enemies)
         {
             enemy.ReceiveDamage(unit.Damage * multiplyer);
-        }
+        }*/
     }
 
     public void EnemyAttack(Enemy enemy)

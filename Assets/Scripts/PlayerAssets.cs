@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class PlayerAssets
 {
@@ -112,6 +113,7 @@ public class PlayerAssets
 
     public void GainCoinOnEmemyKill()
     {
+        Debug.Log(enemyKillGain);
         GameManager.Instance.coinText.text = GameManager.Instance.Assets.coin.ToString();
         coin += enemyKillGain;
     }

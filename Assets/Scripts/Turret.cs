@@ -47,6 +47,7 @@ public class Turret : MonoBehaviour
         {
             UpdateEnemys();
         }
+
         if(enemys.Count>0)
         {
             GameObject bullet = GameObject.Instantiate(bulletPrefab, firePosition.position, firePosition.rotation);

@@ -7059,6 +7059,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1769117452}
     m_Modifications:
+    - target: {fileID: 1981011439617245815, guid: d383f66531e607c4aa7c4e37b2f86fbb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2346151981417762082, guid: d383f66531e607c4aa7c4e37b2f86fbb,
         type: 3}
       propertyPath: m_RootOrder
@@ -7113,6 +7118,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313763270870905961, guid: d383f66531e607c4aa7c4e37b2f86fbb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7019163672779726624, guid: d383f66531e607c4aa7c4e37b2f86fbb,
         type: 3}
@@ -8046,6 +8056,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1769117452}
     m_Modifications:
+    - target: {fileID: 6425398757155631306, guid: 40668c3d8418ca44f98dff1422853a5a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7024754008326380701, guid: 40668c3d8418ca44f98dff1422853a5a,
         type: 3}
       propertyPath: m_RootOrder

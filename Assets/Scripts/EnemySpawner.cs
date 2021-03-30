@@ -2,8 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*public struct EnemyAttr
+{
+    public float Life { get; set; }
+    public float Damage { get; set; }
+    public float Speed { get; set; }
+}*/
+
 public class EnemySpawner : MonoBehaviour
 {
+
+    /*static public EnemySpawner Instance = null;
+    public Enemy[] origin;
+    public EnemyAttr[] Attrs { get; private set; } =
+    {
+        new EnemyAttr{ Life = 150.0f,Damage = 1.0f,Speed = 1.0f },
+        new EnemyAttr{ Life = 250.0f,Damage = 2.0f,Speed = 2.0f },
+    };
+    private void Awake()
+    {
+        Instance = this;
+    }*/
+
     public static int CountEnemyAlive = 0;
     public Wave[] waves;
     public Transform START;

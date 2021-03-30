@@ -2,7 +2,7 @@
 
 public abstract class Entity : MonoBehaviour
 {
-    public float AttackTimerMax { get; set; } = 2.0f;
+    public float AttackTimerMax { get; set; } = 1.0f;
 
     public float AttackTimer { get; private set; } = 0.0f;
     public float Life { get; set; }
@@ -11,7 +11,7 @@ public abstract class Entity : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        AttackTimer = AttackTimerMax;
     }
 
     // Update is called once per frame
@@ -25,6 +25,15 @@ public abstract class Entity : MonoBehaviour
             AttackTimer = 0;
         }
     }
+    /*void Update()
+    {
+        timer = timer + Time.deltaTime;
+        if (enemys.Count > 0 && timer >= attackRateTime)
+        {
+            timer = 0;
+            Attack();
+        }
+    }*/
 
     protected abstract void TryAttack();
 

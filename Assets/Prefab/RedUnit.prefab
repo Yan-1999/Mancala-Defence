@@ -124,7 +124,7 @@ SphereCollider:
   m_GameObject: {fileID: 7006515125712763933}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -140,6 +140,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ed69589e79a2c14085f3bc526d27737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemys: []
+  attackRateTime: 1
+  bulletPrefab: {fileID: 7975767881744797712, guid: 628b3852f0b857145a97ec30fb2a0640,
+    type: 3}
+  firePosition: {fileID: 1116249871}
   LifeBar: {fileID: 0}
   UnitType: 2
 --- !u!54 &1403362018
@@ -169,7 +174,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 6
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1403362020
 MonoBehaviour:
@@ -178,7 +183,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7006515125712763933}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2411e93fee81d045ab573ad3e28f111, type: 3}
   m_Name: 

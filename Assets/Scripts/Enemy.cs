@@ -1,18 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+
+    public PlayerAssets Assets = new PlayerAssets();
     public float Speed = 1;
     public GameObject explosionEffect;
     private Transform[] positions;
     private int index = 0;
     public float Damage = 10;
-    public float Hp = 150;
+    public float Life = 150;
+
+   /* public Slider LifeBar;
+    public Type EnemyType = Type.Common;
+    public enum AttrEnum { Life, Damage, Speed }
+    public enum Type : int
+    {
+        Common = 0,
+        elite,
+    };
+    public void SetEnemyAttrs(EnemyAttr enemyAttr)
+    {
+        Life = enemyAttr.Life;
+        Damage = enemyAttr.Damage;
+        Speed = enemyAttr.Speed;
+    }*/
+
     void Start()
     {
         positions = Waypoints.positions;
+  
     }
 
     void Update()
@@ -49,10 +69,10 @@ public class Enemy : MonoBehaviour
 
     public void ReceiveDamage(float damage)
     {
-        if (Hp <= 0)
+        if (Life <= 0)
             return;
-        Hp = Hp - damage;
-        if(Hp <= 0)
+        Life = Life - damage;
+        if(Life <= 0)
         {
             Die();
         }
@@ -62,5 +82,18 @@ public class Enemy : MonoBehaviour
         GameObject effect=GameObject.Instantiate(explosionEffect, transform.position, transform.rotation);
         Destroy(effect, 1.5f);
         Destroy(this.gameObject);
+        Assets.GainCoinOnEmemyKill();
     }
+
+    /*protected override void TryAttack()
+    {
+        GameManager.Instance.EnemyAttack(this);
+    }*/
+
+    /*protected override void OnDeath()
+    {
+        GameManager.Instance.UnitDeath(this);
+        OnCell = null;
+        Destroy(gameObject);
+    }*/
 }
