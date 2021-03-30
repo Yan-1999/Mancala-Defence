@@ -114,8 +114,9 @@ public class PlayerAssets
     public void GainCoinOnEmemyKill()
     {
         Debug.Log(enemyKillGain);
-        GameManager.Instance.coinText.text = GameManager.Instance.Assets.coin.ToString();
         coin += enemyKillGain;
+        GameManager.Instance.coinText.text = GameManager.Instance.Assets.coin.ToString();
+        
     }
 
     public bool CheckCoin(PlayerOption option)
