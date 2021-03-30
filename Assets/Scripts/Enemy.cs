@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class Enemy : MonoBehaviour
 {
 
-    public PlayerAssets Assets = new PlayerAssets();
     public float Speed = 1;
     public GameObject explosionEffect;
     private Transform[] positions;
@@ -82,7 +81,7 @@ public class Enemy : MonoBehaviour
         GameObject effect=GameObject.Instantiate(explosionEffect, transform.position, transform.rotation);
         Destroy(effect, 1.5f);
         Destroy(this.gameObject);
-        Assets.GainCoinOnEmemyKill();
+        GameManager.Instance.Assets.GainCoinOnEmemyKill();
     }
 
     /*protected override void TryAttack()

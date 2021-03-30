@@ -43,5 +43,9 @@ public class Test : MonoBehaviour
             Debug.Log("enemy in");
             GameManager.Instance.EnemyPass();
         }
+        if(Input.GetKeyDown(KeyCode.D))
+        {
+            GameManager.Instance.DrawCard();
+        }
     }
 }

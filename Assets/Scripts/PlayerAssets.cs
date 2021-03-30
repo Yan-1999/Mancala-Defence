@@ -113,8 +113,8 @@ public class PlayerAssets
 
     public void GainCoinOnEmemyKill()
     {
-        Debug.Log(enemyKillGain);
         coin += enemyKillGain;
+        Debug.Log(coin);
         GameManager.Instance.coinText.text = GameManager.Instance.Assets.coin.ToString();
         
     }
