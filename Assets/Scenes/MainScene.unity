@@ -7380,14 +7380,27 @@ MonoBehaviour:
   waves:
   - enemyPrefab: {fileID: 4466176432917713996, guid: c1bbb765eafc66c4aa6ba5a56685d525,
       type: 3}
-    count: 5
-    rate: 1
+    count: 10
+    rate: 2
+    Bigrate: 0
   - enemyPrefab: {fileID: 4466176432917713996, guid: 1bfbf3281127fc244852af468a05041c,
       type: 3}
-    count: 8
-    rate: 1
+    count: 3
+    rate: 5
+    Bigrate: 0
+  - enemyPrefab: {fileID: 4466176432917713996, guid: 1bfbf3281127fc244852af468a05041c,
+      type: 3}
+    count: 6
+    rate: 3
+    Bigrate: 0
+  - enemyPrefab: {fileID: 4466176432917713996, guid: c1bbb765eafc66c4aa6ba5a56685d525,
+      type: 3}
+    count: 30
+    rate: 2
+    Bigrate: 0
   START: {fileID: 1930447799}
   waveRate: 3
+  BigwaveRate: 20
 --- !u!1 &1931809609
 GameObject:
   m_ObjectHideFlags: 0

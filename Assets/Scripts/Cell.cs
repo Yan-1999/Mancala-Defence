@@ -63,6 +63,11 @@ public class Cell : MonoBehaviour
         return units;
     }
 
+    public List<Unit> UnitsOnCell()
+    {
+        return Units;
+    }
+
     /// <summary>
     /// Add a unit to this cell.
     /// This operation will activate cell.

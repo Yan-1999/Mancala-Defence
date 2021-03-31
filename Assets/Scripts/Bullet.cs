@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float damage = 50;
-
+    public Cell cell;
     public float speed = 20;
 
     public GameObject explosionEffectPrefab;
@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
         this.target = _target;
     }
 
-    
+
 
     void Update()
     {
@@ -37,7 +37,7 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if(col.tag =="Enemy")
+        if(col.tag == "Enemy" || col.tag == "E.enemy")
         {
             col.GetComponent<Enemy>().ReceiveDamage(damage);
             Die();

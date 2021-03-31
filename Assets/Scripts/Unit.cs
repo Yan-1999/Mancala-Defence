@@ -15,7 +15,6 @@ public class Unit : Entity
     
 
     public float attackRateTime = 1;//攻击间隔
-    private float timer = 0;
 
     public GameObject bulletPrefab;//子弹
     public Transform firePosition;
@@ -68,14 +67,14 @@ public class Unit : Entity
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.tag == "Enemy")
+        if (col.tag == "Enemy"|| col.tag == "E.enemy")
         {
             enemys.Add(col.gameObject);
         }
     }
     void OnTriggerExit(Collider col)
     {
-        if (col.tag == "Enemy")
+        if (col.tag == "Enemy" || col.tag == "E.enemy")
         {
             enemys.Remove(col.gameObject);
         }
@@ -102,8 +101,28 @@ public class Unit : Entity
         }
         bullet.GetComponent<Bullet>().SetDamage(this.Damage);
         bullet.GetComponent<Bullet>().SetTarget(enemys[0].transform);
-        GameManager.Instance.UnitAttack(this);
+        Invoke("WaitAttack", 0.3f);
+        if (enemys[0].tag == "E.enemy")
+        {
+            Invoke("Wait", 0); 
+        }
+        else
+        {
+            Invoke("WaitAttack", 0);
+        }
     }
+    void Wait()
+    {
+        GameManager.Instance.EnemyAttack(this.OnCell);
+    }
+
+    void WaitAttack()
+    {
+        ReceiveDamage(this.Damage * 0.01f);
+        this.LifeBar.value = this.Life / this.LifeLimit;
+    }
+
+
     void UpdateEnemys()
     {
         enemys.RemoveAll(item => item == null);
@@ -112,8 +131,8 @@ public class Unit : Entity
 
     protected override void OnDeath()
     {
-        /*GameManager.Instance.UnitDeath(this);
+        GameManager.Instance.UnitDeath(this);
         OnCell = null;
-        Destroy(gameObject);*/
+        Destroy(gameObject);
     }
 }

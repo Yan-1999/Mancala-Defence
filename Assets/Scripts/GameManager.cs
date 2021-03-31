@@ -11,6 +11,7 @@
 
 using System;
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
@@ -99,7 +100,7 @@ public class GameManager : MonoBehaviour
             {
                 return;
             }
-            if(Assets.CostCoin(PlayerOption.ExtendHandLimit))
+            if (Assets.CostCoin(PlayerOption.ExtendHandLimit))
             {
                 Assets.HandLimit++;
             }
@@ -264,16 +265,28 @@ public class GameManager : MonoBehaviour
             enemy.ReceiveDamage(unit.Damage * multiplyer);
         }*/
     }
-
-    public void EnemyAttack(Enemy enemy)
+    public void EnemyAttack(Cell cell)
     {
-        List<Unit> units = GameAI.FindUnitsToAttack(enemy);
-        foreach (Unit unit in units)
+        List<Unit> us = cell.UnitsOnCell();
+        if (us.Count == 0)
         {
-            unit.ReceiveDamage(enemy.Damage);
-            unit.LifeBar.value = unit.Life / unit.LifeLimit;
-            Debug.Log("LifeBar change");
+            return;
         }
+
+        for (int i = 0; i < us.Count; i++)
+        {
+            us[i].LifeBar.value = us[i].Life / us[i].LifeLimit;
+            us[i].ReceiveDamage(us[i].Damage * 0.01f);
+        }
+        /*foreach (Unit unit in us)
+        {
+
+            unit.ReceiveDamage(unit.Damage * 0.01f);
+            unit.LifeBar.value = unit.Life / unit.LifeLimit;
+            Debug.Log("******");
+            Debug.Log(us.Count);
+            Debug.Log("******");
+        }*/
     }
 
     /// <summary>

@@ -28,6 +28,8 @@ public class EnemySpawner : MonoBehaviour
     public Wave[] waves;
     public Transform START;
     public float waveRate = 3;
+    public float BigwaveRate = 3;
+    private int j=0;
 
     void Start()
     {
@@ -56,7 +58,15 @@ public class EnemySpawner : MonoBehaviour
             {
                 yield return 0;
             }*/
-            yield return new WaitForSeconds(waveRate);
+            if (j % 2 == 0)
+            {
+                yield return new WaitForSeconds(waveRate);
+            }
+            else
+            {
+                yield return new WaitForSeconds(BigwaveRate);
+            }
+            j++;
         }
     }
 

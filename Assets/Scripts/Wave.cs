@@ -9,4 +9,5 @@ public class Wave
     public GameObject enemyPrefab;
     public int count;
     public float rate;
+    public float Bigrate;
 }

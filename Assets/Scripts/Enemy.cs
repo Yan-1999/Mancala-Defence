@@ -5,31 +5,33 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-
+    public Slider LifeBar;
     public float Speed = 1;
     public GameObject explosionEffect;
     private Transform[] positions;
     private int index = 0;
     public float Damage = 10;
     public float Life = 150;
+    private float MaxLife = 150;
 
-   /* public Slider LifeBar;
-    public Type EnemyType = Type.Common;
-    public enum AttrEnum { Life, Damage, Speed }
-    public enum Type : int
-    {
-        Common = 0,
-        elite,
-    };
-    public void SetEnemyAttrs(EnemyAttr enemyAttr)
-    {
-        Life = enemyAttr.Life;
-        Damage = enemyAttr.Damage;
-        Speed = enemyAttr.Speed;
-    }*/
+    /* public Slider LifeBar;
+     public Type EnemyType = Type.Common;
+     public enum AttrEnum { Life, Damage, Speed }
+     public enum Type : int
+     {
+         Common = 0,
+         elite,
+     };
+     public void SetEnemyAttrs(EnemyAttr enemyAttr)
+     {
+         Life = enemyAttr.Life;
+         Damage = enemyAttr.Damage;
+         Speed = enemyAttr.Speed;
+     }*/
 
     void Start()
     {
+        MaxLife = Life;
         positions = Waypoints.positions;
   
     }
@@ -71,7 +73,8 @@ public class Enemy : MonoBehaviour
         if (Life <= 0)
             return;
         Life = Life - damage;
-        if(Life <= 0)
+        LifeBar.value = Life / MaxLife;
+        if (Life <= 0)
         {
             Die();
         }
