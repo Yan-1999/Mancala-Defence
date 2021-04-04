@@ -59,14 +59,14 @@ public class Unit : Entity
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.tag == "Enemy" || col.tag == "E.enemy")
+        if (col.CompareTag("Enemy") || col.CompareTag("E.enemy"))
         {
             enemys.Add(col.gameObject);
         }
     }
     void OnTriggerExit(Collider col)
     {
-        if (col.tag == "Enemy" || col.tag == "E.enemy")
+        if (col.CompareTag("Enemy") || col.CompareTag("E.enemy"))
         {
             enemys.Remove(col.gameObject);
         }
@@ -99,14 +99,14 @@ public class Unit : Entity
         }
         bullet.GetComponent<Bullet>().SetDamage(damage);
         bullet.GetComponent<Bullet>().SetTarget(enemys[0].transform);
-        Invoke("WaitAttack", 0.3f);
-        if (enemys[0].tag == "E.enemy")
+        Invoke(nameof(WaitAttack), 0.3f);
+        if (enemys[0].CompareTag("E.enemy"))
         {
-            Invoke("Wait", 0);
+            Invoke(nameof(Wait), 0);
         }
         else
         {
-            Invoke("WaitAttack", 0);
+            Invoke(nameof(WaitAttack), 0);
         }
     }
     void Wait()
