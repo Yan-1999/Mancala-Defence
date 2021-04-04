@@ -143,7 +143,6 @@ public class PlayerInterface : MonoBehaviour
     /// <param name="types">possible card types</param>
     public void ChooseType(PlayerOption option, List<Unit.Type> types)
     {
-        // TODO: UI for player to choose type.
         // Call PlayerCardTypeCallback(PlayerOption, Unit.Type)
         // when player click the confirm button.
         foreach(Unit.Type type in types)
@@ -278,7 +277,6 @@ public class PlayerInterface : MonoBehaviour
     /// </summary>
     public void ChooseUnit()
     {
-        // TODO: UI for choose unit.
         // Call PlayerChooseUnitCallback(Unit, Unit.AttrEnum)
         // when player click a unit.
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

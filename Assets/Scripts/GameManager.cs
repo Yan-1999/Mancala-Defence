@@ -232,7 +232,6 @@ public class GameManager : MonoBehaviour
     /// <param name="cell"></param>
     public void Mancala(Cell cell)
     {
-        // UNDONE: Special rule oppositing for Mancala.
         int cellIndex = Array.IndexOf(Map.Cells, cell);
         Unit[] units = cell.UnitArrayCopy();
         cell.ClearUnits();
@@ -246,7 +245,7 @@ public class GameManager : MonoBehaviour
             if (unit == units[units.Length - 1] &&
                 Map.Cells[cellIndex].UnitCount() == 0)
             {
-                // TODO
+                // UNDONE: Special rule oppositing for Mancala.
             }
             UnitMove(unit, Map.Cells[cellIndex]);
         }
