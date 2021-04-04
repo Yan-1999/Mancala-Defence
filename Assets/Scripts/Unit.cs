@@ -3,7 +3,6 @@
 /// Project: Mancala Defence
 /// File: Unit.cs
 /// </summary>
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,17 +11,10 @@ using UnityEngine.UI;
 public class Unit : Entity
 {
     public List<GameObject> enemys = new List<GameObject>();
-    
 
     public float attackRateTime = 1;//攻击间隔
-
     public GameObject bulletPrefab;//子弹
     public Transform firePosition;
-    
-
-
-
-
     public Slider LifeBar;
     public enum Type : int
     {
@@ -67,7 +59,7 @@ public class Unit : Entity
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.tag == "Enemy"|| col.tag == "E.enemy")
+        if (col.tag == "Enemy" || col.tag == "E.enemy")
         {
             enemys.Add(col.gameObject);
         }
@@ -82,7 +74,7 @@ public class Unit : Entity
 
     protected override void TryAttack()
     {
-        if (this.OnCell.IsExhausted)
+        if (OnCell.IsExhausted)
         {
             return;
         }
@@ -94,17 +86,23 @@ public class Unit : Entity
         {
             UpdateEnemys();
         }
-        GameObject bullet = GameObject.Instantiate(bulletPrefab, firePosition.position, firePosition.rotation);
+        GameObject bullet = GameObject.Instantiate(bulletPrefab, firePosition.position,
+            firePosition.rotation);
+        float damage = Damage;
+        if (OnCell.IsVulnerable)
+        {
+            damage *= Cell.vulAttackMultiplyer;
+        }
         if (enemys.Count == 0)
         {
             return;
         }
-        bullet.GetComponent<Bullet>().SetDamage(this.Damage);
+        bullet.GetComponent<Bullet>().SetDamage(damage);
         bullet.GetComponent<Bullet>().SetTarget(enemys[0].transform);
         Invoke("WaitAttack", 0.3f);
         if (enemys[0].tag == "E.enemy")
         {
-            Invoke("Wait", 0); 
+            Invoke("Wait", 0);
         }
         else
         {
@@ -113,13 +111,13 @@ public class Unit : Entity
     }
     void Wait()
     {
-        GameManager.Instance.EnemyAttack(this.OnCell);
+        GameManager.Instance.EnemyAttack(OnCell);
     }
 
     void WaitAttack()
     {
-        ReceiveDamage(this.Damage * 0.01f);
-        this.LifeBar.value = this.Life / this.LifeLimit;
+        ReceiveDamage(Damage * 0.01f);
+        LifeBar.value = Life / LifeLimit;
     }
 
 
