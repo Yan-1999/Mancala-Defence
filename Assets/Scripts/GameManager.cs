@@ -252,6 +252,27 @@ public class GameManager : MonoBehaviour
     }
 
     /*attack*/
+
+    /// <returns>Returns true if cell has more than one unit
+    /// and all the units on the cell is of the same type.</returns>
+    public bool SameTypeUnitsOnCell(Cell cell)
+    {
+        if (cell.UnitCount() <= 1)
+        {
+            return false;
+        }
+        List<Unit> units = cell.UnitsOnCell();
+        Unit.Type type = units[0].UnitType;
+        foreach (Unit unit in units)
+        {
+            if (unit.UnitType != type)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void UnitAttack(Unit unit)
     {
         /*Debug.Log("122222112");

@@ -18,7 +18,6 @@ public class Cell : MonoBehaviour
     private const float overloadTimerMax = 10.0f;
     private const float overloadUnitNum = 3.0f;
     private const float overloadRate = 1.0f;
-    public const float vulAttackMultiplyer = 0.8f;
 
     private float OverloadTimer { get; set; } = 0;
     public bool IsExhausted { get; private set; } = false;

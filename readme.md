@@ -18,8 +18,6 @@ The *map* consists an *enemy spawning point* (*ESP*), a *base*, a *path* where e
 
 The *cells* are divided into two categories: *Favourite Cells* (shown as Fav. Cell above) and *Vulnerable Cells* (shown as Vul. Cell above). *Base* is a special *favourite cell*, while *enemy spawning point* is **not** a *cell*, as player cannot place *units* on it.
 
-Units on *vul. cells* will decrease attack damage, but units on *fav. cells* stay unaffected.
-
 ### Overloading and Exhaustion
 
 *Cell* will be *overloaded* when too many *units* are placed on it. After some time (determined by how many *units* are placed on it) it will become *exhausted*. All the *units* on it are all disabled (will no attack) unless they are moved to other *cells* (might by *Mancala* move). The *cell* will stay *exhausted* unless *unit* on it is cleared out. *Base* can **neither** be *overloaded* **nor** be *exhausted*.
@@ -32,6 +30,11 @@ Units on *vul. cells* will decrease attack damage, but units on *fav. cells* sta
 - *Units* can **never** be spawned on the *cell* that has number of unit reached the limit.
 
 (In code the *base* is represented by `BaseCell`)
+
+### Attack Damage Modification for Unit on Cell
+
+- *Units* on *vul. cells* will have attack damage decreaced.
+- If all *units* (more than 1) on the cell is of the same type, their attack damages will be increased.
 
 ## Mancala
 

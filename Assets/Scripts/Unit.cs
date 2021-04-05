@@ -12,6 +12,9 @@ public class Unit : Entity
 {
     public List<GameObject> enemys = new List<GameObject>();
 
+    private const float vulAttackMultiplyer = 0.5f;
+    private const float sameTypeAttackMultiplyer = 2f;
+
     public float attackRateTime = 1;//攻击间隔
     public GameObject bulletPrefab;//子弹
     public Transform firePosition;
@@ -88,14 +91,18 @@ public class Unit : Entity
         }
         GameObject bullet = GameObject.Instantiate(bulletPrefab, firePosition.position,
             firePosition.rotation);
-        float damage = Damage;
-        if (OnCell.IsVulnerable)
-        {
-            damage *= Cell.vulAttackMultiplyer;
-        }
         if (enemys.Count == 0)
         {
             return;
+        }
+        float damage = Damage;
+        if (OnCell.IsVulnerable)
+        {
+            damage *= vulAttackMultiplyer;
+        }
+        if (GameManager.Instance.SameTypeUnitsOnCell(OnCell))
+        {
+            damage *= sameTypeAttackMultiplyer;
         }
         bullet.GetComponent<Bullet>().SetDamage(damage);
         bullet.GetComponent<Bullet>().SetTarget(enemys[0].transform);
