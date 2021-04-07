@@ -48,6 +48,7 @@ public class Unit : Entity
             case AttrEnum.Life:
                 LifeLimit++;
                 Life = LifeLimit;
+                LifeBar.value = 1;
                 break;
             case AttrEnum.Damage:
                 Damage++;

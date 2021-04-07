@@ -24,15 +24,14 @@ public class PlayerInterface : MonoBehaviour
     private Cell cellChosen = null;
     public Unit UnitChosen { get; private set; } = null;
     private Unit.Type nowType = Unit.Type.White;
-    public GameObject upgradeCanvas;
     public Button upgradeDamage;
     public Button upgradeSkill;
     public Button upgradeLife;
     public Text HintMessage;
-    public Text unitMessageText;
     public Button[] chooseType;
     public bool IsChoosingType { get; private set; } = false;
     private PlayerOption chooseTypeOption = PlayerOption.UnitSpawn;
+    public Camera upgradeCamera;
 
 
     private void Awake()
@@ -43,7 +42,7 @@ public class PlayerInterface : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        upgradeCanvas.SetActive(false);
+        upgradeCamera.gameObject.SetActive(false);
         chooseType[0].gameObject.SetActive(false);
         chooseType[1].gameObject.SetActive(false);
         chooseType[2].gameObject.SetActive(false);
@@ -174,7 +173,8 @@ public class PlayerInterface : MonoBehaviour
                 IsUpgrading = false;
                 GameManager.Instance.PlayerChooseUnitCallback(UnitChosen, attrEnum);
                 UnitChosen = null;
-                upgradeCanvas.SetActive(false);
+                upgradeCamera.gameObject.SetActive(false);
+                GameManager.Instance.mainCamera.gameObject.SetActive(true);
                 Debug.Log("upgrade");
                 Debug.Log(attrEnum);
             }
@@ -188,9 +188,10 @@ public class PlayerInterface : MonoBehaviour
 
     public void CancelUpgrade()
     {
-        upgradeCanvas.SetActive(false);
         IsUpgrading = false;
         Debug.Log("you cancelled upgrade");
+        upgradeCamera.gameObject.SetActive(false);
+        GameManager.Instance.mainCamera.gameObject.SetActive(true);
     }
     /// <summary>
     /// Show all possible cell for player to choose.
@@ -288,11 +289,12 @@ public class PlayerInterface : MonoBehaviour
             {
                 //UNDONE:highlight?
                 IsUpgrading = true;
-                unitMessageText.text = "Skill:" + UnitChosen.Skill.ToString() +
-                    "Damage:" + UnitChosen.Damage.ToString() + "Life:" + UnitChosen.Life.ToString()
-                    + '/' + UnitChosen.LifeLimit.ToString();
-                upgradeCanvas.gameObject.SetActive(true);
-                upgradeCanvas.transform.position = UnitChosen.OnCell.transform.position + new Vector3(0, 0, 1.25f);
+                GameManager.Instance.mainCamera.gameObject.SetActive(false);
+                upgradeCamera.gameObject.SetActive(true);
+                upgradeCamera.transform.position = UnitChosen.transform.position + new Vector3(0, 3, -0.5f);
+                upgradeSkill.GetComponentInChildren<Text>().text = "Skill:" + UnitChosen.Skill.ToString() + '+';
+                upgradeDamage.GetComponentInChildren<Text>().text = "Damage:" + UnitChosen.Damage.ToString() + '+';
+                upgradeLife.GetComponentInChildren<Text>().text = "Life:" + UnitChosen.Life.ToString() + '/' + UnitChosen.LifeLimit.ToString() + '+';
             }
         }
     }

@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public Button unitUpgradeButton;
     public Slider LifeBar;
     public Button extendHandLimitButton;
+    public Camera mainCamera;
 
     private List<Unit> Units { get; set; } = new List<Unit>();
     private List<Enemy> Enemies { get; set; } = new List<Enemy>();
@@ -126,12 +127,9 @@ public class GameManager : MonoBehaviour
         {
             extendHandLimitButton.image.color = Color.gray;
         }
-        if (!PlayerInterface.Instance.IsHighLighting && !PlayerInterface.Instance.IsChoosingType)
+        if (Input.GetMouseButtonDown(0)&&!PlayerInterface.Instance.IsHighLighting && !PlayerInterface.Instance.IsChoosingType && !PlayerInterface.Instance.IsUpgrading)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                PlayerInterface.Instance.ChooseUnit();
-            }
+            PlayerInterface.Instance.ChooseUnit();
         }
         int count = Assets.GetMaxCount();
         if (count >= Assets.Costs[(int)PlayerOption.UnitSpawn])
