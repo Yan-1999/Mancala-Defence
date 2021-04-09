@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour
     public Button spawnButton;
     public Button mancalaButton;
     public Button unitUpgradeButton;
-    public Slider LifeBar;
     public Button extendHandLimitButton;
     public Camera mainCamera;
 
@@ -60,7 +59,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         GameObject[] gameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
-        LifeBar.value = 1;
         coinText.text = Assets.coin.ToString();
         lifeText.text = PlayerHp.ToString() + '/' + PlayerHpLimit.ToString();
         pauseButton.onClick.AddListener(delegate ()
@@ -110,9 +108,6 @@ public class GameManager : MonoBehaviour
                 PlayerInterface.Instance.ShowNoEnoughResource(false);
             }
         });
-        spawnButton.image.color = Color.gray;
-        mancalaButton.image.color = Color.gray;
-        unitUpgradeButton.image.color = Color.gray;
     }
 
     // Update is called once per frame
@@ -134,32 +129,39 @@ public class GameManager : MonoBehaviour
         int count = Assets.GetMaxCount();
         if (count >= Assets.Costs[(int)PlayerOption.UnitSpawn])
         {
-            spawnButton.image.color = Color.white;
+            spawnButton.image.color = Color.cyan;
+            spawnButton.gameObject.GetComponentInChildren<Text>().color = Color.cyan;
         }
         else
         {
             spawnButton.image.color = Color.gray;
+            spawnButton.gameObject.GetComponentInChildren<Text>().color = Color.gray;
         }
         if (FreeMancala)
         {
-            mancalaButton.image.color = Color.cyan;
+            mancalaButton.image.color = Color.yellow;
+            mancalaButton.gameObject.GetComponentInChildren<Text>().color = Color.yellow;
 
         }
         else if (count >= Assets.Costs[(int)PlayerOption.Mancala] && Units.Count > 0)
         {
-            mancalaButton.image.color = Color.white;
+            mancalaButton.image.color = Color.cyan;
+            mancalaButton.gameObject.GetComponentInChildren<Text>().color = Color.cyan;
         }
         else
         {
             mancalaButton.image.color = Color.gray;
+            mancalaButton.gameObject.GetComponentInChildren<Text>().color = Color.gray;
         }
         if (count >= Assets.Costs[(int)PlayerOption.UnitUpgrade])
         {
-            unitUpgradeButton.image.color = Color.white;
+            unitUpgradeButton.image.color = Color.cyan;
+            unitUpgradeButton.gameObject.GetComponentInChildren<Text>().color = Color.cyan;
         }
         else
         {
             unitUpgradeButton.image.color = Color.gray;
+            unitUpgradeButton.gameObject.GetComponentInChildren<Text>().color = Color.gray;
         }
     }
 
@@ -456,7 +458,6 @@ public class GameManager : MonoBehaviour
     {
         PlayerHp--;
         lifeText.text = PlayerHp.ToString() + '/' + PlayerHpLimit.ToString();
-        LifeBar.value = PlayerHp / PlayerHpLimit;
         if (PlayerHp == 0)
             Failed();
     }
