@@ -280,6 +280,10 @@ public class PlayerInterface : MonoBehaviour
     {
         // Call PlayerChooseUnitCallback(Unit, Unit.AttrEnum)
         // when player click a unit.
+        if(EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 1000, LayerMask.GetMask("Units")))

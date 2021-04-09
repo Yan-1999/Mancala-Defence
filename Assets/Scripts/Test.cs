@@ -35,7 +35,7 @@ public class Test : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             Debug.Log("add coin");
-            GameManager.Instance.Assets.coin += 10;
+            GameManager.Instance.Assets.coin += 100;
             GameManager.Instance.coinText.text = GameManager.Instance.Assets.coin.ToString();
         }
         if (Input.GetKeyDown(KeyCode.H))

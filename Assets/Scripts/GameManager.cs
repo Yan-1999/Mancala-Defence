@@ -28,7 +28,10 @@ public class GameManager : MonoBehaviour
     public Button pauseButton;
     private bool isPause = false;
     public Text coinText;
-    public Text lifeText;
+    public Text presentLifeText;
+    public Text lifeLimitText;
+    public Text presentWaveText;
+    public Text waveLimitText;
     public Button spawnButton;
     public Button mancalaButton;
     public Button unitUpgradeButton;
@@ -60,7 +63,7 @@ public class GameManager : MonoBehaviour
     {
         GameObject[] gameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
         coinText.text = Assets.coin.ToString();
-        lifeText.text = PlayerHp.ToString() + '/' + PlayerHpLimit.ToString();
+        presentLifeText.text = PlayerHp.ToString();
         pauseButton.onClick.AddListener(delegate ()
         {
             if (PlayerInterface.Instance.IsHighLighting || PlayerInterface.Instance.IsChoosingType)
@@ -102,6 +105,11 @@ public class GameManager : MonoBehaviour
             if (Assets.CostCoin(PlayerOption.ExtendHandLimit))
             {
                 Assets.HandLimit++;
+                extendHandLimitButton.transform.position -= new Vector3(0, 90);
+                if (Assets.HandLimit == 9)
+                {
+                    extendHandLimitButton.gameObject.SetActive(false);
+                }
             }
             else
             {
@@ -116,7 +124,7 @@ public class GameManager : MonoBehaviour
         //codes below should be preserved
         if (Assets.coin >= Assets.Costs[(int)PlayerOption.ExtendHandLimit])
         {
-            extendHandLimitButton.image.color = Color.white;
+            extendHandLimitButton.image.color = Color.yellow;
         }
         else
         {
@@ -457,7 +465,7 @@ public class GameManager : MonoBehaviour
     public void EnemyPass()
     {
         PlayerHp--;
-        lifeText.text = PlayerHp.ToString() + '/' + PlayerHpLimit.ToString();
+        presentLifeText.text = PlayerHp.ToString();
         if (PlayerHp == 0)
             Failed();
     }

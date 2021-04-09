@@ -10,5 +10,6 @@ public class Card : MonoBehaviour
     {
         Debug.Log("card used or discard");
         Destroy(gameObject);
+        CardFactory.Instance.ResetCardPosition();
     }
 }
