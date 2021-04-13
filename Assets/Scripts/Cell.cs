@@ -10,14 +10,14 @@ using UnityEngine;
 public class Cell : MonoBehaviour
 {
 
-    public bool IsVulnerable  = false;
+    public bool IsVulnerable = false;
     public Material[] materials;
     private Renderer rend;
 
+    private const int unitNumLimit = 9;
     private const float overloadTimerMax = 10.0f;
     private const float overloadUnitNum = 3.0f;
     private const float overloadRate = 1.0f;
-    public const float vulAttackMultiplyer = 0.8f;
 
     private float OverloadTimer { get; set; } = 0;
     public bool IsExhausted { get; private set; } = false;
@@ -46,8 +46,15 @@ public class Cell : MonoBehaviour
 
     public bool IsVaildForUnitSpawn()
     {
-        return IsVulnerable ? Acivated :
-                     (!GetType().Equals(typeof(BaseCell)));
+        if (IsExhausted || Units.Count >= unitNumLimit)
+        {
+            return false;
+        }
+        if (IsVulnerable)
+        {
+            return Acivated;
+        }
+        return !GetType().Equals(typeof(BaseCell));
     }
 
     /*operations for units on cell*/
@@ -182,7 +189,7 @@ public class Cell : MonoBehaviour
     public void ChangeUnitsPosition()
     {
         int count = Units.Count;
-        for(int i=0;i<count;i++)
+        for (int i = 0; i < count; i++)
         {
             Units[i].transform.position = this.transform.position + GameManager.Instance.presetPosition[i % 9];
         }

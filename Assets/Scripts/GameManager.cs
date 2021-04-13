@@ -28,12 +28,15 @@ public class GameManager : MonoBehaviour
     public Button pauseButton;
     private bool isPause = false;
     public Text coinText;
-    public Text lifeText;
+    public Text presentLifeText;
+    public Text lifeLimitText;
+    public Text presentWaveText;
+    public Text waveLimitText;
     public Button spawnButton;
     public Button mancalaButton;
     public Button unitUpgradeButton;
-    public Slider LifeBar;
     public Button extendHandLimitButton;
+    public Camera mainCamera;
 
     private List<Unit> Units { get; set; } = new List<Unit>();
     private List<Enemy> Enemies { get; set; } = new List<Enemy>();
@@ -58,9 +61,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         GameObject[] gameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
-        LifeBar.value = 1;
         coinText.text = Assets.coin.ToString();
-        lifeText.text = PlayerHp.ToString() + '/' + PlayerHpLimit.ToString();
+        presentLifeText.text = PlayerHp.ToString();
         pauseButton.onClick.AddListener(delegate ()
         {
             if (PlayerInterface.Instance.IsHighLighting || PlayerInterface.Instance.IsChoosingType)
@@ -102,15 +104,17 @@ public class GameManager : MonoBehaviour
             if (Assets.CostCoin(PlayerOption.ExtendHandLimit))
             {
                 Assets.HandLimit++;
+                extendHandLimitButton.transform.position -= new Vector3(0, 90);
+                if (Assets.HandLimit == 9)
+                {
+                    extendHandLimitButton.gameObject.SetActive(false);
+                }
             }
             else
             {
                 PlayerInterface.Instance.ShowNoEnoughResource(false);
             }
         });
-        spawnButton.image.color = Color.gray;
-        mancalaButton.image.color = Color.gray;
-        unitUpgradeButton.image.color = Color.gray;
     }
 
     // Update is called once per frame
@@ -119,48 +123,52 @@ public class GameManager : MonoBehaviour
         //codes below should be preserved
         if (Assets.coin >= Assets.Costs[(int)PlayerOption.ExtendHandLimit])
         {
-            extendHandLimitButton.image.color = Color.white;
+            extendHandLimitButton.image.color = Color.yellow;
         }
         else
         {
             extendHandLimitButton.image.color = Color.gray;
         }
-        if (!PlayerInterface.Instance.IsHighLighting && !PlayerInterface.Instance.IsChoosingType)
+        if (Input.GetMouseButtonDown(0)&&!PlayerInterface.Instance.IsHighLighting && !PlayerInterface.Instance.IsChoosingType && !PlayerInterface.Instance.IsUpgrading)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                PlayerInterface.Instance.ChooseUnit();
-            }
+            PlayerInterface.Instance.ChooseUnit();
         }
         int count = Assets.GetMaxCount();
         if (count >= Assets.Costs[(int)PlayerOption.UnitSpawn])
         {
-            spawnButton.image.color = Color.white;
+            spawnButton.image.color = Color.cyan;
+            spawnButton.gameObject.GetComponentInChildren<Text>().color = Color.cyan;
         }
         else
         {
             spawnButton.image.color = Color.gray;
+            spawnButton.gameObject.GetComponentInChildren<Text>().color = Color.gray;
         }
         if (FreeMancala)
         {
-            mancalaButton.image.color = Color.cyan;
+            mancalaButton.image.color = Color.yellow;
+            mancalaButton.gameObject.GetComponentInChildren<Text>().color = Color.yellow;
 
         }
         else if (count >= Assets.Costs[(int)PlayerOption.Mancala] && Units.Count > 0)
         {
-            mancalaButton.image.color = Color.white;
+            mancalaButton.image.color = Color.cyan;
+            mancalaButton.gameObject.GetComponentInChildren<Text>().color = Color.cyan;
         }
         else
         {
             mancalaButton.image.color = Color.gray;
+            mancalaButton.gameObject.GetComponentInChildren<Text>().color = Color.gray;
         }
         if (count >= Assets.Costs[(int)PlayerOption.UnitUpgrade])
         {
-            unitUpgradeButton.image.color = Color.white;
+            unitUpgradeButton.image.color = Color.cyan;
+            unitUpgradeButton.gameObject.GetComponentInChildren<Text>().color = Color.cyan;
         }
         else
         {
             unitUpgradeButton.image.color = Color.gray;
+            unitUpgradeButton.gameObject.GetComponentInChildren<Text>().color = Color.gray;
         }
     }
 
@@ -231,23 +239,47 @@ public class GameManager : MonoBehaviour
     /// <param name="cell"></param>
     public void Mancala(Cell cell)
     {
-        // UNDONE: Special rule oppositing for Mancala.
         int cellIndex = Array.IndexOf(Map.Cells, cell);
         Unit[] units = cell.UnitArrayCopy();
         cell.ClearUnits();
         foreach (Unit unit in units)
         {
             cellIndex = (cellIndex + 1) % Map.Cells.Length;
+            if (Map.Cells[cellIndex].GetType().Equals(typeof(BaseCell)))
+            {
+                FreeMancala = true;
+            }
             if (unit == units[units.Length - 1] &&
                 Map.Cells[cellIndex].UnitCount() == 0)
             {
-                FreeMancala = true;
+                // UNDONE: Special rule oppositing for Mancala.
             }
             UnitMove(unit, Map.Cells[cellIndex]);
         }
     }
 
     /*attack*/
+
+    /// <returns>Returns true if cell has more than one unit
+    /// and all the units on the cell is of the same type.</returns>
+    public bool SameTypeUnitsOnCell(Cell cell)
+    {
+        if (cell.UnitCount() <= 1)
+        {
+            return false;
+        }
+        List<Unit> units = cell.UnitsOnCell();
+        Unit.Type type = units[0].UnitType;
+        foreach (Unit unit in units)
+        {
+            if (unit.UnitType != type)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void UnitAttack(Unit unit)
     {
         /*Debug.Log("122222112");
@@ -432,8 +464,7 @@ public class GameManager : MonoBehaviour
     public void EnemyPass()
     {
         PlayerHp--;
-        lifeText.text = PlayerHp.ToString() + '/' + PlayerHpLimit.ToString();
-        LifeBar.value = PlayerHp / PlayerHpLimit;
+        presentLifeText.text = PlayerHp.ToString();
         if (PlayerHp == 0)
             Failed();
     }

@@ -3,7 +3,6 @@
 /// Project: Mancala Defence
 /// File: Unit.cs
 /// </summary>
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,17 +11,13 @@ using UnityEngine.UI;
 public class Unit : Entity
 {
     public List<GameObject> enemys = new List<GameObject>();
-    
+
+    private const float vulAttackMultiplyer = 0.5f;
+    private const float sameTypeAttackMultiplyer = 2f;
 
     public float attackRateTime = 1;//攻击间隔
-
     public GameObject bulletPrefab;//子弹
     public Transform firePosition;
-    
-
-
-
-
     public Slider LifeBar;
     public enum Type : int
     {
@@ -53,6 +48,7 @@ public class Unit : Entity
             case AttrEnum.Life:
                 LifeLimit++;
                 Life = LifeLimit;
+                LifeBar.value = 1;
                 break;
             case AttrEnum.Damage:
                 Damage++;
@@ -67,14 +63,14 @@ public class Unit : Entity
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.tag == "Enemy"|| col.tag == "E.enemy")
+        if (col.CompareTag("Enemy") || col.CompareTag("E.enemy"))
         {
             enemys.Add(col.gameObject);
         }
     }
     void OnTriggerExit(Collider col)
     {
-        if (col.tag == "Enemy" || col.tag == "E.enemy")
+        if (col.CompareTag("Enemy") || col.CompareTag("E.enemy"))
         {
             enemys.Remove(col.gameObject);
         }
@@ -82,7 +78,7 @@ public class Unit : Entity
 
     protected override void TryAttack()
     {
-        if (this.OnCell.IsExhausted)
+        if (OnCell.IsExhausted)
         {
             return;
         }
@@ -94,32 +90,42 @@ public class Unit : Entity
         {
             UpdateEnemys();
         }
-        GameObject bullet = GameObject.Instantiate(bulletPrefab, firePosition.position, firePosition.rotation);
+        GameObject bullet = GameObject.Instantiate(bulletPrefab, firePosition.position,
+            firePosition.rotation);
         if (enemys.Count == 0)
         {
             return;
         }
-        bullet.GetComponent<Bullet>().SetDamage(this.Damage);
-        bullet.GetComponent<Bullet>().SetTarget(enemys[0].transform);
-        Invoke("WaitAttack", 0.3f);
-        if (enemys[0].tag == "E.enemy")
+        float damage = Damage;
+        if (OnCell.IsVulnerable)
         {
-            Invoke("Wait", 0); 
+            damage *= vulAttackMultiplyer;
+        }
+        if (GameManager.Instance.SameTypeUnitsOnCell(OnCell))
+        {
+            damage *= sameTypeAttackMultiplyer;
+        }
+        bullet.GetComponent<Bullet>().SetDamage(damage);
+        bullet.GetComponent<Bullet>().SetTarget(enemys[0].transform);
+        Invoke(nameof(WaitAttack), 0.3f);
+        if (enemys[0].CompareTag("E.enemy"))
+        {
+            Invoke(nameof(Wait), 0);
         }
         else
         {
-            Invoke("WaitAttack", 0);
+            Invoke(nameof(WaitAttack), 0);
         }
     }
     void Wait()
     {
-        GameManager.Instance.EnemyAttack(this.OnCell);
+        GameManager.Instance.EnemyAttack(OnCell);
     }
 
     void WaitAttack()
     {
-        ReceiveDamage(this.Damage * 0.01f);
-        this.LifeBar.value = this.Life / this.LifeLimit;
+        ReceiveDamage(Damage * 0.01f);
+        LifeBar.value = Life / LifeLimit;
     }
 
 
