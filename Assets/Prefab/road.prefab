@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8199771047037848268}
   - component: {fileID: 9089791074451802279}
   m_Layer: 0
-  m_Name: Cell (24)
+  m_Name: road
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,9 +101,10 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4384236732658197753}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c288e4677164abc4fa2c70a6419e1985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   IsVulnerable: 0
+  materials: []

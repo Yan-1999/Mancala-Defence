@@ -44,8 +44,7 @@ public class GameManager : MonoBehaviour
 
     public float PlayerHpLimit = 10;
     public float PlayerHp = 10;
-    public GameObject endUI;
-    public Text endMessage;
+    
 
     private System.Random random = new System.Random();
 

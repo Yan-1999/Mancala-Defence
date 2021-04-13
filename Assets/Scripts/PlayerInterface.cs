@@ -31,6 +31,9 @@ public class PlayerInterface : MonoBehaviour
     public Text HintMessage;
     public Text unitMessageText;
     public Button[] chooseType;
+
+    public GameObject endUI;
+    public Text endMessage;
     public bool IsChoosingType { get; private set; } = false;
     private PlayerOption chooseTypeOption = PlayerOption.UnitSpawn;
 
@@ -332,6 +335,7 @@ public class PlayerInterface : MonoBehaviour
     //Game Over
     public void Failed()
     {
-
+        endUI.SetActive(true);
+        endMessage.text = "失 败";
     }
 }
