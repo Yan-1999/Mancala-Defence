@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public GameObject explosionEffect;
     private Transform[] positions;
     private Vector3 v1 = new Vector3(6.25f, 0.5f, -3.75f);
+    private Vector3 v2 = new Vector3(-1.25f,0, -2.5f);
     private int index = 0;
     public float Damage = 10;
     public float Life = 150;
@@ -37,6 +38,10 @@ public class Enemy : MonoBehaviour
         {
             positions = Waypoints.positions;
 
+        }
+        else if (transform.position == v2)
+        {
+            positions = Waypoints.positions;
         }
         else
         {
