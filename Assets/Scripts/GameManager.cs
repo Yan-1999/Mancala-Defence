@@ -99,6 +99,7 @@ public class GameManager : MonoBehaviour
         });
         yesButton.onClick.AddListener(delegate ()
         {
+            SetGamePause(false);
             SceneManager.LoadScene("Start");
         });
         noButton.onClick.AddListener(delegate ()
