@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public float Speed = 1;
     public GameObject explosionEffect;
     private Transform[] positions;
+    private Vector3 v1 = new Vector3(6.25f, 0.5f, -3.75f);
     private int index = 0;
     public float Damage = 10;
     public float Life = 150;
@@ -32,8 +33,17 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         MaxLife = Life;
-        positions = Waypoints.positions;
-  
+        if(transform.position== v1)
+        {
+            positions = Waypoints.positions;
+
+        }
+        else
+        {
+            positions = Waypoint1.positions;
+        }
+        
+
     }
 
     void Update()
