@@ -29,7 +29,7 @@ public class EnemySpawner : MonoBehaviour
     public Transform START;
     public float waveRate = 3;
     public float BigwaveRate = 3;
-    private int j=0;
+    private int presentWave=0;
 
     void Start()
     {
@@ -58,7 +58,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 yield return 0;
             }*/
-            if (j % 2 == 0)
+            if (presentWave % 2 == 0)
             {
                 yield return new WaitForSeconds(waveRate);
             }
@@ -66,7 +66,8 @@ public class EnemySpawner : MonoBehaviour
             {
                 yield return new WaitForSeconds(BigwaveRate);
             }
-            j++;
+            presentWave++;
+            GameManager.Instance.presentWaveText.text = GameManager.Instance.GetFrontZero(presentWave + 1, false);
         }
     }
 

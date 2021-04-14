@@ -77,7 +77,7 @@ public class PlayerInterface : MonoBehaviour
             EndChooseType();
             GameManager.Instance.PlayerCardTypeCallback(chooseTypeOption, Unit.Type.Red);
         });
-
+        UpdateUpgradeUI(true);
     }
 
     // Update is called once per frame
@@ -192,9 +192,9 @@ public class PlayerInterface : MonoBehaviour
     public void CancelUpgrade()
     {
         IsUpgrading = false;
+        UnitChosen = null;
         Debug.Log("you cancelled upgrade");
-        upgradeCamera.gameObject.SetActive(false);
-        GameManager.Instance.mainCamera.gameObject.SetActive(true);
+        UpdateUpgradeUI(true);
     }
     /// <summary>
     /// Show all possible cell for player to choose.
@@ -296,13 +296,24 @@ public class PlayerInterface : MonoBehaviour
             {
                 //UNDONE:highlight?
                 IsUpgrading = true;
-                GameManager.Instance.mainCamera.gameObject.SetActive(false);
-                upgradeCamera.gameObject.SetActive(true);
-                upgradeCamera.transform.position = UnitChosen.transform.position + new Vector3(0, 3, -0.5f);
-                upgradeSkill.GetComponentInChildren<Text>().text = "Skill:" + UnitChosen.Skill.ToString() + '+';
-                upgradeDamage.GetComponentInChildren<Text>().text = "Damage:" + UnitChosen.Damage.ToString() + '+';
-                upgradeLife.GetComponentInChildren<Text>().text = "Life:" + UnitChosen.Life.ToString() + '/' + UnitChosen.LifeLimit.ToString() + '+';
+                UpdateUpgradeUI(false);
             }
+        }
+    }
+
+    private void UpdateUpgradeUI(bool iscancel)
+    {
+        GameManager.Instance.mainCamera.gameObject.SetActive(iscancel);
+        upgradeCamera.gameObject.SetActive(!iscancel);
+        upgradeSkill.gameObject.SetActive(!iscancel);
+        upgradeLife.gameObject.SetActive(!iscancel);
+        upgradeDamage.gameObject.SetActive(!iscancel);
+        if (!iscancel)
+        {
+            upgradeCamera.transform.position = UnitChosen.transform.position + new Vector3(0, 3, -0.5f);
+            upgradeSkill.GetComponentInChildren<Text>().text = "Skill:" + UnitChosen.Skill.ToString() + '+';
+            upgradeDamage.GetComponentInChildren<Text>().text = "Damage:" + UnitChosen.Damage.ToString() + '+';
+            upgradeLife.GetComponentInChildren<Text>().text = "Life:" + UnitChosen.Life.ToString() + '/' + UnitChosen.LifeLimit.ToString() + '+';
         }
     }
 

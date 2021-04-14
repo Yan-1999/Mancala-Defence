@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     public Button unitUpgradeButton;
     public Button extendHandLimitButton;
     public Camera mainCamera;
+    public EnemySpawner enemySpawner;
 
     private List<Unit> Units { get; set; } = new List<Unit>();
     private List<Enemy> Enemies { get; set; } = new List<Enemy>();
@@ -45,8 +46,9 @@ public class GameManager : MonoBehaviour
 
     public Vector3[] presetPosition;
 
-    public float PlayerHpLimit = 10;
-    public float PlayerHp = 10;
+    public int PlayerHpLimit = 10;
+    public int PlayerHp = 10;
+    public int Score = 0;
     
 
     private System.Random random = new System.Random();
@@ -61,8 +63,11 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         GameObject[] gameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
-        coinText.text = Assets.coin.ToString();
-        presentLifeText.text = PlayerHp.ToString();
+        coinText.text = GetFrontZero(Assets.coin, true);
+        presentLifeText.text = GetFrontZero(PlayerHp, false);
+        lifeLimitText.text = '/' + GetFrontZero(PlayerHpLimit, false);
+        presentWaveText.text = "01";
+        waveLimitText.text = '/' + GetFrontZero(enemySpawner.waves.Length, false);
         pauseButton.onClick.AddListener(delegate ()
         {
             if (PlayerInterface.Instance.IsHighLighting || PlayerInterface.Instance.IsChoosingType)
@@ -104,7 +109,7 @@ public class GameManager : MonoBehaviour
             if (Assets.CostCoin(PlayerOption.ExtendHandLimit))
             {
                 Assets.HandLimit++;
-                extendHandLimitButton.transform.position -= new Vector3(0, 90);
+                extendHandLimitButton.transform.position += new Vector3(0, Screen.height / 12);
                 if (Assets.HandLimit == 9)
                 {
                     extendHandLimitButton.gameObject.SetActive(false);
@@ -464,7 +469,7 @@ public class GameManager : MonoBehaviour
     public void EnemyPass()
     {
         PlayerHp--;
-        presentLifeText.text = PlayerHp.ToString();
+        presentLifeText.text = GetFrontZero(PlayerHp, false);
         if (PlayerHp == 0)
             Failed();
     }
@@ -488,5 +493,39 @@ public class GameManager : MonoBehaviour
     public void PlayerCancelOptionCallBack()
     {
         SetGamePause(false);
+    }
+
+    public string GetFrontZero(int num,bool isCoin)
+    {
+        if(isCoin)
+        {
+            if(num>999)
+            {
+                return num.ToString();
+            }
+            else if(num>99)
+            {
+                return "0" + num.ToString();
+            }
+            else if(num>9)
+            {
+                return "00" + num.ToString();
+            }
+            else
+            {
+                return "000" + num.ToString();
+            }
+        }
+        else
+        {
+            if(num>9)
+            {
+                return num.ToString();
+            }
+            else
+            {
+                return "0" + num.ToString();
+            }
+        }
     }
 }

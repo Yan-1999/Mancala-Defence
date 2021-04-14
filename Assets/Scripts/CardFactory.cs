@@ -7,6 +7,8 @@ public class CardFactory : MonoBehaviour
     static public CardFactory Instance = null;
     public Card[] origin;
     public Image cardArea;
+    float lastWidth = 0;
+    float lastHeight = 0;
 
     private void Awake()
     {
@@ -21,13 +23,25 @@ public class CardFactory : MonoBehaviour
         }
     }
 
+    private void OnGUI()
+    {
+        if (lastHeight != Screen.height || lastWidth != Screen.width)
+        {
+            lastWidth = Screen.width;
+            lastHeight = Screen.height;
+            //cardArea.rectTransform.sizeDelta = new Vector2(Screen.width * 3 / 32, Screen.height * 5 / 6);
+            //cardArea.GetComponent<GridLayoutGroup>().cellSize = new Vector2(Screen.width * 3 / 32, Screen.height / 6);
+            //cardArea.GetComponent<GridLayoutGroup>().spacing = new Vector2(0, -Screen.height / 12);
+        }
+    }
+
     public Card DrawCard(Unit.Type type)
     {
         Card newCard = Instantiate<Card>(origin[(int)type]);
+        newCard.type = type;
         newCard.gameObject.SetActive(true);
         newCard.transform.SetParent(cardArea.transform);
-        newCard.transform.position = cardArea.transform.position + new Vector3(0, 330 - 90 * GameManager.Instance.Assets.CardsImage.Count);
-        
+        newCard.transform.localScale = new Vector3(1, 1, 1);
         return newCard;
     }
 
