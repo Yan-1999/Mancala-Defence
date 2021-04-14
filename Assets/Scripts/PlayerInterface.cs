@@ -49,7 +49,7 @@ public class PlayerInterface : MonoBehaviour
         chooseType[0].gameObject.SetActive(false);
         chooseType[1].gameObject.SetActive(false);
         chooseType[2].gameObject.SetActive(false);
-        
+        HintMessage.gameObject.SetActive(false);
         upgradeDamage.onClick.AddListener(delegate()
         {
             TryUpgrade(Unit.AttrEnum.Damage);

@@ -54,6 +54,7 @@ public class UnitFactory : MonoBehaviour
         attr.Damage++;
         attr.Skill++;
         Attrs[(int)type] = attr;
+        CardFactory.Instance.UpdateCardAttribute(type);
     }
 
     public Unit GenerateUnit(Unit.Type type)

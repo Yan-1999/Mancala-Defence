@@ -42,6 +42,8 @@ public class CardFactory : MonoBehaviour
         newCard.gameObject.SetActive(true);
         newCard.transform.SetParent(cardArea.transform);
         newCard.transform.localScale = new Vector3(1, 1, 1);
+        newCard.GetComponentInChildren<Text>().text= UnitFactory.Instance.Attrs[(int)type].Damage.ToString() + '-' +
+                    UnitFactory.Instance.Attrs[(int)type].Life.ToString() + '-' + UnitFactory.Instance.Attrs[(int)type].Skill.ToString();
         return newCard;
     }
 
@@ -52,6 +54,20 @@ public class CardFactory : MonoBehaviour
         for (int i = 0; i < count && presentNode != null; i++)
         {
             presentNode.Value.transform.position = cardArea.transform.position + new Vector3(0, 330 - 90 * i);
+            presentNode = presentNode.Next;
+        }
+    }
+
+    public void UpdateCardAttribute(Unit.Type type)
+    {
+        LinkedListNode<Card> presentNode = GameManager.Instance.Assets.CardsImage.First;
+        while(presentNode!=null)
+        {
+            if(presentNode.Value.type==type)
+            {
+                presentNode.Value.GetComponentInChildren<Text>().text = UnitFactory.Instance.Attrs[(int)type].Damage.ToString() + '-' +
+                    UnitFactory.Instance.Attrs[(int)type].Life.ToString() + '-' + UnitFactory.Instance.Attrs[(int)type].Skill.ToString();
+            }
             presentNode = presentNode.Next;
         }
     }

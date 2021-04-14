@@ -38,6 +38,11 @@ public class GameManager : MonoBehaviour
     public Button extendHandLimitButton;
     public Camera mainCamera;
     public EnemySpawner enemySpawner;
+    public Canvas pauseCanvas;
+    public Button continueButton;
+    public Button backMenuButton;
+    public Button yesButton;
+    public Button noButton;
 
     private List<Unit> Units { get; set; } = new List<Unit>();
     private List<Enemy> Enemies { get; set; } = new List<Enemy>();
@@ -68,13 +73,32 @@ public class GameManager : MonoBehaviour
         lifeLimitText.text = '/' + GetFrontZero(PlayerHpLimit, false);
         presentWaveText.text = "01";
         waveLimitText.text = '/' + GetFrontZero(enemySpawner.waves.Length, false);
+        pauseCanvas.gameObject.SetActive(false);
         pauseButton.onClick.AddListener(delegate ()
         {
             if (PlayerInterface.Instance.IsHighLighting || PlayerInterface.Instance.IsChoosingType)
             {
                 return;
             }
-            SetGamePause(!isPause);
+            SetGamePause(true);
+            pauseCanvas.gameObject.SetActive(true);
+        });
+        continueButton.onClick.AddListener(delegate ()
+        {
+            SetGamePause(false);
+            yesButton.gameObject.SetActive(false);
+            noButton.gameObject.SetActive(false);
+            pauseCanvas.gameObject.SetActive(false);
+        });
+        backMenuButton.onClick.AddListener(delegate ()
+        {
+            yesButton.gameObject.SetActive(true);
+            noButton.gameObject.SetActive(true);
+        });
+        noButton.onClick.AddListener(delegate ()
+        {
+            yesButton.gameObject.SetActive(false);
+            noButton.gameObject.SetActive(false);
         });
         spawnButton.onClick.AddListener(delegate ()
         {
