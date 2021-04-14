@@ -74,6 +74,8 @@ public class GameManager : MonoBehaviour
         presentWaveText.text = "01";
         waveLimitText.text = '/' + GetFrontZero(enemySpawner.waves.Length, false);
         pauseCanvas.gameObject.SetActive(false);
+        yesButton.gameObject.SetActive(false);
+        noButton.gameObject.SetActive(false);
         pauseButton.onClick.AddListener(delegate ()
         {
             if (PlayerInterface.Instance.IsHighLighting || PlayerInterface.Instance.IsChoosingType)
@@ -94,6 +96,10 @@ public class GameManager : MonoBehaviour
         {
             yesButton.gameObject.SetActive(true);
             noButton.gameObject.SetActive(true);
+        });
+        yesButton.onClick.AddListener(delegate ()
+        {
+            SceneManager.LoadScene("Start");
         });
         noButton.onClick.AddListener(delegate ()
         {
