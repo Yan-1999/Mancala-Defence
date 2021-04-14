@@ -45,20 +45,8 @@ public class EnemySpawner : MonoBehaviour
     {
         foreach(Wave wave in waves)
         {
-            for (int i=0;i<wave.count;i++)
-            {
-                GameObject.Instantiate(wave.enemyPrefab, START.position, Quaternion.identity);
-                CountEnemyAlive++;
-                if(i!=wave.count-1)
-                {
-                    yield return new WaitForSeconds(wave.rate);
-                }
-            }
-            /*while(CountEnemyAlive>0)
-            {
-                yield return 0;
-            }*/
-            if (presentWave % 2 == 0)
+            
+            if (presentWave % 2 != 0)
             {
                 yield return new WaitForSeconds(waveRate);
             }
@@ -66,9 +54,31 @@ public class EnemySpawner : MonoBehaviour
             {
                 yield return new WaitForSeconds(BigwaveRate);
             }
-            presentWave++;
             GameManager.Instance.presentWaveText.text = GameManager.Instance.GetFrontZero(presentWave + 1, false);
+            for (int i=0;i<wave.count;i++)
+            {
+                if (i != 0)
+                 {
+                     yield return new WaitForSeconds(wave.rate);
+                 }
+                GameObject.Instantiate(wave.enemyPrefab, START.position, Quaternion.identity);
+                CountEnemyAlive++;
+                
+            }
+            /*while(CountEnemyAlive>0)
+            {
+                yield return 0;
+            }*/
+            
+            
+            presentWave++;
         }
+        while(CountEnemyAlive>0)
+        {
+            yield return 0;
+        }
+        GameObject.Find("PlayerInterface").SendMessage("Win");
+        GameObject.Find("EnemySpawner").SendMessage("Stop");
     }
 
 }

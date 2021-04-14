@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public enum PlayerOption
 {
@@ -352,5 +353,20 @@ public class PlayerInterface : MonoBehaviour
     {
         endUI.SetActive(true);
         endMessage.text = "失 败";
+    }
+
+    public void Win()
+    {
+        endUI.SetActive(true);
+        endMessage.text = "胜 利";
+    }
+
+    public void OnButtonRetry()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void OnButtonReturn()
+    {
+        SceneManager.LoadScene(0);
     }
 }
