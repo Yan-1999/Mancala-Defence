@@ -281,14 +281,10 @@ public class GameManager : MonoBehaviour
         foreach (Unit unit in units)
         {
             cellIndex = (cellIndex + 1) % Map.Cells.Length;
-            if (Map.Cells[cellIndex].GetType().Equals(typeof(BaseCell)))
+            if (unit == units[units.Length - 1] && 
+                Map.Cells[cellIndex].GetType().Equals(typeof(BaseCell)))
             {
                 FreeMancala = true;
-            }
-            if (unit == units[units.Length - 1] &&
-                Map.Cells[cellIndex].UnitCount() == 0)
-            {
-                // UNDONE: Special rule oppositing for Mancala.
             }
             UnitMove(unit, Map.Cells[cellIndex]);
         }
