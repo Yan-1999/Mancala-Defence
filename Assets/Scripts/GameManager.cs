@@ -282,14 +282,10 @@ public class GameManager : MonoBehaviour
         foreach (Unit unit in units)
         {
             cellIndex = (cellIndex + 1) % Map.Cells.Length;
-            if (Map.Cells[cellIndex].GetType().Equals(typeof(BaseCell)))
+            if (unit == units[units.Length - 1] && 
+                Map.Cells[cellIndex].GetType().Equals(typeof(BaseCell)))
             {
                 FreeMancala = true;
-            }
-            if (unit == units[units.Length - 1] &&
-                Map.Cells[cellIndex].UnitCount() == 0)
-            {
-                // UNDONE: Special rule oppositing for Mancala.
             }
             UnitMove(unit, Map.Cells[cellIndex]);
         }
@@ -344,7 +340,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < us.Count; i++)
         {
             us[i].LifeBar.value = us[i].Life / us[i].LifeLimit;
-            us[i].ReceiveDamage(us[i].Damage * 0.01f);
+            us[i].ReceiveDamage(us[i].Damage * 0.003f);
         }
         /*foreach (Unit unit in us)
         {

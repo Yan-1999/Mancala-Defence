@@ -51,7 +51,7 @@ The sequence of *cells* is: The *fav. cell* closest to *ESP* ->the adjacent *fav
 ### Special Rules for Mancala
 
 1. When the last *unit* is placed on the *base*, player can preform another *Mancala* **for free**.
-2. When the last *unit* is placed on a empty *cell*, player can instantly send all the *units* at the opposite *cell*.
+2. ~~When the last *unit* is placed on a empty *cell*, player can instantly send all the *units* at the opposite *cell*.~~
 
 ### Chain Effect of Mancala
 
