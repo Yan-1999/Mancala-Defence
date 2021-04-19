@@ -151,8 +151,6 @@ public class PlayerInterface : MonoBehaviour
         foreach(Unit.Type type in types)
         {
             chooseType[(int)type].gameObject.SetActive(true);
-            chooseType[(int)type].GetComponentInChildren<Text>().text = "S:" + UnitFactory.Instance.Attrs[(int)type].Skill.ToString()
-                + " D:" + UnitFactory.Instance.Attrs[(int)type].Damage.ToString() + " L:" + UnitFactory.Instance.Attrs[(int)type].Life.ToString();
         }
         IsChoosingType = true;
         chooseTypeOption = option;
@@ -177,8 +175,7 @@ public class PlayerInterface : MonoBehaviour
                 IsUpgrading = false;
                 GameManager.Instance.PlayerChooseUnitCallback(UnitChosen, attrEnum);
                 UnitChosen = null;
-                upgradeCamera.gameObject.SetActive(false);
-                GameManager.Instance.mainCamera.gameObject.SetActive(true);
+                UpdateUpgradeUI(true);
                 Debug.Log("upgrade");
                 Debug.Log(attrEnum);
             }

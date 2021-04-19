@@ -115,7 +115,7 @@ public class PlayerAssets
     {
         coin += enemyKillGain;
         Debug.Log(coin);
-        GameManager.Instance.coinText.text = GameManager.Instance.GetFrontZero(GameManager.Instance.Assets.coin, true);
+        GameManager.Instance.coinText.text = GameManager.Instance.Assets.coin.ToString("0000");
         
     }
 
@@ -136,7 +136,7 @@ public class PlayerAssets
             return false;
         }
         coin -= Costs[(int)option];
-        GameManager.Instance.coinText.text = GameManager.Instance.GetFrontZero(GameManager.Instance.Assets.coin, true);
+        GameManager.Instance.coinText.text = GameManager.Instance.Assets.coin.ToString("0000");
         return true;
     }
 

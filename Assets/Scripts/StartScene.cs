@@ -1,15 +1,16 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.SceneManagement;
 
 public class StartScene : MonoBehaviour
 {
     public Button startButton;
-    public Button optionButtion;
     public Button exitButton;
     public Button backButton;
     public Button selectStage1;
     public Button selectStage2;
+    public Canvas menuCanvas;
     public Canvas selectCanvas;
 
 
@@ -20,6 +21,14 @@ public class StartScene : MonoBehaviour
         startButton.onClick.AddListener(delegate ()
         {
                 ShowSelectCanvas(true);
+        });
+        exitButton.onClick.AddListener(delegate ()
+        {
+#if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
         });
         backButton.onClick.AddListener(delegate ()
         {
@@ -38,6 +47,7 @@ public class StartScene : MonoBehaviour
     private void ShowSelectCanvas(bool show)
     {
         selectCanvas.gameObject.SetActive(show);
+        menuCanvas.gameObject.SetActive(!show);
     }
 
     private void SelectStage(string name)

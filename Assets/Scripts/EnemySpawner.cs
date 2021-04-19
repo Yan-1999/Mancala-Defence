@@ -54,7 +54,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 yield return new WaitForSeconds(BigwaveRate);
             }
-            GameManager.Instance.presentWaveText.text = GameManager.Instance.GetFrontZero(presentWave + 1, false);
+            GameManager.Instance.presentWaveText.text = (presentWave + 1).ToString("00");
             for (int i=0;i<wave.count;i++)
             {
                 if (i != 0)

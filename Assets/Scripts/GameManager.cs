@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
     public Button backMenuButton;
     public Button yesButton;
     public Button noButton;
+    public Text scoreText;
 
     private List<Unit> Units { get; set; } = new List<Unit>();
     private List<Enemy> Enemies { get; set; } = new List<Enemy>();
@@ -68,11 +69,11 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         GameObject[] gameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
-        coinText.text = GetFrontZero(Assets.coin, true);
-        presentLifeText.text = GetFrontZero(PlayerHp, false);
-        lifeLimitText.text = '/' + GetFrontZero(PlayerHpLimit, false);
+        coinText.text = Assets.coin.ToString("0000");
+        presentLifeText.text = PlayerHp.ToString("00");
+        lifeLimitText.text = PlayerHpLimit.ToString("00");
         presentWaveText.text = "01";
-        waveLimitText.text = '/' + GetFrontZero(enemySpawner.waves.Length, false);
+        waveLimitText.text = enemySpawner.waves.Length.ToString("00");
         pauseCanvas.gameObject.SetActive(false);
         yesButton.gameObject.SetActive(false);
         noButton.gameObject.SetActive(false);
@@ -500,7 +501,7 @@ public class GameManager : MonoBehaviour
     public void EnemyPass()
     {
         PlayerHp--;
-        presentLifeText.text = GetFrontZero(PlayerHp, false);
+        presentLifeText.text = PlayerHp.ToString("00");
         if (PlayerHp == 0)
             Failed();
     }
@@ -526,37 +527,9 @@ public class GameManager : MonoBehaviour
         SetGamePause(false);
     }
 
-    public string GetFrontZero(int num,bool isCoin)
+    public void IncreaseScore(int add)
     {
-        if(isCoin)
-        {
-            if(num>999)
-            {
-                return num.ToString();
-            }
-            else if(num>99)
-            {
-                return "0" + num.ToString();
-            }
-            else if(num>9)
-            {
-                return "00" + num.ToString();
-            }
-            else
-            {
-                return "000" + num.ToString();
-            }
-        }
-        else
-        {
-            if(num>9)
-            {
-                return num.ToString();
-            }
-            else
-            {
-                return "0" + num.ToString();
-            }
-        }
+        Score += add;
+        scoreText.text = "Score:" + Score.ToString("00000000");
     }
 }
