@@ -13,14 +13,18 @@ public class StartScene : MonoBehaviour
     public Canvas menuCanvas;
     public Canvas selectCanvas;
 
-
+    public Vector3 startPosition;
+    public Vector3 endPosition;
+    private bool isEnd = true;
+    private bool isStart = true;
 
     void Start()
     {
+        Camera.main.gameObject.transform.position = startPosition;
         selectCanvas.gameObject.SetActive(false);
         startButton.onClick.AddListener(delegate ()
         {
-                ShowSelectCanvas(true);
+                MoveCamera(true);
         });
         exitButton.onClick.AddListener(delegate ()
         {
@@ -32,7 +36,7 @@ public class StartScene : MonoBehaviour
         });
         backButton.onClick.AddListener(delegate ()
         {
-            ShowSelectCanvas(false);
+            MoveCamera(false);
         });
         selectStage1.onClick.AddListener(delegate ()
         {
@@ -44,11 +48,46 @@ public class StartScene : MonoBehaviour
         });
     }
 
-    private void ShowSelectCanvas(bool show)
+    private void Update()
     {
-        selectCanvas.gameObject.SetActive(show);
-        menuCanvas.gameObject.SetActive(!show);
+        if (isEnd)
+        {
+            if (isStart)
+            {
+                menuCanvas.gameObject.SetActive(true);
+            }
+            else
+            {
+                selectCanvas.gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            if (Camera.main.gameObject.transform.position == (isStart ? startPosition : endPosition))
+            {
+                isEnd = true;
+            }
+        }
     }
+
+    private void MoveCamera(bool isSelect)
+    {
+        if(isSelect)
+        {
+            menuCanvas.gameObject.SetActive(false);
+            Camera.main.GetComponentInChildren<CameraMove>().MoveCamera(startPosition, endPosition);
+            isEnd = false;
+            isStart = false;
+        }
+        else
+        {
+            selectCanvas.gameObject.SetActive(false);
+            Camera.main.GetComponentInChildren<CameraMove>().MoveCamera(endPosition, startPosition);
+            isEnd = false;
+            isStart = true;
+        }
+    }
+
 
     private void SelectStage(string name)
     {

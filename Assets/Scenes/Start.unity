@@ -2831,6 +2831,8 @@ MonoBehaviour:
   selectStage2: {fileID: 1315949164}
   menuCanvas: {fileID: 277366443}
   selectCanvas: {fileID: 754078482}
+  startPosition: {x: 28.85, y: -11.93, z: 13.19}
+  endPosition: {x: 8.75, y: 19.75, z: -3.93}
 --- !u!4 &450805104
 Transform:
   m_ObjectHideFlags: 0
@@ -10716,6 +10718,7 @@ GameObject:
   - component: {fileID: 2098345661}
   - component: {fileID: 2098345660}
   - component: {fileID: 2098345659}
+  - component: {fileID: 2098345662}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -10782,12 +10785,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2098345658}
   m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 8.75, y: 19.75, z: -3.93}
+  m_LocalPosition: {x: 28.85, y: -11.93, z: 13.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
+--- !u!114 &2098345662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098345658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 901a48a64e8fb6b4ea02961bc99b21cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canMove: 0
 --- !u!1001 &2112485502
 PrefabInstance:
   m_ObjectHideFlags: 0
