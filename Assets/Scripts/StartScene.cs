@@ -15,7 +15,7 @@ public class StartScene : MonoBehaviour
 
     public Vector3 startPosition;
     public Vector3 endPosition;
-    private bool isEnd = true;
+    public CameraMove mainCameraMove;
     private bool isStart = true;
 
     void Start()
@@ -50,7 +50,7 @@ public class StartScene : MonoBehaviour
 
     private void Update()
     {
-        if (isEnd)
+        if (!mainCameraMove.canMove)
         {
             if (isStart)
             {
@@ -61,13 +61,6 @@ public class StartScene : MonoBehaviour
                 selectCanvas.gameObject.SetActive(true);
             }
         }
-        else
-        {
-            if (Camera.main.gameObject.transform.position == (isStart ? startPosition : endPosition))
-            {
-                isEnd = true;
-            }
-        }
     }
 
     private void MoveCamera(bool isSelect)
@@ -76,14 +69,12 @@ public class StartScene : MonoBehaviour
         {
             menuCanvas.gameObject.SetActive(false);
             Camera.main.GetComponentInChildren<CameraMove>().MoveCamera(startPosition, endPosition);
-            isEnd = false;
             isStart = false;
         }
         else
         {
             selectCanvas.gameObject.SetActive(false);
             Camera.main.GetComponentInChildren<CameraMove>().MoveCamera(endPosition, startPosition);
-            isEnd = false;
             isStart = true;
         }
     }
