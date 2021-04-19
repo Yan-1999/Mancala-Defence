@@ -197,7 +197,7 @@ PrefabInstance:
     - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
         type: 3}
       propertyPath: IsVulnerable
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
@@ -323,6 +323,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
 --- !u!4 &59956149 stripped
@@ -401,6 +406,11 @@ PrefabInstance:
     - target: {fileID: 6993569387753375984, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -605,7 +615,7 @@ PrefabInstance:
     - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
         type: 3}
       propertyPath: IsVulnerable
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
@@ -1236,6 +1246,11 @@ PrefabInstance:
     - target: {fileID: 6993569387753375984, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2133,6 +2148,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
 --- !u!4 &314878650 stripped
@@ -2213,6 +2233,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
 --- !u!4 &319427370 stripped
@@ -2291,6 +2316,11 @@ PrefabInstance:
     - target: {fileID: 6993569387753375984, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2637,6 +2667,11 @@ PrefabInstance:
     - target: {fileID: 6993569387753375984, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3296,6 +3331,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
 --- !u!4 &458416705 stripped
@@ -3438,7 +3478,7 @@ GameObject:
   - component: {fileID: 479490744}
   m_Layer: 8
   m_Name: BaseCell
-  m_TagString: Untagged
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3683,6 +3723,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
 --- !u!4 &504073253 stripped
@@ -3761,6 +3806,11 @@ PrefabInstance:
     - target: {fileID: 6993569387753375984, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4220,6 +4270,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
 --- !u!4 &559834489 stripped
@@ -4298,6 +4353,11 @@ PrefabInstance:
     - target: {fileID: 6993569387753375984, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4383,7 +4443,7 @@ PrefabInstance:
     - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
         type: 3}
       propertyPath: IsVulnerable
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
@@ -4463,6 +4523,11 @@ PrefabInstance:
     - target: {fileID: 6993569387753375984, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4646,6 +4711,11 @@ PrefabInstance:
     - target: {fileID: 6993569387753375984, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4936,6 +5006,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
 --- !u!4 &676787853 stripped
@@ -5186,6 +5261,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
 --- !u!4 &713503422 stripped
@@ -5264,6 +5344,11 @@ PrefabInstance:
     - target: {fileID: 6993569387753375984, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -5641,6 +5726,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
 --- !u!4 &763464809 stripped
@@ -5719,6 +5809,11 @@ PrefabInstance:
     - target: {fileID: 6993569387753375984, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -5886,6 +5981,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
 --- !u!4 &803070555 stripped
@@ -6038,6 +6138,11 @@ PrefabInstance:
     - target: {fileID: 6993569387753375984, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -6591,6 +6696,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
 --- !u!4 &903876493 stripped
@@ -6953,6 +7063,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
 --- !u!4 &940893190 stripped
@@ -7114,7 +7229,7 @@ PrefabInstance:
     - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
         type: 3}
       propertyPath: IsVulnerable
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
@@ -7403,7 +7518,7 @@ PrefabInstance:
     - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
         type: 3}
       propertyPath: IsVulnerable
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
@@ -8202,6 +8317,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
 --- !u!4 &1116617355 stripped
@@ -8358,6 +8478,11 @@ PrefabInstance:
     - target: {fileID: 6993569387753375984, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -8654,29 +8779,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - enemyPrefab: {fileID: 4466176432917713996, guid: 1bfbf3281127fc244852af468a05041c,
+  - enemyPrefab: {fileID: 4466176432917713996, guid: c1bbb765eafc66c4aa6ba5a56685d525,
+      type: 3}
+    count: 2
+    rate: 6
+    Bigrate: 0
+  - enemyPrefab: {fileID: 4466176432917713996, guid: c1bbb765eafc66c4aa6ba5a56685d525,
       type: 3}
     count: 4
-    rate: 2
-    Bigrate: 0
-  - enemyPrefab: {fileID: 4466176432917713996, guid: 1bfbf3281127fc244852af468a05041c,
-      type: 3}
-    count: 6
-    rate: 2
+    rate: 6
     Bigrate: 0
   - enemyPrefab: {fileID: 4466176432917713996, guid: 1bfbf3281127fc244852af468a05041c,
       type: 3}
     count: 8
-    rate: 2
+    rate: 6
     Bigrate: 0
-  - enemyPrefab: {fileID: 4466176432917713996, guid: 1bfbf3281127fc244852af468a05041c,
+  - enemyPrefab: {fileID: 4466176432917713996, guid: 2d1076ba3f8fb424a805c369f4f7420b,
       type: 3}
-    count: 10
-    rate: 2
+    count: 2
+    rate: 15
     Bigrate: 0
   START: {fileID: 1238988560}
-  waveRate: 3
-  BigwaveRate: 3
+  waveRate: 30
+  BigwaveRate: 30
 --- !u!65 &1238988562
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8961,6 +9086,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
 --- !u!4 &1279887607 stripped
@@ -9071,6 +9201,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
 --- !u!4 &1300801296 stripped
@@ -9154,7 +9289,7 @@ PrefabInstance:
     - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
         type: 3}
       propertyPath: IsVulnerable
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
@@ -9484,6 +9619,11 @@ PrefabInstance:
     - target: {fileID: 6993569387753375984, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -10065,6 +10205,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
 --- !u!4 &1539894613 stripped
@@ -10233,6 +10378,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
 --- !u!4 &1576972202 stripped
@@ -10394,7 +10544,7 @@ PrefabInstance:
     - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
         type: 3}
       propertyPath: IsVulnerable
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
@@ -11017,6 +11167,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
 --- !u!4 &1657831346 stripped
@@ -11173,6 +11328,11 @@ PrefabInstance:
     - target: {fileID: 6993569387753375984, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -11516,7 +11676,7 @@ PrefabInstance:
     - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
         type: 3}
       propertyPath: IsVulnerable
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
@@ -11809,6 +11969,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
 --- !u!4 &1722231770 stripped
@@ -12052,6 +12217,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
 --- !u!4 &1752626617 stripped
@@ -12210,6 +12380,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
 --- !u!4 &1791000927 stripped
@@ -12295,7 +12470,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1833673645}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1.75, y: 22.69, z: 2.19}
+  m_LocalPosition: {x: 1.75, y: 18.2, z: 2.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 616445409}
@@ -12371,6 +12546,11 @@ PrefabInstance:
     - target: {fileID: 6993569387753375984, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -12956,7 +13136,7 @@ PrefabInstance:
     - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
         type: 3}
       propertyPath: IsVulnerable
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
@@ -13116,6 +13296,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
 --- !u!4 &1974154156 stripped
@@ -13194,6 +13379,11 @@ PrefabInstance:
     - target: {fileID: 6993569387753375984, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -13398,27 +13588,27 @@ MonoBehaviour:
   waves:
   - enemyPrefab: {fileID: 4466176432917713996, guid: c1bbb765eafc66c4aa6ba5a56685d525,
       type: 3}
-    count: 7
-    rate: 1
+    count: 6
+    rate: 2
     Bigrate: 0
   - enemyPrefab: {fileID: 4466176432917713996, guid: c1bbb765eafc66c4aa6ba5a56685d525,
       type: 3}
-    count: 11
-    rate: 1
+    count: 12
+    rate: 2
     Bigrate: 0
   - enemyPrefab: {fileID: 4466176432917713996, guid: c1bbb765eafc66c4aa6ba5a56685d525,
       type: 3}
-    count: 15
-    rate: 1
+    count: 24
+    rate: 2
     Bigrate: 0
   - enemyPrefab: {fileID: 4466176432917713996, guid: c1bbb765eafc66c4aa6ba5a56685d525,
       type: 3}
-    count: 19
-    rate: 1
+    count: 48
+    rate: 2
     Bigrate: 0
   START: {fileID: 2020709238}
-  waveRate: 3
-  BigwaveRate: 3
+  waveRate: 30
+  BigwaveRate: 30
 --- !u!65 &2020709240
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13842,6 +14032,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2dc14dd53ad2441bc76f07f87e3eae, type: 3}
 --- !u!4 &2059617003 stripped
@@ -14102,6 +14297,11 @@ PrefabInstance:
     - target: {fileID: 6993569387753375984, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8192748579927602593, guid: 8b2dc14dd53ad2441bc76f07f87e3eae,
+        type: 3}
+      propertyPath: IsVulnerable
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

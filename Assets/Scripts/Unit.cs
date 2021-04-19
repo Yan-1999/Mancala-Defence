@@ -82,6 +82,10 @@ public class Unit : Entity
         {
             return;
         }
+        if (OnCell.GetType().Equals(typeof(BaseCell)))
+        {
+            return;
+        }
         if (enemys.Count == 0)
         {
             return;
@@ -124,7 +128,7 @@ public class Unit : Entity
 
     void WaitAttack()
     {
-        ReceiveDamage(Damage * 0.01f);
+        ReceiveDamage(Damage * 0.003f);
         LifeBar.value = Life / LifeLimit;
     }
 

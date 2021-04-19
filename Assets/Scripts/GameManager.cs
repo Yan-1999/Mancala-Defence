@@ -339,7 +339,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < us.Count; i++)
         {
             us[i].LifeBar.value = us[i].Life / us[i].LifeLimit;
-            us[i].ReceiveDamage(us[i].Damage * 0.01f);
+            us[i].ReceiveDamage(us[i].Damage * 0.003f);
         }
         /*foreach (Unit unit in us)
         {

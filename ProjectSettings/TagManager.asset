@@ -8,6 +8,7 @@ TagManager:
   - Unit
   - Enemy
   - E.enemy
+  - Base
   layers:
   - Default
   - TransparentFX
