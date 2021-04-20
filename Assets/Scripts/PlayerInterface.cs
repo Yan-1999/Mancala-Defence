@@ -35,7 +35,6 @@ public class PlayerInterface : MonoBehaviour
     public Text endMessage;
     public bool IsChoosingType { get; private set; } = false;
     private PlayerOption chooseTypeOption = PlayerOption.UnitSpawn;
-    public Camera upgradeCamera;
 
 
     private void Awake()
@@ -46,7 +45,6 @@ public class PlayerInterface : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        upgradeCamera.gameObject.SetActive(false);
         chooseType[0].gameObject.SetActive(false);
         chooseType[1].gameObject.SetActive(false);
         chooseType[2].gameObject.SetActive(false);
@@ -301,17 +299,21 @@ public class PlayerInterface : MonoBehaviour
 
     private void UpdateUpgradeUI(bool iscancel)
     {
-        GameManager.Instance.mainCamera.gameObject.SetActive(iscancel);
-        upgradeCamera.gameObject.SetActive(!iscancel);
         upgradeSkill.gameObject.SetActive(!iscancel);
         upgradeLife.gameObject.SetActive(!iscancel);
         upgradeDamage.gameObject.SetActive(!iscancel);
         if (!iscancel)
         {
-            upgradeCamera.transform.position = UnitChosen.transform.position + new Vector3(0, 3, -0.5f);
+            Camera.main.GetComponentInChildren<CameraMove>().MoveCamera(GameManager.Instance.cameraPosition,
+                UnitChosen.transform.position + new Vector3(0, 3, -0.5f));
             upgradeSkill.GetComponentInChildren<Text>().text = "Skill:" + UnitChosen.Skill.ToString() + '+';
             upgradeDamage.GetComponentInChildren<Text>().text = "Damage:" + UnitChosen.Damage.ToString() + '+';
             upgradeLife.GetComponentInChildren<Text>().text = "Life:" + UnitChosen.Life.ToString() + '/' + UnitChosen.LifeLimit.ToString() + '+';
+        }
+        else
+        {
+            Camera.main.GetComponentInChildren<CameraMove>().MoveCamera(Camera.main.gameObject.transform.position,
+                GameManager.Instance.cameraPosition);
         }
     }
 

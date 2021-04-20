@@ -36,7 +36,6 @@ public class GameManager : MonoBehaviour
     public Button mancalaButton;
     public Button unitUpgradeButton;
     public Button extendHandLimitButton;
-    public Camera mainCamera;
     public EnemySpawner enemySpawner;
     public Canvas pauseCanvas;
     public Button continueButton;
@@ -44,6 +43,8 @@ public class GameManager : MonoBehaviour
     public Button yesButton;
     public Button noButton;
     public Text scoreText;
+
+    public Vector3 cameraPosition;
 
     private List<Unit> Units { get; set; } = new List<Unit>();
     private List<Enemy> Enemies { get; set; } = new List<Enemy>();
