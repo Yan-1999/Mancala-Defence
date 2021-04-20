@@ -29,7 +29,7 @@ public class BaseCell : Cell
 
     private void OnUpdate(float deltaTime)
     {
-        timer += deltaTime * Mathf.Sqrt(Units.Count+1);
+        timer += deltaTime * Mathf.Sqrt(Units.Count+4);
         if (timer > TimerMax)
         {
             timer = 0.0f;
