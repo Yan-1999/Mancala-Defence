@@ -349,13 +349,13 @@ public class PlayerInterface : MonoBehaviour
     public void Failed()
     {
         endUI.SetActive(true);
-        endMessage.text = "失 败";
+        endMessage.text = "Game Over";
     }
 
     public void Win()
     {
         endUI.SetActive(true);
-        endMessage.text = "胜 利";
+        endMessage.text = "You Win";
     }
 
     public void OnButtonRetry()

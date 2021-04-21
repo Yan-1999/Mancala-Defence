@@ -340,7 +340,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < us.Count; i++)
         {
             us[i].LifeBar.value = us[i].Life / us[i].LifeLimit;
-            us[i].ReceiveDamage(us[i].Damage * 0.003f);
+            us[i].ReceiveDamage(us[i].Damage );
         }
         /*foreach (Unit unit in us)
         {
@@ -513,7 +513,9 @@ public class GameManager : MonoBehaviour
         //enemySpawner.Stop();
 
         GameObject.Find("PlayerInterface").SendMessage("Failed");
-        GameObject.Find("EnemySpawner").SendMessage("Stop");
+        enemySpawner.GetComponent<EnemySpawner>().Stop();
+        if(GameObject.Find("EnemySpawner1"))
+            GameObject.Find("EnemySpawner1").SendMessage("Stop");
         //endUI.SetActive(true);
         //endMessage.text = "失 败";
     }

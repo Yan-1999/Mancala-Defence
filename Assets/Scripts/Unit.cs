@@ -128,7 +128,7 @@ public class Unit : Entity
 
     void WaitAttack()
     {
-        ReceiveDamage(Damage * 0.003f);
+        ReceiveDamage(Damage );
         LifeBar.value = Life / LifeLimit;
     }
 

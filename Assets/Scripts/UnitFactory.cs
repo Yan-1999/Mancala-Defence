@@ -18,9 +18,9 @@ public class UnitFactory : MonoBehaviour
 
     public UnitAttr[] Attrs { get; private set; } =
     {
-        new UnitAttr{ Life = 2.0f,Damage = 1.0f,Skill = 3.0f },
-        new UnitAttr{ Life = 3.0f,Damage = 2.0f,Skill = 1.0f },
-        new UnitAttr{ Life = 1.0f,Damage = 3.0f,Skill = 2.0f },
+        new UnitAttr{ Life = 200f,Damage = 1f,Skill = 3.0f },
+        new UnitAttr{ Life = 300f,Damage = 2f,Skill = 1.0f },
+        new UnitAttr{ Life = 100f,Damage = 3f,Skill = 2.0f },
     };
 
     private void Awake()
