@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
         noButton.gameObject.SetActive(false);
         pauseButton.onClick.AddListener(delegate ()
         {
-            if (PlayerInterface.Instance.IsHighLighting || PlayerInterface.Instance.IsChoosingType)
+            if (PlayerInterface.Instance.IsActing())
             {
                 return;
             }
@@ -111,7 +111,7 @@ public class GameManager : MonoBehaviour
         });
         spawnButton.onClick.AddListener(delegate ()
         {
-            if (PlayerInterface.Instance.IsHighLighting || PlayerInterface.Instance.IsChoosingType)
+            if (PlayerInterface.Instance.IsActing())
             {
                 return;
             }
@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
         });
         mancalaButton.onClick.AddListener(delegate ()
         {
-            if (PlayerInterface.Instance.IsHighLighting || PlayerInterface.Instance.IsChoosingType)
+            if (PlayerInterface.Instance.IsActing())
             {
                 return;
             }
@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour
         });
         unitUpgradeButton.onClick.AddListener(delegate ()
         {
-            if (PlayerInterface.Instance.IsHighLighting || PlayerInterface.Instance.IsChoosingType)
+            if (PlayerInterface.Instance.IsActing())
             {
                 return;
             }
@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour
         });
         extendHandLimitButton.onClick.AddListener(delegate ()
         {
-            if (PlayerInterface.Instance.IsHighLighting || PlayerInterface.Instance.IsChoosingType)
+            if (PlayerInterface.Instance.IsActing())
             {
                 return;
             }
@@ -342,6 +342,11 @@ public class GameManager : MonoBehaviour
         {
             us[i].LifeBar.value = us[i].Life / us[i].LifeLimit;
             us[i].ReceiveDamage(us[i].Damage * 0.003f);
+            if(us[i]==PlayerInterface.Instance.UnitChosen)
+            {
+                PlayerInterface.Instance.upgradeLife.GetComponentInChildren<Text>().text = "Life:" +
+                    PlayerInterface.Instance.UnitChosen.Life.ToString("F1") + '/' + PlayerInterface.Instance.UnitChosen.LifeLimit.ToString() + '+';
+            }
         }
         /*foreach (Unit unit in us)
         {

@@ -308,7 +308,7 @@ public class PlayerInterface : MonoBehaviour
                 UnitChosen.transform.position + new Vector3(0, 3, -0.5f));
             upgradeSkill.GetComponentInChildren<Text>().text = "Skill:" + UnitChosen.Skill.ToString() + '+';
             upgradeDamage.GetComponentInChildren<Text>().text = "Damage:" + UnitChosen.Damage.ToString() + '+';
-            upgradeLife.GetComponentInChildren<Text>().text = "Life:" + UnitChosen.Life.ToString() + '/' + UnitChosen.LifeLimit.ToString() + '+';
+            upgradeLife.GetComponentInChildren<Text>().text = "Life:" + UnitChosen.Life.ToString("F1") + '/' + UnitChosen.LifeLimit.ToString() + '+';
         }
         else
         {
@@ -367,5 +367,10 @@ public class PlayerInterface : MonoBehaviour
     public void OnButtonReturn()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public bool IsActing()
+    {
+        return IsUpgrading || IsChoosingType || IsHighLighting;
     }
 }
