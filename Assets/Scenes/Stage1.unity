@@ -8327,7 +8327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - enemyPrefab: {fileID: 4466176432917713996, guid: c1bbb765eafc66c4aa6ba5a56685d525,
+  - enemyPrefab: {fileID: 4466176432917713996, guid: 1bfbf3281127fc244852af468a05041c,
       type: 3}
     count: 3
     rate: 1
@@ -8348,8 +8348,8 @@ MonoBehaviour:
     rate: 2
     Bigrate: 0
   START: {fileID: 1930447799}
-  waveRate: 1
-  BigwaveRate: 5
+  waveRate: 3
+  BigwaveRate: 3
 --- !u!1 &1931809609
 GameObject:
   m_ObjectHideFlags: 0

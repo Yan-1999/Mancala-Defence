@@ -337,25 +337,44 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-
+        int[] diearray = new int[50];
+        int length = 0;
         for (int i = 0; i < us.Count; i++)
         {
-            us[i].LifeBar.value = us[i].Life / us[i].LifeLimit;
-            us[i].ReceiveDamage(us[i].Damage * 0.003f);
-            if(us[i]==PlayerInterface.Instance.UnitChosen)
+            if (us[i].Damage >= us[i].Life)
+            {
+                diearray[length] = i;
+                length=1;
+            }
+            else
+            {
+                us[i].ReceiveDamage(us[i].Damage);
+                us[i].LifeBar.value = us[i].Life / us[i].LifeLimit;
+                if (us[i] == PlayerInterface.Instance.UnitChosen)
+                {
+                    PlayerInterface.Instance.upgradeLife.GetComponentInChildren<Text>().text = "Life:" +
+                        PlayerInterface.Instance.UnitChosen.Life.ToString("F1") + '/' + PlayerInterface.Instance.UnitChosen.LifeLimit.ToString() + '+';
+                }
+            }
+        }
+        for (int j=0;j< length;j++)
+        {
+            us[diearray[j]].ReceiveDamage(us[diearray[j]].Damage);
+        }
+        length = 0;
+
+        /*foreach (Unit unit in us)
+        {
+            unit.ReceiveDamage(unit.Damage);
+            if (unit != null)
+            {
+                unit.LifeBar.value = unit.Life / unit.LifeLimit;
+            }
+            if(unit == PlayerInterface.Instance.UnitChosen)
             {
                 PlayerInterface.Instance.upgradeLife.GetComponentInChildren<Text>().text = "Life:" +
                     PlayerInterface.Instance.UnitChosen.Life.ToString("F1") + '/' + PlayerInterface.Instance.UnitChosen.LifeLimit.ToString() + '+';
             }
-        }
-        /*foreach (Unit unit in us)
-        {
-
-            unit.ReceiveDamage(unit.Damage * 0.01f);
-            unit.LifeBar.value = unit.Life / unit.LifeLimit;
-            Debug.Log("******");
-            Debug.Log(us.Count);
-            Debug.Log("******");
         }*/
     }
 
@@ -519,7 +538,9 @@ public class GameManager : MonoBehaviour
         //enemySpawner.Stop();
 
         GameObject.Find("PlayerInterface").SendMessage("Failed");
-        GameObject.Find("EnemySpawner").SendMessage("Stop");
+        enemySpawner.GetComponent<EnemySpawner>().Stop();
+        if(GameObject.Find("EnemySpawner1"))
+            GameObject.Find("EnemySpawner1").SendMessage("Stop");
         //endUI.SetActive(true);
         //endMessage.text = "失 败";
     }
