@@ -36,7 +36,6 @@ public class GameManager : MonoBehaviour
     public Button mancalaButton;
     public Button unitUpgradeButton;
     public Button extendHandLimitButton;
-    public Camera mainCamera;
     public EnemySpawner enemySpawner;
     public Canvas pauseCanvas;
     public Button continueButton;
@@ -44,6 +43,8 @@ public class GameManager : MonoBehaviour
     public Button yesButton;
     public Button noButton;
     public Text scoreText;
+
+    public Vector3 cameraPosition;
 
     private List<Unit> Units { get; set; } = new List<Unit>();
     private List<Enemy> Enemies { get; set; } = new List<Enemy>();
@@ -79,7 +80,7 @@ public class GameManager : MonoBehaviour
         noButton.gameObject.SetActive(false);
         pauseButton.onClick.AddListener(delegate ()
         {
-            if (PlayerInterface.Instance.IsHighLighting || PlayerInterface.Instance.IsChoosingType)
+            if (PlayerInterface.Instance.IsActing())
             {
                 return;
             }
@@ -110,7 +111,7 @@ public class GameManager : MonoBehaviour
         });
         spawnButton.onClick.AddListener(delegate ()
         {
-            if (PlayerInterface.Instance.IsHighLighting || PlayerInterface.Instance.IsChoosingType)
+            if (PlayerInterface.Instance.IsActing())
             {
                 return;
             }
@@ -118,7 +119,7 @@ public class GameManager : MonoBehaviour
         });
         mancalaButton.onClick.AddListener(delegate ()
         {
-            if (PlayerInterface.Instance.IsHighLighting || PlayerInterface.Instance.IsChoosingType)
+            if (PlayerInterface.Instance.IsActing())
             {
                 return;
             }
@@ -126,7 +127,7 @@ public class GameManager : MonoBehaviour
         });
         unitUpgradeButton.onClick.AddListener(delegate ()
         {
-            if (PlayerInterface.Instance.IsHighLighting || PlayerInterface.Instance.IsChoosingType)
+            if (PlayerInterface.Instance.IsActing())
             {
                 return;
             }
@@ -134,7 +135,7 @@ public class GameManager : MonoBehaviour
         });
         extendHandLimitButton.onClick.AddListener(delegate ()
         {
-            if (PlayerInterface.Instance.IsHighLighting || PlayerInterface.Instance.IsChoosingType)
+            if (PlayerInterface.Instance.IsActing())
             {
                 return;
             }
@@ -166,7 +167,7 @@ public class GameManager : MonoBehaviour
         {
             extendHandLimitButton.image.color = Color.gray;
         }
-        if (Input.GetMouseButtonDown(0)&&!PlayerInterface.Instance.IsHighLighting && !PlayerInterface.Instance.IsChoosingType && !PlayerInterface.Instance.IsUpgrading)
+        if (Input.GetMouseButtonDown(0) && !PlayerInterface.Instance.IsActing())
         {
             PlayerInterface.Instance.ChooseUnit();
         }
@@ -339,8 +340,13 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < us.Count; i++)
         {
-            us[i].ReceiveDamage(us[i].Damage );
             us[i].LifeBar.value = us[i].Life / us[i].LifeLimit;
+            us[i].ReceiveDamage(us[i].Damage * 0.003f);
+            if(us[i]==PlayerInterface.Instance.UnitChosen)
+            {
+                PlayerInterface.Instance.upgradeLife.GetComponentInChildren<Text>().text = "Life:" +
+                    PlayerInterface.Instance.UnitChosen.Life.ToString("F1") + '/' + PlayerInterface.Instance.UnitChosen.LifeLimit.ToString() + '+';
+            }
         }
         /*foreach (Unit unit in us)
         {
@@ -513,9 +519,7 @@ public class GameManager : MonoBehaviour
         //enemySpawner.Stop();
 
         GameObject.Find("PlayerInterface").SendMessage("Failed");
-        enemySpawner.GetComponent<EnemySpawner>().Stop();
-        if(GameObject.Find("EnemySpawner1"))
-            GameObject.Find("EnemySpawner1").SendMessage("Stop");
+        GameObject.Find("EnemySpawner").SendMessage("Stop");
         //endUI.SetActive(true);
         //endMessage.text = "失 败";
     }
