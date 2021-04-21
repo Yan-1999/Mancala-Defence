@@ -167,7 +167,7 @@ public class GameManager : MonoBehaviour
         {
             extendHandLimitButton.image.color = Color.gray;
         }
-        if (Input.GetMouseButtonDown(0)&&!PlayerInterface.Instance.IsHighLighting && !PlayerInterface.Instance.IsChoosingType && !PlayerInterface.Instance.IsUpgrading)
+        if (Input.GetMouseButtonDown(0) && !PlayerInterface.Instance.IsActing())
         {
             PlayerInterface.Instance.ChooseUnit();
         }
