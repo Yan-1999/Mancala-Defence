@@ -25,6 +25,7 @@ public class EnemySpawner : MonoBehaviour
     }*/
 
     public static int CountEnemyAlive = 0;
+    public GameObject playerinterface;
     public Wave[] waves;
     public Transform START;
     public float waveRate = 3;
@@ -77,8 +78,9 @@ public class EnemySpawner : MonoBehaviour
         {
             yield return 0;
         }
-        GameObject.Find("PlayerInterface").SendMessage("Win");
-        GameObject.Find("EnemySpawner").SendMessage("Stop");
+        
+        playerinterface.GetComponent<PlayerInterface>().Win();
+        Stop();
     }
 
 }
