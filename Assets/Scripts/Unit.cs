@@ -128,11 +128,9 @@ public class Unit : Entity
 
     void WaitAttack()
     {
-<<<<<<< Updated upstream
-        ReceiveDamage(Damage );
-=======
+
         ReceiveDamage(Damage);
->>>>>>> Stashed changes
+
         LifeBar.value = Life / LifeLimit;
     }
 
