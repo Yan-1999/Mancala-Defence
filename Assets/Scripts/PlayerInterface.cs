@@ -45,6 +45,7 @@ public class PlayerInterface : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        endUI.SetActive(false);
         chooseType[0].gameObject.SetActive(false);
         chooseType[1].gameObject.SetActive(false);
         chooseType[2].gameObject.SetActive(false);
