@@ -399,6 +399,8 @@ public class GameManager : MonoBehaviour
     public void EnemyDeath(Enemy enemy)
     {
         Enemies.Remove(enemy);
+        //UNDONE:score
+        IncreaseScore(500);
         Assets.GainCoinOnEmemyKill();
     }
 
@@ -441,6 +443,8 @@ public class GameManager : MonoBehaviour
             case PlayerOption.UnitUpgrade:
                 Assets.CostCard(type, option);
                 UnitFactory.Instance.UpgradeUnitFactory(type);
+                //UNDONE:score
+                IncreaseScore(300);
                 break;
             case PlayerOption.UnitSpawn:
                 SetGamePause(true);
@@ -477,9 +481,13 @@ public class GameManager : MonoBehaviour
             case PlayerOption.UnitSpawn:
                 Unit unit = UnitFactory.Instance.GenerateUnit(type);
                 UnitSpawn(unit, cell);
+                //UNDONE:score
+                IncreaseScore(200);
                 break;
             case PlayerOption.Mancala:
                 Mancala(cell);
+                //UNDONE:score
+                IncreaseScore(300);
                 break;
             default:
                 break;
@@ -513,6 +521,8 @@ public class GameManager : MonoBehaviour
     /*game process*/
     public void DrawCard()
     {
+        //UNDONE:score
+        IncreaseScore(50);
         Assets.DrawCard(
             (Unit.Type)random.Next(0, Enum.GetValues(typeof(Unit.Type)).Length)
             );
@@ -523,6 +533,8 @@ public class GameManager : MonoBehaviour
     {
         PlayerHp--;
         presentLifeText.text = PlayerHp.ToString("00");
+        //UNDONE:score
+        IncreaseScore(-10000);
         if (PlayerHp == 0)
             Failed();
     }
