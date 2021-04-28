@@ -111,7 +111,7 @@ public class Unit : Entity
         }
         bullet.GetComponent<Bullet>().SetDamage(damage);
         bullet.GetComponent<Bullet>().SetTarget(enemys[0].transform);
-        Invoke(nameof(WaitAttack), 0.3f);
+        /*Invoke(nameof(WaitAttack), 0.3f);*/
         if (enemys[0].CompareTag("E.enemy"))
         {
             Invoke(nameof(Wait), 0);
@@ -130,7 +130,6 @@ public class Unit : Entity
     {
 
         ReceiveDamage(Damage);
-
         LifeBar.value = Life / LifeLimit;
     }
 

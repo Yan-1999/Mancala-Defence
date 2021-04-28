@@ -285,7 +285,7 @@ MonoBehaviour:
   explosionEffect: {fileID: 7475493240788589121, guid: 8d21ccc1b1a039040b76857009af82cb,
     type: 3}
   Damage: 10
-  Life: 500
+  Life: 250
 --- !u!1 &5656717066785349281
 GameObject:
   m_ObjectHideFlags: 0

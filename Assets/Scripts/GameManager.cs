@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
 
     public int PlayerHpLimit = 10;
     public int PlayerHp = 10;
-    public int Score = 0;
+    public int Score = -150;
     
 
     private System.Random random = new System.Random();
@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DrawCard(); DrawCard(); DrawCard();
         GameObject[] gameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
         coinText.text = Assets.coin.ToString("0000");
         presentLifeText.text = PlayerHp.ToString("00");
@@ -210,7 +211,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void SetGamePause(bool pause)
+    public void SetGamePause(bool pause)
     {
         if (pause)
         {
@@ -360,6 +361,7 @@ public class GameManager : MonoBehaviour
         for (int j=0;j< length;j++)
         {
             us[diearray[j]].ReceiveDamage(us[diearray[j]].Damage);
+            
         }
         length = 0;
 
@@ -553,6 +555,7 @@ public class GameManager : MonoBehaviour
         enemySpawner.GetComponent<EnemySpawner>().Stop();
         if(GameObject.Find("EnemySpawner1"))
             GameObject.Find("EnemySpawner1").SendMessage("Stop");
+        SetGamePause(true);
         //endUI.SetActive(true);
         //endMessage.text = "失 败";
     }
@@ -565,6 +568,6 @@ public class GameManager : MonoBehaviour
     public void IncreaseScore(int add)
     {
         Score += add;
-        scoreText.text = "Score:" + Score.ToString("00000000");
+        scoreText.text = "Score:" + Score.ToString("0000000");
     }
 }

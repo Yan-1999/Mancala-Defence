@@ -5326,7 +5326,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2065951734}
         m_MethodName: OnButtonReturn
         m_Mode: 1
         m_Arguments:
@@ -8609,7 +8609,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2065951734}
         m_MethodName: OnButtonRetry
         m_Mode: 1
         m_Arguments:
@@ -8708,56 +8708,46 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 4466176432917713996, guid: c1bbb765eafc66c4aa6ba5a56685d525,
       type: 3}
     count: 2
-    rate: 6
+    rate: 5
     Bigrate: 0
   - enemyPrefab: {fileID: 4466176432917713996, guid: c1bbb765eafc66c4aa6ba5a56685d525,
       type: 3}
-    count: 4
-    rate: 6
+    count: 5
+    rate: 3
     Bigrate: 0
   - enemyPrefab: {fileID: 4466176432917713996, guid: 1bfbf3281127fc244852af468a05041c,
+      type: 3}
+    count: 2
+    rate: 5
+    Bigrate: 0
+  - enemyPrefab: {fileID: 4466176432917713996, guid: c1bbb765eafc66c4aa6ba5a56685d525,
+      type: 3}
+    count: 20
+    rate: 1
+    Bigrate: 0
+  - enemyPrefab: {fileID: 4466176432917713996, guid: d28f9e7958ad7464eaed21a4ad3e4b55,
+      type: 3}
+    count: 2
+    rate: 10
+    Bigrate: 0
+  - enemyPrefab: {fileID: 4466176432917713996, guid: 2d1076ba3f8fb424a805c369f4f7420b,
+      type: 3}
+    count: 1
+    rate: 10
+    Bigrate: 0
+  - enemyPrefab: {fileID: 4466176432917713996, guid: d28f9e7958ad7464eaed21a4ad3e4b55,
+      type: 3}
+    count: 5
+    rate: 4
+    Bigrate: 0
+  - enemyPrefab: {fileID: 4466176432917713996, guid: 2d1076ba3f8fb424a805c369f4f7420b,
       type: 3}
     count: 8
-    rate: 6
-    Bigrate: 0
-  - enemyPrefab: {fileID: 4466176432917713996, guid: 1bfbf3281127fc244852af468a05041c,
-      type: 3}
-    count: 16
-    rate: 4
-    Bigrate: 0
-  - enemyPrefab: {fileID: 4466176432917713996, guid: d28f9e7958ad7464eaed21a4ad3e4b55,
-      type: 3}
-    count: 16
-    rate: 4
-    Bigrate: 0
-  - enemyPrefab: {fileID: 4466176432917713996, guid: d28f9e7958ad7464eaed21a4ad3e4b55,
-      type: 3}
-    count: 16
-    rate: 2
-    Bigrate: 0
-  - enemyPrefab: {fileID: 4466176432917713996, guid: d28f9e7958ad7464eaed21a4ad3e4b55,
-      type: 3}
-    count: 16
-    rate: 4
-    Bigrate: 0
-  - enemyPrefab: {fileID: 4466176432917713996, guid: 2d1076ba3f8fb424a805c369f4f7420b,
-      type: 3}
-    count: 16
-    rate: 4
-    Bigrate: 0
-  - enemyPrefab: {fileID: 4466176432917713996, guid: d28f9e7958ad7464eaed21a4ad3e4b55,
-      type: 3}
-    count: 16
-    rate: 4
-    Bigrate: 0
-  - enemyPrefab: {fileID: 4466176432917713996, guid: 2d1076ba3f8fb424a805c369f4f7420b,
-      type: 3}
-    count: 10
-    rate: 2
+    rate: 5
     Bigrate: 0
   START: {fileID: 1238988560}
   waveRate: 20
-  BigwaveRate: 20
+  BigwaveRate: 30
 --- !u!65 &1238988562
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10006,7 +9996,7 @@ MonoBehaviour:
   - {x: 0.33333334, y: 0, z: -0.33333334}
   PlayerHpLimit: 10
   PlayerHp: 10
-  Score: 0
+  Score: -150
 --- !u!4 &1466204333
 Transform:
   m_ObjectHideFlags: 0
@@ -12432,6 +12422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   KeyboardSpeed: 3
   mouseSpeed: 600
+  originPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &1848256195
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13663,53 +13654,43 @@ MonoBehaviour:
   waves:
   - enemyPrefab: {fileID: 4466176432917713996, guid: c1bbb765eafc66c4aa6ba5a56685d525,
       type: 3}
-    count: 6
-    rate: 2
+    count: 2
+    rate: 5
     Bigrate: 0
   - enemyPrefab: {fileID: 4466176432917713996, guid: c1bbb765eafc66c4aa6ba5a56685d525,
       type: 3}
-    count: 12
+    count: 3
+    rate: 5
+    Bigrate: 0
+  - enemyPrefab: {fileID: 4466176432917713996, guid: c1bbb765eafc66c4aa6ba5a56685d525,
+      type: 3}
+    count: 5
     rate: 2
     Bigrate: 0
   - enemyPrefab: {fileID: 4466176432917713996, guid: 1bfbf3281127fc244852af468a05041c,
       type: 3}
-    count: 24
-    rate: 2
+    count: 5
+    rate: 4
+    Bigrate: 0
+  - enemyPrefab: {fileID: 4466176432917713996, guid: 1bfbf3281127fc244852af468a05041c,
+      type: 3}
+    count: 5
+    rate: 4
+    Bigrate: 0
+  - enemyPrefab: {fileID: 4466176432917713996, guid: 2d1076ba3f8fb424a805c369f4f7420b,
+      type: 3}
+    count: 2
+    rate: 5
     Bigrate: 0
   - enemyPrefab: {fileID: 4466176432917713996, guid: 2d1076ba3f8fb424a805c369f4f7420b,
       type: 3}
     count: 4
-    rate: 16
+    rate: 5
     Bigrate: 0
-  - enemyPrefab: {fileID: 4466176432917713996, guid: 2d1076ba3f8fb424a805c369f4f7420b,
+  - enemyPrefab: {fileID: 4466176432917713996, guid: d28f9e7958ad7464eaed21a4ad3e4b55,
       type: 3}
-    count: 4
-    rate: 16
-    Bigrate: 0
-  - enemyPrefab: {fileID: 4466176432917713996, guid: 2d1076ba3f8fb424a805c369f4f7420b,
-      type: 3}
-    count: 4
-    rate: 16
-    Bigrate: 0
-  - enemyPrefab: {fileID: 4466176432917713996, guid: 2d1076ba3f8fb424a805c369f4f7420b,
-      type: 3}
-    count: 4
-    rate: 16
-    Bigrate: 0
-  - enemyPrefab: {fileID: 4466176432917713996, guid: 2d1076ba3f8fb424a805c369f4f7420b,
-      type: 3}
-    count: 4
-    rate: 16
-    Bigrate: 0
-  - enemyPrefab: {fileID: 4466176432917713996, guid: 2d1076ba3f8fb424a805c369f4f7420b,
-      type: 3}
-    count: 4
-    rate: 16
-    Bigrate: 0
-  - enemyPrefab: {fileID: 4466176432917713996, guid: 2d1076ba3f8fb424a805c369f4f7420b,
-      type: 3}
-    count: 4
-    rate: 16
+    count: 10
+    rate: 4
     Bigrate: 0
   START: {fileID: 2020709238}
   waveRate: 30

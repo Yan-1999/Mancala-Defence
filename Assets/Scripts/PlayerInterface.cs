@@ -364,10 +364,12 @@ public class PlayerInterface : MonoBehaviour
     public void OnButtonRetry()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameManager.Instance.SetGamePause(false);
     }
     public void OnButtonReturn()
     {
         SceneManager.LoadScene(0);
+        GameManager.Instance.SetGamePause(false);
     }
 
     public bool IsActing()
