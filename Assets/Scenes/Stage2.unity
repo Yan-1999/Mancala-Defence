@@ -8707,18 +8707,18 @@ MonoBehaviour:
   waves:
   - enemyPrefab: {fileID: 4466176432917713996, guid: c1bbb765eafc66c4aa6ba5a56685d525,
       type: 3}
-    count: 5
-    rate: 2
-    Bigrate: 0
-  - enemyPrefab: {fileID: 4466176432917713996, guid: 1bfbf3281127fc244852af468a05041c,
-      type: 3}
-    count: 3
-    rate: 5
+    count: 2
+    rate: 6
     Bigrate: 0
   - enemyPrefab: {fileID: 4466176432917713996, guid: c1bbb765eafc66c4aa6ba5a56685d525,
       type: 3}
-    count: 20
-    rate: 1
+    count: 4
+    rate: 6
+    Bigrate: 0
+  - enemyPrefab: {fileID: 4466176432917713996, guid: 1bfbf3281127fc244852af468a05041c,
+      type: 3}
+    count: 8
+    rate: 6
     Bigrate: 0
   - enemyPrefab: {fileID: 4466176432917713996, guid: 1bfbf3281127fc244852af468a05041c,
       type: 3}
@@ -8730,7 +8730,7 @@ MonoBehaviour:
     count: 16
     rate: 4
     Bigrate: 0
-  - enemyPrefab: {fileID: 4466176432917713996, guid: 2d1076ba3f8fb424a805c369f4f7420b,
+  - enemyPrefab: {fileID: 4466176432917713996, guid: d28f9e7958ad7464eaed21a4ad3e4b55,
       type: 3}
     count: 16
     rate: 2
@@ -8744,6 +8744,16 @@ MonoBehaviour:
       type: 3}
     count: 16
     rate: 4
+    Bigrate: 0
+  - enemyPrefab: {fileID: 4466176432917713996, guid: d28f9e7958ad7464eaed21a4ad3e4b55,
+      type: 3}
+    count: 16
+    rate: 4
+    Bigrate: 0
+  - enemyPrefab: {fileID: 4466176432917713996, guid: 2d1076ba3f8fb424a805c369f4f7420b,
+      type: 3}
+    count: 10
+    rate: 2
     Bigrate: 0
   START: {fileID: 1238988560}
   waveRate: 20
@@ -13653,20 +13663,30 @@ MonoBehaviour:
   waves:
   - enemyPrefab: {fileID: 4466176432917713996, guid: c1bbb765eafc66c4aa6ba5a56685d525,
       type: 3}
-    count: 5
+    count: 6
     rate: 2
     Bigrate: 0
   - enemyPrefab: {fileID: 4466176432917713996, guid: c1bbb765eafc66c4aa6ba5a56685d525,
       type: 3}
-    count: 10
-    rate: 1.5
+    count: 12
+    rate: 2
     Bigrate: 0
   - enemyPrefab: {fileID: 4466176432917713996, guid: 1bfbf3281127fc244852af468a05041c,
       type: 3}
-    count: 5
-    rate: 4
+    count: 24
+    rate: 2
     Bigrate: 0
-  - enemyPrefab: {fileID: 4466176432917713996, guid: d28f9e7958ad7464eaed21a4ad3e4b55,
+  - enemyPrefab: {fileID: 4466176432917713996, guid: 2d1076ba3f8fb424a805c369f4f7420b,
+      type: 3}
+    count: 4
+    rate: 16
+    Bigrate: 0
+  - enemyPrefab: {fileID: 4466176432917713996, guid: 2d1076ba3f8fb424a805c369f4f7420b,
+      type: 3}
+    count: 4
+    rate: 16
+    Bigrate: 0
+  - enemyPrefab: {fileID: 4466176432917713996, guid: 2d1076ba3f8fb424a805c369f4f7420b,
       type: 3}
     count: 4
     rate: 16
@@ -13686,10 +13706,10 @@ MonoBehaviour:
     count: 4
     rate: 16
     Bigrate: 0
-  - enemyPrefab: {fileID: 4466176432917713996, guid: d28f9e7958ad7464eaed21a4ad3e4b55,
+  - enemyPrefab: {fileID: 4466176432917713996, guid: 2d1076ba3f8fb424a805c369f4f7420b,
       type: 3}
-    count: 30
-    rate: 1
+    count: 4
+    rate: 16
     Bigrate: 0
   START: {fileID: 2020709238}
   waveRate: 30
