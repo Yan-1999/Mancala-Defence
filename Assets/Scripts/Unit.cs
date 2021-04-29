@@ -123,7 +123,10 @@ public class Unit : Entity
     }
     void Wait()
     {
-        GameManager.Instance.EnemyAttack(OnCell);
+        if (OnCell)
+        {
+            GameManager.Instance.EnemyAttack(OnCell);
+        }
     }
 
     void WaitAttack()
