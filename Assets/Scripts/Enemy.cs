@@ -100,6 +100,7 @@ public class Enemy : MonoBehaviour
         Destroy(effect, 1.5f);
         Destroy(this.gameObject);
         GameManager.Instance.Assets.GainCoinOnEmemyKill();
+        GameManager.Instance.IncreaseScore(20);
     }
 
     /*protected override void TryAttack()

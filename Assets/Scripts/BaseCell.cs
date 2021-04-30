@@ -29,10 +29,10 @@ public class BaseCell : Cell
 
     private void OnUpdate(float deltaTime)
     {
-        timer += deltaTime * Mathf.Sqrt(Units.Count+4);
+        timer += deltaTime * (Mathf.Sqrt(Units.Count)+1);
         if (timer > TimerMax)
         {
-            timer = 0.0f;
+            timer -= 10.0f;
             GameManager.Instance.DrawCard();
         }
     }

@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
 
     public int PlayerHpLimit = 10;
     public int PlayerHp = 10;
-    public int Score = 0;
+    public int Score = -150;
     
 
     private System.Random random = new System.Random();
@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SetGamePause(false);
+        DrawCard(); DrawCard(); DrawCard();
         GameObject[] gameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
         coinText.text = Assets.coin.ToString("0000");
         presentLifeText.text = PlayerHp.ToString("00");
@@ -571,6 +572,6 @@ public class GameManager : MonoBehaviour
     public void IncreaseScore(int add)
     {
         Score += add;
-        scoreText.text = "Score:" + Score.ToString("00000000");
+        scoreText.text = "Score:" + Score.ToString("0000000");
     }
 }

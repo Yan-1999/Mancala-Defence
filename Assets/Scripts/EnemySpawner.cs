@@ -79,7 +79,7 @@ public class EnemySpawner : MonoBehaviour
             yield return 0;
         }
         
-        playerinterface.GetComponent<PlayerInterface>().Win();
+        PlayerInterface.Instance.Win();
         Stop();
     }
 
