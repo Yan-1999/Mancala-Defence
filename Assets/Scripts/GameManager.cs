@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetGamePause(false);
         GameObject[] gameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
         coinText.text = Assets.coin.ToString("0000");
         presentLifeText.text = PlayerHp.ToString("00");
@@ -560,6 +561,11 @@ public class GameManager : MonoBehaviour
     public void PlayerCancelOptionCallBack()
     {
         SetGamePause(false);
+    }
+
+    public void PlayerGameEnd(bool isContinue)
+    {
+        SetGamePause(!isContinue);
     }
 
     public void IncreaseScore(int add)
