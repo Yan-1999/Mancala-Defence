@@ -11,6 +11,7 @@ using UnityEngine;
 public class Map : MonoBehaviour
 {
     public Cell[] Cells;
+    public Arrow arrow;
 
     void Awake()
     {
@@ -23,5 +24,10 @@ public class Map : MonoBehaviour
         {
             Cells[i] = transform.GetChild(i).gameObject.GetComponent<Cell>();
         }
+        Arrow.StartFirst(arrow);
+    }
+    public void MancalaDirection()
+    {
+        Arrow.StartFirst(arrow);
     }
 }
