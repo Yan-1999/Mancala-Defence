@@ -32,7 +32,7 @@ public class BaseCell : Cell
         timer += deltaTime * (Mathf.Sqrt(Units.Count)+1);
         if (timer > TimerMax)
         {
-            timer -= 10.0f;
+            timer -= 5.0f;
             GameManager.Instance.DrawCard();
         }
     }
