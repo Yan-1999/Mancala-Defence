@@ -50,7 +50,7 @@ public class UnitFactory : MonoBehaviour
     {
         // UNDONE: Detailize UpgradeUnitFactory.
         UnitAttr attr = Attrs[(int)type];
-        attr.Life++;
+        attr.Life+=10;
         attr.Damage++;
         attr.Skill++;
         Attrs[(int)type] = attr;

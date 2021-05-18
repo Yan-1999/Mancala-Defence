@@ -8345,29 +8345,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerinterface: {fileID: 683740269}
   waves:
-  - enemyPrefab: {fileID: 4466176432917713996, guid: 1bfbf3281127fc244852af468a05041c,
+  - enemyPrefab: {fileID: 4466176432917713996, guid: c1bbb765eafc66c4aa6ba5a56685d525,
       type: 3}
-    count: 3
-    rate: 1
+    count: 5
+    rate: 4
     Bigrate: 0
   - enemyPrefab: {fileID: 4466176432917713996, guid: 1bfbf3281127fc244852af468a05041c,
       type: 3}
-    count: 3
+    count: 2
+    rate: 10
+    Bigrate: 0
+  - enemyPrefab: {fileID: 4466176432917713996, guid: 2d1076ba3f8fb424a805c369f4f7420b,
+      type: 3}
+    count: 1
     rate: 2
     Bigrate: 0
-  - enemyPrefab: {fileID: 4466176432917713996, guid: 1bfbf3281127fc244852af468a05041c,
+  - enemyPrefab: {fileID: 4466176432917713996, guid: d28f9e7958ad7464eaed21a4ad3e4b55,
       type: 3}
-    count: 3
-    rate: 2
-    Bigrate: 0
-  - enemyPrefab: {fileID: 4466176432917713996, guid: 1bfbf3281127fc244852af468a05041c,
-      type: 3}
-    count: 3
+    count: 1
     rate: 2
     Bigrate: 0
   START: {fileID: 1930447799}
-  waveRate: 3
-  BigwaveRate: 3
+  waveRate: 20
+  BigwaveRate: 20
 --- !u!1 &1931809609
 GameObject:
   m_ObjectHideFlags: 0
