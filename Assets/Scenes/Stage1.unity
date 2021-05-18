@@ -6008,11 +6008,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 28991d41052d8dd40a1095f6876ce248, type: 3}
-    m_FontSize: 60
+    m_FontSize: 0
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 0
-    m_MaxSize: 60
+    m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 1
     m_RichText: 1
@@ -6584,6 +6584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cells: []
+  arrow: {fileID: 4565752914991121558, guid: 255d8d06cd0b61249b9ae4be32723a8e, type: 3}
 --- !u!4 &1445463844
 Transform:
   m_ObjectHideFlags: 0
@@ -7144,11 +7145,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 28991d41052d8dd40a1095f6876ce248, type: 3}
-    m_FontSize: 60
+    m_FontSize: 0
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 0
-    m_MaxSize: 60
+    m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 1
     m_RichText: 1
@@ -8342,7 +8343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97c6442791aebe34784d38cd1934c227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerinterface: {fileID: 0}
+  playerinterface: {fileID: 683740269}
   waves:
   - enemyPrefab: {fileID: 4466176432917713996, guid: 1bfbf3281127fc244852af468a05041c,
       type: 3}
@@ -8429,7 +8430,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 0
-    m_MaxSize: 60
+    m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 1
     m_RichText: 1

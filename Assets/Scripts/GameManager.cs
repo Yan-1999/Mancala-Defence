@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetGamePause(false);
         DrawCard(); DrawCard(); DrawCard();
         GameObject[] gameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
         coinText.text = Assets.coin.ToString("0000");
@@ -211,7 +212,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SetGamePause(bool pause)
+    private void SetGamePause(bool pause)
     {
         if (pause)
         {
@@ -361,7 +362,6 @@ public class GameManager : MonoBehaviour
         for (int j=0;j< length;j++)
         {
             us[diearray[j]].ReceiveDamage(us[diearray[j]].Damage);
-            
         }
         length = 0;
 
@@ -555,7 +555,6 @@ public class GameManager : MonoBehaviour
         enemySpawner.GetComponent<EnemySpawner>().Stop();
         if(GameObject.Find("EnemySpawner1"))
             GameObject.Find("EnemySpawner1").SendMessage("Stop");
-        SetGamePause(true);
         //endUI.SetActive(true);
         //endMessage.text = "失 败";
     }
@@ -563,6 +562,11 @@ public class GameManager : MonoBehaviour
     public void PlayerCancelOptionCallBack()
     {
         SetGamePause(false);
+    }
+
+    public void PlayerGameEnd(bool isContinue)
+    {
+        SetGamePause(!isContinue);
     }
 
     public void IncreaseScore(int add)

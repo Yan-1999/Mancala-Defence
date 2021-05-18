@@ -15,14 +15,17 @@ public class CameraControl : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (!PlayerInterface.Instance.IsUpgrading)
         {
-            transform.position = originPosition;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                transform.position = originPosition;
+            }
+            float h = Input.GetAxis("Horizontal");
+            float v = Input.GetAxis("Vertical");
+            float mouse = Input.GetAxis("Mouse ScrollWheel");
+            transform.Translate(new Vector3(h * KeyboardSpeed, -mouse * mouseSpeed, v * KeyboardSpeed) * Time.deltaTime, Space.World);
+            GameManager.Instance.cameraPosition = transform.position;
         }
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
-        float mouse = Input.GetAxis("Mouse ScrollWheel");
-        transform.Translate(new Vector3(h * KeyboardSpeed, -mouse * mouseSpeed, v * KeyboardSpeed) * Time.deltaTime, Space.World);
-        GameManager.Instance.cameraPosition = transform.position;
     }
 }

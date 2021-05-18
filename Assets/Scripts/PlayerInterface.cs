@@ -353,23 +353,29 @@ public class PlayerInterface : MonoBehaviour
     {
         endUI.SetActive(true);
         endMessage.text = "Game Over";
+        GameManager.Instance.PlayerGameEnd(false);
+        GameManager.Instance.scoreText.transform.SetParent(endUI.transform);
+        GameManager.Instance.scoreText.transform.position = endUI.GetComponentInChildren<Image>().gameObject.transform.position;
     }
 
     public void Win()
     {
         endUI.SetActive(true);
         endMessage.text = "You Win";
+        GameManager.Instance.PlayerGameEnd(false);
+        GameManager.Instance.scoreText.transform.SetParent(endUI.transform);
+        GameManager.Instance.scoreText.transform.position = endUI.GetComponentInChildren<Image>().gameObject.transform.position;
     }
 
     public void OnButtonRetry()
     {
+        GameManager.Instance.PlayerGameEnd(true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        GameManager.Instance.SetGamePause(false);
     }
     public void OnButtonReturn()
     {
+        GameManager.Instance.PlayerGameEnd(true);
         SceneManager.LoadScene(0);
-        GameManager.Instance.SetGamePause(false);
     }
 
     public bool IsActing()
