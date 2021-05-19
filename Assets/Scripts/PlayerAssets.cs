@@ -151,4 +151,14 @@ public class PlayerAssets
         }
         return max;
     }
+
+    public void GuideDiscard()
+    {
+        int i = Cards.Count;
+        while(i>0)
+        {
+            i--;
+            AutoDiscard();
+        }
+    }
 }

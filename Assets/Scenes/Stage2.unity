@@ -12424,6 +12424,12 @@ MonoBehaviour:
   KeyboardSpeed: 3
   mouseSpeed: 600
   originPosition: {x: 0, y: 0, z: 0}
+  left: -6.5
+  right: 5
+  up: 7
+  down: -5.5
+  low: 3
+  high: 22
 --- !u!1001 &1848256195
 PrefabInstance:
   m_ObjectHideFlags: 0
