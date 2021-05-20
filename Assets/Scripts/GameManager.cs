@@ -73,9 +73,9 @@ public class GameManager : MonoBehaviour
         DrawCard(); DrawCard(); DrawCard();
         GameObject[] gameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
         coinText.text = Assets.coin.ToString("0000");
-        presentLifeText.text = PlayerHp.ToString("00");
+        presentLifeText.text = PlayerHp.ToString("00") + "/";
         lifeLimitText.text = PlayerHpLimit.ToString("00");
-        presentWaveText.text = "01";
+        presentWaveText.text = "01" + "/";
         waveLimitText.text = enemySpawner.waves.Length.ToString("00");
         pauseCanvas.gameObject.SetActive(false);
         yesButton.gameObject.SetActive(false);
@@ -161,14 +161,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //codes below should be preserved
-        if (Assets.coin >= Assets.Costs[(int)PlayerOption.ExtendHandLimit])
-        {
-            extendHandLimitButton.image.color = Color.yellow;
-        }
-        else
-        {
-            extendHandLimitButton.image.color = Color.gray;
-        }
         if (Input.GetMouseButtonDown(0) && !PlayerInterface.Instance.IsActing())
         {
             PlayerInterface.Instance.ChooseUnit();
@@ -176,39 +168,33 @@ public class GameManager : MonoBehaviour
         int count = Assets.GetMaxCount();
         if (count >= Assets.Costs[(int)PlayerOption.UnitSpawn])
         {
-            spawnButton.image.color = Color.cyan;
-            spawnButton.gameObject.GetComponentInChildren<Text>().color = Color.cyan;
+            spawnButton.image.sprite = Resources.Load<Sprite>("spawn");
         }
         else
         {
-            spawnButton.image.color = Color.gray;
-            spawnButton.gameObject.GetComponentInChildren<Text>().color = Color.gray;
+            spawnButton.image.sprite = Resources.Load<Sprite>("spawn-dis");
         }
         if (FreeMancala)
         {
+            mancalaButton.image.sprite = Resources.Load<Sprite>("mancala-dis");
             mancalaButton.image.color = Color.yellow;
-            mancalaButton.gameObject.GetComponentInChildren<Text>().color = Color.yellow;
-
         }
         else if (count >= Assets.Costs[(int)PlayerOption.Mancala] && Units.Count > 0)
         {
-            mancalaButton.image.color = Color.cyan;
-            mancalaButton.gameObject.GetComponentInChildren<Text>().color = Color.cyan;
+            mancalaButton.image.sprite = Resources.Load<Sprite>("mancala");
         }
         else
         {
-            mancalaButton.image.color = Color.gray;
-            mancalaButton.gameObject.GetComponentInChildren<Text>().color = Color.gray;
+            mancalaButton.image.sprite = Resources.Load<Sprite>("mancala-dis");
         }
         if (count >= Assets.Costs[(int)PlayerOption.UnitUpgrade])
         {
-            unitUpgradeButton.image.color = Color.cyan;
-            unitUpgradeButton.gameObject.GetComponentInChildren<Text>().color = Color.cyan;
+            unitUpgradeButton.image.sprite = Resources.Load<Sprite>("upgrade");
+
         }
         else
         {
-            unitUpgradeButton.image.color = Color.gray;
-            unitUpgradeButton.gameObject.GetComponentInChildren<Text>().color = Color.gray;
+            unitUpgradeButton.image.sprite = Resources.Load<Sprite>("upgrade-dis");
         }
     }
 
@@ -534,7 +520,7 @@ public class GameManager : MonoBehaviour
     public void EnemyPass()
     {
         PlayerHp--;
-        presentLifeText.text = PlayerHp.ToString("00");
+        presentLifeText.text = PlayerHp.ToString("00") + "/";
         //UNDONE:score
         IncreaseScore(-10000);
         if (PlayerHp == 0)

@@ -111,7 +111,7 @@ public class PlayerInterface : MonoBehaviour
                     if (highLightedCells.Contains(cellChosen))
                     {
                         GameManager.Instance.PlayerChooseCellCallback(highLightOption, nowType, cellChosen);
-                        HighLightCellsEnd();
+                        Invoke("HighLightCellsEnd", 0.001f);
                     }
                     else
                     {
@@ -307,9 +307,9 @@ public class PlayerInterface : MonoBehaviour
         {
             Camera.main.GetComponentInChildren<CameraMove>().MoveCamera(GameManager.Instance.cameraPosition,
                 UnitChosen.transform.position + new Vector3(0, 3, -0.5f));
-            upgradeSkill.GetComponentInChildren<Text>().text = "Skill:" + UnitChosen.Skill.ToString() + '+';
-            upgradeDamage.GetComponentInChildren<Text>().text = "Damage:" + UnitChosen.Damage.ToString() + '+';
-            upgradeLife.GetComponentInChildren<Text>().text = "Life:" + UnitChosen.Life.ToString("F1") + '/' + UnitChosen.LifeLimit.ToString() + '+';
+            upgradeSkill.GetComponentInChildren<Text>().text = UnitChosen.Skill.ToString() + '+';
+            upgradeDamage.GetComponentInChildren<Text>().text = UnitChosen.Damage.ToString() + '+';
+            upgradeLife.GetComponentInChildren<Text>().text = UnitChosen.Life.ToString("F1") + '/' + UnitChosen.LifeLimit.ToString() + '+';
         }
         else
         {
