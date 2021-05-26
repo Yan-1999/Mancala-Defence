@@ -46,7 +46,7 @@ public class Unit : Entity
         switch (unitAttrEnum)
         {
             case AttrEnum.Life:
-                LifeLimit++;
+                LifeLimit += 100;
                 Life = LifeLimit;
                 LifeBar.value = 1;
                 break;
@@ -134,6 +134,11 @@ public class Unit : Entity
 
         ReceiveDamage(Damage);
         LifeBar.value = Life / LifeLimit;
+        if (this == PlayerInterface.Instance.UnitChosen)
+        {
+            PlayerInterface.Instance.upgradeLife.GetComponentInChildren<Text>().text = "Life:" +
+                PlayerInterface.Instance.UnitChosen.Life.ToString("F1") + '/' + PlayerInterface.Instance.UnitChosen.LifeLimit.ToString() + '+';
+        }
     }
 
 

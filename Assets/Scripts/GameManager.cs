@@ -242,7 +242,7 @@ public class GameManager : MonoBehaviour
         {
             return false;
         }//can be deleted
-        Unit newUnit = Instantiate(unit, cell.transform.position + presetPosition[cell.UnitCount() % 9], Quaternion.identity);
+        Unit newUnit = Instantiate(unit, cell.transform.position + presetPosition[cell.UnitCount() % 9], unit.transform.rotation);
         newUnit.LifeBar = newUnit.gameObject.GetComponentInChildren<Slider>();
         newUnit.UnitType = unit.UnitType;
         newUnit.Life = UnitFactory.Instance.Attrs[(int)newUnit.UnitType].Life;
