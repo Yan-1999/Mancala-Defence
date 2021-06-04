@@ -4187,12 +4187,12 @@ MonoBehaviour:
     Bigrate: 0
   - enemyPrefab: {fileID: 4466176432917713996, guid: 2d1076ba3f8fb424a805c369f4f7420b,
       type: 3}
-    count: 8
-    rate: 5
+    count: 30
+    rate: 2
     Bigrate: 0
   START: {fileID: 1238988560}
   waveRate: 20
-  BigwaveRate: 30
+  BigwaveRate: 20
 --- !u!65 &1238988562
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7024,12 +7024,12 @@ MonoBehaviour:
     Bigrate: 0
   - enemyPrefab: {fileID: 4466176432917713996, guid: d28f9e7958ad7464eaed21a4ad3e4b55,
       type: 3}
-    count: 10
-    rate: 4
+    count: 80
+    rate: 1
     Bigrate: 0
   START: {fileID: 2020709238}
-  waveRate: 30
-  BigwaveRate: 30
+  waveRate: 20
+  BigwaveRate: 20
 --- !u!65 &2020709240
 BoxCollider:
   m_ObjectHideFlags: 0
