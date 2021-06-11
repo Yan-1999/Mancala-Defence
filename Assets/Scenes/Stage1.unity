@@ -2344,12 +2344,12 @@ MonoBehaviour:
     count: 2
     rate: 10
     Bigrate: 0
-  - enemyPrefab: {fileID: 4466176432917713996, guid: 2d1076ba3f8fb424a805c369f4f7420b,
+  - enemyPrefab: {fileID: 4466176432917713996, guid: d28f9e7958ad7464eaed21a4ad3e4b55,
       type: 3}
     count: 1
     rate: 2
     Bigrate: 0
-  - enemyPrefab: {fileID: 4466176432917713996, guid: d28f9e7958ad7464eaed21a4ad3e4b55,
+  - enemyPrefab: {fileID: 4466176432917713996, guid: 2d1076ba3f8fb424a805c369f4f7420b,
       type: 3}
     count: 1
     rate: 2
