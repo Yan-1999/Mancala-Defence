@@ -4191,8 +4191,8 @@ MonoBehaviour:
     rate: 2
     Bigrate: 0
   START: {fileID: 1238988560}
-  waveRate: 20
-  BigwaveRate: 20
+  waveRate: 30
+  BigwaveRate: 30
 --- !u!65 &1238988562
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7028,8 +7028,8 @@ MonoBehaviour:
     rate: 1
     Bigrate: 0
   START: {fileID: 2020709238}
-  waveRate: 20
-  BigwaveRate: 20
+  waveRate: 30
+  BigwaveRate: 30
 --- !u!65 &2020709240
 BoxCollider:
   m_ObjectHideFlags: 0
