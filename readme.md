@@ -1,4 +1,8 @@
-#  Mancala Defence - Game Mechanism
+# Mancala Defence
+
+This is a course project of Game Program Design of SSE, Tongji Univ. For the **course project** report and **presentation slide**, see [course project report](document/document.pdf) and [presentation slide](document/presentation.pptx). The following is a brief description of the game mechanism we've developed.
+
+# Game Mechanism
 
 ## Overview
 
@@ -27,6 +31,7 @@ The *cells* are divided into two categories: *Favourite Cells* (shown as Fav. Ce
 - *Units* can not be directly spawned on a *Vul. cell* unless it is *activated*, that is, any *unit* has been move onto it beforehand (through *Mancala*).
 
 - *Units* can **never** be spawned on the *base*.
+
 - *Units* can **never** be spawned on the *cell* that has number of unit reached the limit.
 
 (In code the *base* is represented by `BaseCell`)
@@ -130,24 +135,23 @@ There exists a *hand limit*. Once the limit is reached, the game will discard th
 
 ## List of Terms
 
-| Term                            | Meaning                                                      |
-| ------------------------------- | ------------------------------------------------------------ |
-| *activation*                    | (see above)                                                  |
-| *base*                          | A special *favourite cell* that player should prevent *enemies* from. |
-| *building activity*             | (see above)                                                  |
-| *card*                          | A major resource that player can use to spawn *units*, etc.. |
-| *cell*                          | Where player can place units.                                |
-| *coin*                          | A minor resource that player can use to upgrade *units*, etc.. |
-| *enemy spawning point* (*ESP*)  | Place where *enemies* are spawned.                           |
-| *enemy*                         | Entity that keeps approaching the *base*. Player will lose when one gets into the *base*. |
-| *exhaustion*                    | A state of *cell*. All the *units* on it are all disabled on an *exhausted cell*. |
-| *favourite cell* (*fav. cell*)  | *Cell* where *units* stay unaffected when placing on it.     |
-| *hand limit*                    | How many *cards* player can hold.                            |
-| *Mancala*                       | A special move redistributing *units*.                       |
-| *map*                           | Collection of *enemy spawning point*, *base*, *path* and *cells*. |
+| Term                            | Meaning                                                                                                   |
+| ------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| *activation*                    | (see above)                                                                                               |
+| *base*                          | A special *favourite cell* that player should prevent *enemies* from.                                     |
+| *building activity*             | (see above)                                                                                               |
+| *card*                          | A major resource that player can use to spawn *units*, etc..                                              |
+| *cell*                          | Where player can place units.                                                                             |
+| *coin*                          | A minor resource that player can use to upgrade *units*, etc..                                            |
+| *enemy spawning point* (*ESP*)  | Place where *enemies* are spawned.                                                                        |
+| *enemy*                         | Entity that keeps approaching the *base*. Player will lose when one gets into the *base*.                 |
+| *exhaustion*                    | A state of *cell*. All the *units* on it are all disabled on an *exhausted cell*.                         |
+| *favourite cell* (*fav. cell*)  | *Cell* where *units* stay unaffected when placing on it.                                                  |
+| *hand limit*                    | How many *cards* player can hold.                                                                         |
+| *Mancala*                       | A special move redistributing *units*.                                                                    |
+| *map*                           | Collection of *enemy spawning point*, *base*, *path* and *cells*.                                         |
 | *overloading*                   | A state of *cell*, entered when too many *units* are placed on it. It may become *exhausted*  afterwards. |
-| *skill*                         | The amount that a *unit* can contribute to *building activity* at a time. |
-| *unit factory*                  | (see above)                                                  |
-| *unit*                          | Object that will automatically damaging the *enemies* nearby once placed. |
-| *vulnerable cell* (*vul. cell*) | *Cell* where *units* are debuffed when placing on it.        |
-
+| *skill*                         | The amount that a *unit* can contribute to *building activity* at a time.                                 |
+| *unit factory*                  | (see above)                                                                                               |
+| *unit*                          | Object that will automatically damaging the *enemies* nearby once placed.                                 |
+| *vulnerable cell* (*vul. cell*) | *Cell* where *units* are debuffed when placing on it.                                                     |
